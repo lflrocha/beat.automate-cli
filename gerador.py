@@ -76,14 +76,14 @@ for item in itens:
         ID = 'tvbr_programacao_chamadas_2022'
         JSX = ROOT + 'scripts/tvbr_programacao_chamadas_2022.jsx'
         EXPORT = ROOT + 'export/tvbr_programacao_chamadas_2022/'
-        DESTINO = local + '/TVBr_Programacao2022/'
+        DESTINO = local + '/TVBr_Programacao_Chamadas_2022/'
         SAIDA = lib_dados.getTVBrProgramacaoChamadas2022(dados)
 
     elif tipo == "TVBr Programacao Agencia":
         ID = 'tvbr_programacao_destaque_agencia_2022'
         JSX = ROOT + 'scripts/tvbr_programacao_destaque_agencia_2022.jsx'
         EXPORT = ROOT + 'export/tvbr_programacao_destaque_agencia_2022/'
-        DESTINO = local + '/TVBr_Programacao2022/'
+        DESTINO = local + '/TVBr_Programacao_Agencia_2022/'
         SAIDA = lib_dados.getTVBrProgramacaoDestaqueAgencia2022(dados)
 
     logger.info("%r - Preparando JSON", titulo)
