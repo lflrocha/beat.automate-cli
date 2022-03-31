@@ -34,6 +34,7 @@ if (arquivoJson.open("r")) {
 
 // Define as variáveis a partir dos dados do JSON
 var dia = dados.dia
+var dia_abr = dia.substring(0,3)
 var hora = dados.hora
 var programa = dados.programa
 
@@ -41,9 +42,13 @@ for(var x = 1; x <= 7; x++) {
         var compDados = app.project.item(x + 1)
         TrocarTexto(compDados, "Hora", hora);
         TrocarTexto(compDados, "NomeProgramaLinha", programa);
-        if ((x == 1) || (x == 3) || (x == 5)) {
-                TrocarTexto(compDados, "Dia", dia);
+        if ((x == 1) || (x == 3) || (x == 7)) {
+            TrocarTexto(compDados, "Dia", dia);
         }
+        if (x == 5){
+            TrocarTexto(compDados, "Dia", dia_abr);
+        }
+
 
         if ((x == 1) || (x == 2)) {
           var texto = compDados.layer("NomeProgramaLinha");

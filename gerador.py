@@ -140,9 +140,9 @@ for item in itens:
             os.rename(arquivo + '00000', arquivo)
 
         if 'converter' in render.keys():
-            novo_arq = automator.converter(render['converter'], arquivo)
+            arquivo = automator.converter(render['converter'], arquivo)
 
-        # retorno = automator.enviaCut(arquivo, dest)
+        retorno = automator.enviaCut(arquivo, dest)
         logger.info("%r - %r - Arte copiada para destino: " + arquivo, titulo, retorno)
 
 

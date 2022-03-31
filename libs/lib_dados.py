@@ -79,7 +79,7 @@ def getTVBrProgramacaoChamadas2022(dados):
     aux_dados = variaveis
     aux_dia = variaveis['dia']
 
-    if aux_dia == "Seg a Sex":
+    if aux_dia in ["Seg a Sex", "Seg a Sáb", "Ter a Sex"]:
         aux_comp_dia = "!Render_SeloSEGASEX"
     else:
         aux_comp_dia = "!Render_SeloDia"
