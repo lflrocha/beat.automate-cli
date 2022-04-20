@@ -179,6 +179,9 @@ def converter(tipo, arquivo):
     if tipo == "MXF":
         parametros = ['ffmpeg', '-i', arquivo, '-pix_fmt', 'yuv422p', '-vcodec', 'mpeg2video', '-non_linear_quant', '1', '-flags', '+ildct+ilme', '-top', '1', '-dc', '10', '-intra_vlc', '1', '-qmax', '3', '-lmin', '1*QP2LAMBDA', '-vtag', 'xd5c', '-rc_max_vbv_use', '1', '-rc_min_vbv_use', '1', '-g', '12', '-b:v', '50000k', '-minrate', '50000k', '-maxrate', '50000k', '-bufsize', '8000k', '-acodec', 'pcm_s16le', '-ar', '48000', '-bf', '2', '-ac', '2', arq_out]
         retorno = subprocess.call(parametros)
+    if tipo == "MP4":
+        parametros = ['ffmpeg', '-i', arquivo, '-b:v', '5M', '-vcodec', 'h264', '-an', arq_out]
+        retorno = subprocess.call(parametros)
     return(arq_out)
 
 def getDataHora(*args):

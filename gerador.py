@@ -141,6 +141,7 @@ for item in itens:
 
         if 'converter' in render.keys():
             arquivo = automator.converter(render['converter'], arquivo)
+            print(arquivo)
 
         retorno = automator.enviaCut(arquivo, dest)
         logger.info("%r - %r - Arte copiada para destino: " + arquivo, titulo, retorno)

@@ -33,28 +33,32 @@ def getMktMidiaIndoorAgencia2022(dados):
             "inicio": "1",
             "fim": "0",
             "OM": "MOV",
-            "arquivo": arquivo_saida + "-02.jpg",
+            "arquivo": arquivo_saida + "-02.mov",
+            "converter": "MP4"
         },
         {
             "comp": "render03",
             "inicio": "1",
             "fim": "0",
             "OM": "MOV",
-            "arquivo": arquivo_saida + "-03.jpg",
+            "arquivo": arquivo_saida + "-03.mov",
+            "converter": "MP4"
         },
         {
             "comp": "render04",
             "inicio": "1",
             "fim": "0",
             "OM": "MOV",
-            "arquivo": arquivo_saida + "-04.jpg",
+            "arquivo": arquivo_saida + "-04.mov",
+            "converter": "MP4"
         },
         {
             "comp": "render05",
             "inicio": "1",
             "fim": "0",
             "OM": "MOV",
-            "arquivo": arquivo_saida + "-05.jpg",
+            "arquivo": arquivo_saida + "-05.mov",
+            "converter": "MP4"
         },
         {
             "comp": "render06",
