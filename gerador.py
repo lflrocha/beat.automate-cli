@@ -118,8 +118,8 @@ for item in itens:
 
     # CRIA PASTA NO DESTINO
     dest = DESTINO + ano + '/' + mes + '/' + dia + '/'
-    # if not os.path.isdir(dest):
-    #     os.makedirs(dest)
+    if not os.path.isdir(dest):
+        os.makedirs(dest)
 
     renders = SAIDA['renders']
     for render in renders:
@@ -129,6 +129,8 @@ for item in itens:
         fim = render['fim']
         om = render['OM']
         arquivo = export + render['arquivo']
+
+        print(render)
 
         retorno = automator.geraArte(projetoAfter, comp, inicio, fim, om, arquivo)
         logger.info("%r - %r - Gerando Arte " + arquivo, titulo, retorno)
@@ -143,7 +145,7 @@ for item in itens:
             arquivo = automator.converter(render['converter'], arquivo)
             print(arquivo)
 
-        retorno = automator.enviaCut(arquivo, dest)
+        # retorno = automator.enviaCut(arquivo, dest)
         logger.info("%r - %r - Arte copiada para destino: " + arquivo, titulo, retorno)
 
 
