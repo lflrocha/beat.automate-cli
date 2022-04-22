@@ -44,7 +44,7 @@ print(len(itens))
 
 for item in itens:
     arq = automator.alteraStatus(endereco, 'gerar')
-    
+
 
 for item in itens:
     endereco = item['endereco']
@@ -150,7 +150,7 @@ for item in itens:
             arquivo = automator.converter(render['converter'], arquivo)
             print(arquivo)
 
-        # retorno = automator.enviaCut(arquivo, dest)
+        retorno = automator.enviaCut(arquivo, dest)
         logger.info("%r - %r - Arte copiada para destino: " + arquivo, titulo, retorno)
 
 
