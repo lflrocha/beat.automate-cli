@@ -12,7 +12,7 @@ from slugify import slugify
 def getMktMidiaIndoorAgencia2022(dados):
     novo_projeto = dados['novo_projeto']
     identificador = dados['identificador']
-    arquivo_saida = slugify(novo_projeto + '-' + identificador)
+    arquivo_saida = slugify(novo_projeto)
 
     variaveis = dados['variaveis']
     link = variaveis['link']
@@ -25,7 +25,7 @@ def getMktMidiaIndoorAgencia2022(dados):
             "inicio": "180",
             "fim": "180",
             "OM": "JPEG",
-            "arquivo": arquivo_saida + "-01.jpg",
+            "arquivo": arquivo_saida + "-192x288_relogio_SP.jpg",
             "renomear": True
         },
         {
@@ -33,15 +33,15 @@ def getMktMidiaIndoorAgencia2022(dados):
             "inicio": "180",
             "fim": "180",
             "OM": "JPEG",
-            "arquivo": arquivo_saida + "-06.jpg",
+            "arquivo": arquivo_saida + "-2160x3840_relogio_SP.jpg",
             "renomear": True
-        },        
+        },
         {
             "comp": "render01",
             "inicio": "1",
             "fim": "0",
             "OM": "MOV",
-            "arquivo": arquivo_saida + "-01.mov",
+            "arquivo": arquivo_saida + "-192x288_relogio_SP.mov",
             "converter": "MP4"
         },
         {
@@ -49,7 +49,7 @@ def getMktMidiaIndoorAgencia2022(dados):
             "inicio": "1",
             "fim": "0",
             "OM": "MOV",
-            "arquivo": arquivo_saida + "-02.mov",
+            "arquivo": arquivo_saida + "-880x400_aeroporto_BSB.mov",
             "converter": "MP4"
         },
         {
@@ -57,7 +57,7 @@ def getMktMidiaIndoorAgencia2022(dados):
             "inicio": "1",
             "fim": "0",
             "OM": "MOV",
-            "arquivo": arquivo_saida + "-03.mov",
+            "arquivo": arquivo_saida + "-1080x1920_aeroporto_BSB.mov",
             "converter": "MP4"
         },
         {
@@ -65,7 +65,7 @@ def getMktMidiaIndoorAgencia2022(dados):
             "inicio": "1",
             "fim": "0",
             "OM": "MOV",
-            "arquivo": arquivo_saida + "-04.mov",
+            "arquivo": arquivo_saida + "-1152x768_aeroporto_BSB.mov",
             "converter": "MP4"
         },
         {
@@ -73,7 +73,7 @@ def getMktMidiaIndoorAgencia2022(dados):
             "inicio": "1",
             "fim": "0",
             "OM": "MOV",
-            "arquivo": arquivo_saida + "-05.mov",
+            "arquivo": arquivo_saida + "-1920x1080_aeroporto_BSB.mov",
             "converter": "MP4"
         },
         {
@@ -81,7 +81,7 @@ def getMktMidiaIndoorAgencia2022(dados):
             "inicio": "1",
             "fim": "0",
             "OM": "MOV",
-            "arquivo": arquivo_saida + "-06.mov",
+            "arquivo": arquivo_saida + "-2160x3840_relogio_SP.mov",
             "converter": "MP4"
         },
 

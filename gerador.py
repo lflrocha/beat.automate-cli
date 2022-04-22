@@ -41,6 +41,11 @@ for lista in listas:
 
 print(itens)
 print(len(itens))
+
+for item in itens:
+    arq = automator.alteraStatus(endereco, 'gerar')
+    
+
 for item in itens:
     endereco = item['endereco']
     titulo = item['titulo']
