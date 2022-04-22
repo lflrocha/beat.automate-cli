@@ -29,6 +29,22 @@ def getMktMidiaIndoorAgencia2022(dados):
             "renomear": True
         },
         {
+            "comp": "render06",
+            "inicio": "180",
+            "fim": "180",
+            "OM": "JPEG",
+            "arquivo": arquivo_saida + "-06.jpg",
+            "renomear": True
+        },        
+        {
+            "comp": "render01",
+            "inicio": "1",
+            "fim": "0",
+            "OM": "MOV",
+            "arquivo": arquivo_saida + "-01.mov",
+            "converter": "MP4"
+        },
+        {
             "comp": "render02",
             "inicio": "1",
             "fim": "0",
@@ -62,12 +78,13 @@ def getMktMidiaIndoorAgencia2022(dados):
         },
         {
             "comp": "render06",
-            "inicio": "180",
-            "fim": "180",
-            "OM": "JPEG",
-            "arquivo": arquivo_saida + "-06.jpg",
-            "renomear": True
+            "inicio": "1",
+            "fim": "0",
+            "OM": "MOV",
+            "arquivo": arquivo_saida + "-06.mov",
+            "converter": "MP4"
         },
+
     ]
 
     saida = {"dados": aux_dados, "renders": renders}
