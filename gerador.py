@@ -43,6 +43,7 @@ print(itens)
 print(len(itens))
 
 for item in itens:
+    endereco = item['endereco']
     arq = automator.alteraStatus(endereco, 'gerar')
 
 
