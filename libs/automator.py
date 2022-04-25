@@ -189,7 +189,7 @@ def converter(tipo, arquivo):
         retorno = subprocess.call(parametros)
     elif tipo == "MP4-ROTATE":
         arq_out = arq_out[0] + '.mp4'
-        parametros = ['ffmpeg', '-i', arquivo, '-vf', "transpose=1", '-b:v', '1M', '-vcodec', 'h264', '-an', arq_out]
+        parametros = ['ffmpeg', '-i', arquivo, '-vf', "transpose=2", '-b:v', '1M', '-vcodec', 'h264', '-an', arq_out]
         retorno = subprocess.call(parametros)
     return(arq_out)
 
