@@ -12,7 +12,7 @@ from slugify import slugify
 def getMktMidiaIndoorAgencia2022(dados):
     novo_projeto = dados['novo_projeto']
     identificador = dados['identificador']
-    arquivo_saida = slugify(novo_projeto)
+    arquivo_saida = slugify(novo_projeto + '-' + identificador)
 
     variaveis = dados['variaveis']
     link = variaveis['link']
