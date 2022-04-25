@@ -42,7 +42,7 @@ def getMktMidiaIndoorAgencia2022(dados):
             "fim": "0",
             "OM": "MOV",
             "arquivo": arquivo_saida + "-192x288_relogio_SP.mov",
-            "converter": "MP4"
+            "converter": "MP4-LOW"
         },
         {
             "comp": "render02",
@@ -58,7 +58,7 @@ def getMktMidiaIndoorAgencia2022(dados):
             "fim": "0",
             "OM": "MOV",
             "arquivo": arquivo_saida + "-1080x1920_aeroporto_BSB.mov",
-            "converter": "MP4"
+            "converter": "MP4-ROTATE"
         },
         {
             "comp": "render04",

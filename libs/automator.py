@@ -183,6 +183,14 @@ def converter(tipo, arquivo):
         arq_out = arq_out[0] + '.mp4'
         parametros = ['ffmpeg', '-i', arquivo, '-b:v', '5M', '-vcodec', 'h264', '-an', arq_out]
         retorno = subprocess.call(parametros)
+    elif tipo == "MP4-LOW":
+        arq_out = arq_out[0] + '.mp4'
+        parametros = ['ffmpeg', '-i', arquivo, '-b:v', '1M', '-vcodec', 'h264', '-an', arq_out]
+        retorno = subprocess.call(parametros)
+    elif tipo == "MP4-ROTATE":
+        arq_out = arq_out[0] + '.mp4'
+        parametros = ['ffmpeg', '-i', arquivo, '-vf', "transpose=1", '-b:v', '1M', '-vcodec', 'h264', '-an', arq_out]
+        retorno = subprocess.call(parametros)
     return(arq_out)
 
 def getDataHora(*args):
