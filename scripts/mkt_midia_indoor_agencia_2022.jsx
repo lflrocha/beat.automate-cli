@@ -54,7 +54,6 @@ function TrocarTexto (nome_comp, nome_layer, novo_texto) {
 // no projeto
 
 var compDados = app.project.item(2)
-
 TrocarTexto (compDados, "_titulo", dados.titulo)
 
 var texto = compDados.layer("_titulo");
@@ -64,15 +63,28 @@ var posicao = texto.property("position").value;
 var novo_x = posicao[0]
 var novo_y = 522 + delta_h
 texto.property("position").setValue([novo_x, novo_y]);
-
-
 TrocarTexto (compDados, "_credito", dados.credito)
+
+
+var compDados = app.project.item(3)
+TrocarTexto (compDados, "_titulo", dados.titulo)
+
+var texto = compDados.layer("_titulo");
+var altura = texto.sourceRectAtTime(1, true).height;
+var delta_h = (670 - altura)/2
+var posicao = texto.property("position").value;
+var novo_x = posicao[0]
+var novo_y = 500 + delta_h
+texto.property("position").setValue([novo_x, novo_y]);
+TrocarTexto (compDados, "_credito", dados.credito)
+
 
 
 // Importa a nova imagem e substitui uma existente
 novaImagem = baseFolder + 'temp/' + imagem
 var arquivoImagem = new File(novaImagem)
-app.project.item(3).replace(arquivoImagem)
+app.project.item(4).replace(arquivoImagem)
+
 
 
 // Finaliza e salva
