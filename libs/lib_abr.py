@@ -38,9 +38,7 @@ def getDestaqueAgencia(link, id):
     arq_imagem = arq_imagem[0].rsplit('/',1)[1]
     ext = arq_imagem.rsplit('.',1)[1]
     novo_nome_arq_imagem = 'imagem' + DATA_HORA + '-' + id + '.' + ext
-    print("aqui")
     urllib.request.urlretrieve(ret['imagem'], TEMP + novo_nome_arq_imagem)
-    print("aqui2")
 
     dados = {
         "editoria": ret['editoria'].replace('"','\"'),

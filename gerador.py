@@ -145,6 +145,7 @@ for item in itens:
             break
 
         if 'renomear' in render.keys():
+            print(arquivo)
             os.rename(arquivo + '00000', arquivo)
 
         if 'converter' in render.keys():
