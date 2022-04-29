@@ -34,7 +34,7 @@ def getMktMidiaIndoorAgencia2022(dados):
             "fim": "180",
             "OM": "JPEG",
             "arquivo": arquivo_saida + "-2160x3840_relogio_SP.jpg",
-            "renomear": True
+            # "renomear": True
         },
         {
             "comp": "render01",
