@@ -25,14 +25,18 @@ data_hora_str = data.strftime("%Y%m%d%H%M%S")
 ARQUIVOS = ROOT + 'arquivos/'
 TEMP = ROOT + 'temp/'
 LOGS = ROOT + 'logs/'
-CUT = '/Volumes/CUT/Automator/'
+CUT = '/Volumes/Automator/'
+CUT = './Automator/'
+
 
 receivers = ['luis.rocha@ebc.com.br']
 
 listas = [
-    'http://automator-prod01.ebc:8080/automator/getMarketingPendentes',
-    'http://automator-prod01.ebc:8080/automator/getTVBrProgramacaoAgenciaPendentes',
-    'http://automator-prod01.ebc:8080/automator/getTVBrProgramacao2022Pendentes',
+    # 'http://automator-prod01.ebc:8080/automator/getMarketingPendentes',
+    # 'http://automator-prod01.ebc:8080/automator/getTVBrProgramacaoAgenciaPendentes',
+    # 'http://automator-prod01.ebc:8080/automator/getTVBrProgramacao2022Pendentes',
+    # 'http://automator-prod01.ebc:8080/automator/getTVBrEleicoes2022AgendaPendentes',
+    'http://vmebc:8080/automator/getTVBr7deSetembro2022InteracoesPendentes',
 ]
 
 itens = []
@@ -44,8 +48,7 @@ print(len(itens))
 
 for item in itens:
     endereco = item['endereco']
-    arq = automator.alteraStatus(endereco, 'gerar')
-
+    # arq = automator.alteraStatus(endereco, 'gerar')
 
 for item in itens:
     endereco = item['endereco']
@@ -62,7 +65,7 @@ for item in itens:
     logger.addHandler(handler)
     logger.info("%r - %r - Iniciando item", titulo, tipo)
 
-    arq = automator.alteraStatus(endereco, 'gerar')
+    # arq = automator.alteraStatus(endereco, 'gerar')
     logger.info("%r - Setando status para 'gerando'", titulo)
 
     dados = automator.buscaDados(endereco)
@@ -70,6 +73,8 @@ for item in itens:
     identificador = dados['identificador']
     local = dados['local']
     logger.info("%r - Baixando dados do item", titulo)
+
+    print(tipo)
 
     if tipo == "MKT Midia Indoor Agencia 2022":
         ID = 'mkt_midia_indoor_agencia_2022'
@@ -91,6 +96,20 @@ for item in itens:
         EXPORT = ROOT + 'export/tvbr_programacao_destaque_agencia_2022/'
         DESTINO = local + '/TVBr_Programacao_Agencia_2022/'
         SAIDA = lib_dados.getTVBrProgramacaoDestaqueAgencia2022(dados)
+
+    elif tipo == "TVBr Eleicoes2022 Agenda":
+        ID = 'tvbr_eleicoes2022_agenda'
+        JSX = ROOT + 'scripts/tvbr_eleicoes2022_agenda.jsx'
+        EXPORT = ROOT + 'export/tvbr_eleicoes2022_agenda/'
+        DESTINO = local + '/TVBr_Eleicoes2022/'
+        SAIDA = lib_dados.getTVBrEleicoes2022Agenda(dados)
+
+    elif tipo == "TVBr 7deSetembro2022 Interacoes":
+        ID = 'tvbr_7desetembro2022_interatividade'
+        JSX = ROOT + 'scripts/tvbr_7setembro2022_interacoes.jsx'
+        EXPORT = ROOT + 'export/tvbr_7setembro2022_interacoes/'
+        DESTINO = local + '/TVBr_7deSetembro2022/'
+        SAIDA = lib_dados.getTVBr7deSetembro2022Interatividade(dados)
 
     logger.info("%r - Preparando JSON", titulo)
 
@@ -152,9 +171,9 @@ for item in itens:
             arquivo = automator.converter(render['converter'], arquivo)
             print(arquivo)
 
-        retorno = automator.enviaCut(arquivo, dest)
-        logger.info("%r - %r - Arte copiada para destino: " + arquivo, titulo, retorno)
+        # retorno = automator.enviaCut(arquivo, dest)
+        # logger.info("%r - %r - Arte copiada para destino: " + arquivo, titulo, retorno)
 
 
     # FINALIZA
-    arq = requests.get(endereco+'/setWorkflowState?acao=finalizar')
+    # arq = requests.get(endereco+'/setWorkflowState?acao=finalizar')

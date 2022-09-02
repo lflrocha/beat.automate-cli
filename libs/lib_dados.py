@@ -3,11 +3,14 @@
 
 import libs.automator as automator
 import libs.lib_abr as lib_abr
+import urllib
 
 import json
 
 from slugify import slugify
 
+ROOT = automator.getBase()
+TEMP = ROOT + 'temp/'
 
 def getMktMidiaIndoorAgencia2022(dados):
     novo_projeto = dados['novo_projeto']
@@ -79,7 +82,7 @@ def getMktMidiaIndoorAgencia2022(dados):
         {
             "comp": "render06",
             "inicio": "1",
-            "fim": "0",
+            "fim": "300",
             "OM": "MOV",
             "arquivo": arquivo_saida + "-2160x3840_relogio_SP.mov",
             "converter": "MP4"
@@ -178,6 +181,117 @@ def getTVBrProgramacaoDestaqueAgencia2022(dados):
             "arquivo": arquivo_saida + ".mov",
             "converter": "MXF"
         }
+    ]
+
+    saida = {"dados": aux_dados, "renders": renders}
+    return saida
+
+
+def getTVBrEleicoes2022Agenda(dados):
+    novo_projeto = dados['novo_projeto']
+    identificador = dados['identificador']
+    arquivo_saida = slugify(novo_projeto + '-' + identificador)
+
+    novo_projeto = dados['novo_projeto']
+    identificador = dados['identificador']
+    nome = dados['nome']
+    cargo = dados['cargo']
+    partido = dados['partido']
+    foto_arquivo = dados['foto_arquivo']
+    foto_endereco = dados['foto_endereco']
+    data = dados['data']
+    local = dados['local']
+
+    ext = foto_arquivo.rsplit('.',1)[1]
+    novo_nome_arq_imagem = 'imagem' + '-' + novo_projeto + '.' + ext
+    urllib.request.urlretrieve(foto_endereco, TEMP + novo_nome_arq_imagem)
+
+    turno = {
+        '': '',
+        'manha': 'Manhã',
+        'tarde': 'Tarde',
+        'noite': 'Noite',
+    }
+
+
+    aux_dados = {
+        "nome": nome,
+        "cargo": cargo,
+        "partido": partido,
+        "foto_arquivo": novo_nome_arq_imagem,
+        "data": data,
+        "local": local,
+        "linha1": dados["texto1"],
+        "linha2": dados["texto2"],
+        "linha3": dados["texto3"],
+        "linha4": dados["texto4"],
+        "linha5": dados["texto5"],
+        "linha6": dados["texto6"],
+        "turno1": dados["turno1"],
+        "turno2": dados["turno2"],
+        "turno3": dados["turno3"],
+        "turno4": dados["turno4"],
+        "turno5": dados["turno5"],
+        "turno6": dados["turno6"],
+    }
+
+    renders = [
+        {
+            "comp": "!Render",
+            "inicio": "1",
+            "fim": "0",
+            "OM": "MAM",
+            "arquivo": arquivo_saida + ".mov",
+            "converter": "MXF"
+        }
+    ]
+
+    saida = {"dados": aux_dados, "renders": renders}
+    return saida
+
+
+def getTVBr7deSetembro2022Interatividade(dados):
+    novo_projeto = dados['novo_projeto']
+    identificador = dados['identificador']
+    arquivo_saida = slugify(novo_projeto + '-' + identificador)
+
+    novo_projeto = dados['novo_projeto']
+    identificador = dados['identificador']
+    nome = dados['nome']
+    rede = dados['rede']
+    cidade = dados['cidade']
+    foto_arquivo = dados['arquivo']
+    foto_endereco = dados['endereco']
+
+    ext = foto_arquivo.rsplit('.',1)[1]
+    novo_nome_arq_imagem = 'imagem' + '-' + novo_projeto + '.' + ext
+    urllib.request.urlretrieve(foto_endereco, TEMP + novo_nome_arq_imagem)
+
+    aux_dados = {
+        "nome": nome,
+        "rede": rede,
+        "cidade": cidade,
+        "foto_arquivo": novo_nome_arq_imagem,
+    }
+
+    renders = [
+        {
+            "comp": "!Foto_Horizontal",
+            "inicio": "1",
+            "fim": "2",
+            "OM": "MAM",
+            "arquivo": arquivo_saida + "_1.mov",
+            "converter": "MP4-AUDIO"
+        },
+        {
+            "comp": "!Foto_Horizontal",
+            "inicio": "2",
+            "fim": "0",
+            "OM": "MAM",
+            "arquivo": arquivo_saida + "_2.mov",
+            "converter": "MP4-AUDIO"
+        },
+
     ]
 
     saida = {"dados": aux_dados, "renders": renders}

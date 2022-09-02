@@ -103,7 +103,7 @@ def enviaCut(origem, destino):
     plataforma = platform.system()
     retorno = ""
     if plataforma == "Darwin":
-        destino = '/Volumes/cut/Automator/' + destino
+        destino = '/Volumes/Automator/' + destino
         if not os.path.isdir(CUT):
             script = ROOT + 'scripts/mountCut.scpt'
             parametros = ['osascript', script ]
@@ -182,6 +182,10 @@ def converter(tipo, arquivo):
     elif tipo == "MP4":
         arq_out = arq_out[0] + '.mp4'
         parametros = ['ffmpeg', '-i', arquivo, '-pix_fmt',  'yuv420p', '-b:v', '5M', '-vcodec', 'h264', '-an', arq_out]
+        retorno = subprocess.call(parametros)
+    elif tipo == "MP4-AUDIO":
+        arq_out = arq_out[0] + '.mp4'
+        parametros = ['ffmpeg', '-i', arquivo, '-pix_fmt',  'yuv420p', '-b:v', '5M', '-vcodec', 'h264', arq_out]
         retorno = subprocess.call(parametros)
     elif tipo == "MP4-LOW":
         arq_out = arq_out[0] + '.mp4'
