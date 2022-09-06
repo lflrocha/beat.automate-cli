@@ -253,13 +253,14 @@ def getTVBrEleicoes2022Agenda(dados):
 def getTVBr7deSetembro2022Interatividade(dados):
     novo_projeto = dados['novo_projeto']
     identificador = dados['identificador']
-    arquivo_saida = slugify(novo_projeto + '-' + identificador)
+    arquivo_saida = slugify(identificador)
 
     novo_projeto = dados['novo_projeto']
     identificador = dados['identificador']
     nome = dados['nome']
     rede = dados['rede']
     cidade = dados['cidade']
+    texto = dados['texto']
     foto_arquivo = dados['arquivo']
     foto_endereco = dados['endereco']
 
@@ -271,25 +272,18 @@ def getTVBr7deSetembro2022Interatividade(dados):
         "nome": nome,
         "rede": rede,
         "cidade": cidade,
+        "texto": texto,
         "foto_arquivo": novo_nome_arq_imagem,
     }
 
     renders = [
         {
-            "comp": "!Foto_Horizontal",
-            "inicio": "1",
-            "fim": "2",
-            "OM": "MAM",
-            "arquivo": arquivo_saida + "_1.mov",
-            "converter": "MP4-AUDIO"
-        },
-        {
-            "comp": "!Foto_Horizontal",
-            "inicio": "2",
+            "comp": "!render",
+            "inicio": "60",
             "fim": "0",
             "OM": "MAM",
-            "arquivo": arquivo_saida + "_2.mov",
-            "converter": "MP4-AUDIO"
+            "arquivo": arquivo_saida + ".mov",
+            "converter": "MXF"
         },
 
     ]
