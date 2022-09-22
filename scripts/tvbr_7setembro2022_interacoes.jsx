@@ -54,6 +54,8 @@ h = compFoto.layer("foto").height
 w = compFoto.layer("foto").width
 var compDados = app.project.item(2)
 compDados.duration = duracao + 2
+compFoto.duration = duracao + 2
+compDados.layer("shape").duration = duracao + 2
 
 TrocarTexto(compDados, "Logo", dados.rede)
 TrocarTexto(compDados, "perfil", dados.nome)
@@ -77,12 +79,13 @@ var bordaFoto = compDados.layer("fotoBorda");
 bordaFoto.property("Contents").property("Rectangle 1").property("Contents").property("Rectangle Path 1").property("Size").setValue([w1+10, h1+10])
 
 
-
 var compFoto2 = app.project.item(7)
 h = compFoto2.layer("foto").height
 w = compFoto2.layer("foto").width
 var compDados2 = app.project.item(3)
 compDados2.duration = duracao + 2
+compFoto2.duration = duracao + 2
+compDados2.layer("shape").duration = duracao + 2
 
 TrocarTexto(compDados2, "Logo", dados.rede)
 TrocarTexto(compDados2, "perfil", dados.nome)

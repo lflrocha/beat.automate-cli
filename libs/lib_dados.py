@@ -187,6 +187,51 @@ def getTVBrProgramacaoDestaqueAgencia2022(dados):
     return saida
 
 
+
+def getTVBr7deSetembro2022Interatividade(dados):
+    novo_projeto = dados['novo_projeto']
+    identificador = dados['identificador']
+    arquivo_saida = slugify(identificador)
+
+    novo_projeto = dados['novo_projeto']
+    identificador = dados['identificador']
+    nome = dados['nome']
+    rede = dados['rede']
+    cidade = dados['cidade']
+    texto = dados['texto']
+    foto_arquivo = dados['arquivo']
+    foto_endereco = dados['endereco']
+
+    ext = foto_arquivo.rsplit('.',1)[1]
+    novo_nome_arq_imagem = 'imagem' + '-' + novo_projeto + '.' + ext
+    urllib.request.urlretrieve(foto_endereco, TEMP + novo_nome_arq_imagem)
+
+    aux_dados = {
+        "nome": nome,
+        "rede": rede,
+        "cidade": cidade,
+        "texto": texto,
+        "foto_arquivo": novo_nome_arq_imagem,
+    }
+
+    renders = [
+        {
+            "comp": "!render",
+            "inicio": "1",
+            "fim": "0",
+            "OM": "MAM",
+            "arquivo": arquivo_saida + ".mov",
+            "converter": "MXF"
+        },
+
+    ]
+
+    saida = {"dados": aux_dados, "renders": renders}
+    return saida
+
+
+
+
 def getTVBrEleicoes2022Agenda(dados):
     novo_projeto = dados['novo_projeto']
     identificador = dados['identificador']
@@ -250,42 +295,192 @@ def getTVBrEleicoes2022Agenda(dados):
     return saida
 
 
-def getTVBr7deSetembro2022Interatividade(dados):
-    novo_projeto = dados['novo_projeto']
-    identificador = dados['identificador']
-    arquivo_saida = slugify(identificador)
 
+def getTVBrEleicoes2022Perfil(dados):
     novo_projeto = dados['novo_projeto']
     identificador = dados['identificador']
+    arquivo_saida = slugify(novo_projeto + '-' + identificador)
+    local = dados['local']
+
     nome = dados['nome']
-    rede = dados['rede']
-    cidade = dados['cidade']
-    texto = dados['texto']
-    foto_arquivo = dados['arquivo']
-    foto_endereco = dados['endereco']
-
-    ext = foto_arquivo.rsplit('.',1)[1]
-    novo_nome_arq_imagem = 'imagem' + '-' + novo_projeto + '.' + ext
-    urllib.request.urlretrieve(foto_endereco, TEMP + novo_nome_arq_imagem)
+    cargo = dados['cargo']
+    partido = dados['partido']
+    cod_partido = dados['cod_partido']
+    uf = dados['uf']
+    estado = dados['estado']
+    naturalidade = dados['naturalidade']
+    profissao = dados['profissao']
+    perfil = dados['perfil']
+    idade = dados['idade']
+    foto = ROOT + 'assets/eleicoes2022/' + uf + '/' + cod_partido + '.jpg'
 
     aux_dados = {
+        "local": local,
         "nome": nome,
-        "rede": rede,
-        "cidade": cidade,
-        "texto": texto,
-        "foto_arquivo": novo_nome_arq_imagem,
+        "cargo": cargo,
+        "partido": partido,
+        "foto": foto,
+        "uf": uf,
+        "estado": estado,
+        "naturalidade": naturalidade,
+        "profissao": profissao,
+        "perfil": perfil,
+        "foto": foto,
+        "idade": str(idade) + ' anos',
     }
 
     renders = [
         {
             "comp": "!render",
-            "inicio": "60",
+            "inicio": "1",
             "fim": "0",
             "OM": "MAM",
             "arquivo": arquivo_saida + ".mov",
-            "converter": "MXF"
-        },
+            # "converter": "MP4"
+        }
+    ]
 
+    saida = {"dados": aux_dados, "renders": renders}
+    return saida
+
+
+
+
+
+def getTVBrEleicoes2022MapaApuracao(dados):
+    novo_projeto = dados['novo_projeto']
+    identificador = dados['identificador']
+    url_consolidado = dados['url_consolidado']
+    data_hora = dados['data_hora']
+    arquivo_saida = slugify(identificador)
+    arquivo_json = TEMP + "consolidado_" + data_hora + '.json'
+    urllib.request.urlretrieve(url_consolidado, arquivo_json)
+
+    with open(arquivo_json) as f:
+        dados_consolidado = json.load(f)
+
+    aux_dados = {
+        "AC_dado": 0,
+        "AL_dado": 0,
+        "AP_dado": 0,
+        "AM_dado": 0,
+        "BA_dado": 0,
+        "CE_dado": 0,
+        "DF_dado": 0,
+        "ES_dado": 0,
+        "GO_dado": 0,
+        "MA_dado": 0,
+        "MT_dado": 0,
+        "MS_dado": 0,
+        "MG_dado": 0,
+        "PA_dado": 0,
+        "PB_dado": 0,
+        "PR_dado": 0,
+        "PE_dado": 0,
+        "PI_dado": 0,
+        "RJ_dado": 0,
+        "RN_dado": 0,
+        "RS_dado": 0,
+        "RO_dado": 0,
+        "RR_dado": 0,
+        "SC_dado": 0,
+        "SP_dado": 0,
+        "SE_dado": 0,
+        "TO_dado": 0,
+        "BR_dado": "0%"
+    }
+
+    for item in dados_consolidado:
+        id = item['sigla_uf'] + '_dado'
+        valor_inteiro = item['secoes_totalizadas_percent'].split(',')
+        aux_dados[id] = valor_inteiro[0]
+
+        if id == "BR_dado":
+            aux_dados[id] = aux_dados[id] + '%'
+
+    renders = [
+        {
+            "comp": "!render",
+            "inicio": "0",
+            "fim": "0",
+            "OM": "PNG",
+            "arquivo": arquivo_saida + ".png",
+            "renomear": True
+        },
+    ]
+
+    saida = {"dados": aux_dados, "renders": renders}
+    return saida
+
+
+
+
+
+def getTVBrEleicoes2022MapaGovernador(dados):
+    novo_projeto = dados['novo_projeto']
+    identificador = dados['identificador']
+    url_consolidado = dados['url_consolidado']
+    data_hora = dados['data_hora']
+    arquivo_saida = slugify(identificador)
+    arquivo_json = TEMP + "consolidado_" + data_hora + '.json'
+    urllib.request.urlretrieve(url_consolidado, arquivo_json)
+
+    with open(arquivo_json) as f:
+        dados_consolidado = json.load(f)
+
+    aux_dados = {
+        "AC_dado": 0,
+        "AL_dado": 0,
+        "AP_dado": 0,
+        "AM_dado": 0,
+        "BA_dado": 0,
+        "CE_dado": 0,
+        "DF_dado": 0,
+        "ES_dado": 0,
+        "GO_dado": 0,
+        "MA_dado": 0,
+        "MT_dado": 0,
+        "MS_dado": 0,
+        "MG_dado": 0,
+        "PA_dado": 0,
+        "PB_dado": 0,
+        "PR_dado": 0,
+        "PE_dado": 0,
+        "PI_dado": 0,
+        "RJ_dado": 0,
+        "RN_dado": 0,
+        "RS_dado": 0,
+        "RO_dado": 0,
+        "RR_dado": 0,
+        "SC_dado": 0,
+        "SP_dado": 0,
+        "SE_dado": 0,
+        "TO_dado": 0,
+    }
+
+    for item in dados_consolidado:
+        id = item['sigla_uf'] + '_dado'
+        status_eleicao = item['status']
+        if status_eleicao == "eleito":
+            aux_dados[id] = 3
+        elif status_eleicao == "turno2":
+            aux_dados[id] = 2
+        else:
+            totalizadas = item['secoes_totalizadas_percent']
+            if float(totalizadas.replace(',', '.')) > 0:
+                aux_dados[id] = 1
+            else:
+                aux_dados[id] = 0
+
+    renders = [
+        {
+            "comp": "!render",
+            "inicio": "0",
+            "fim": "0",
+            "OM": "PNG",
+            "arquivo": arquivo_saida + ".png",
+            "renomear": True
+        },
     ]
 
     saida = {"dados": aux_dados, "renders": renders}

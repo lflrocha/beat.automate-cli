@@ -26,7 +26,7 @@ ARQUIVOS = ROOT + 'arquivos/'
 TEMP = ROOT + 'temp/'
 LOGS = ROOT + 'logs/'
 CUT = '/Volumes/Automator/'
-CUT = './Automator/'
+# CUT = './Automator/'
 
 
 receivers = ['luis.rocha@ebc.com.br']
@@ -36,7 +36,8 @@ listas = [
     # 'http://automator-prod01.ebc:8080/automator/getTVBrProgramacaoAgenciaPendentes',
     # 'http://automator-prod01.ebc:8080/automator/getTVBrProgramacao2022Pendentes',
     # 'http://automator-prod01.ebc:8080/automator/getTVBrEleicoes2022AgendaPendentes',
-    'http://vmebc:8080/automator/getTVBr7deSetembro2022InteracoesPendentes',
+    # 'http://automator-prod01.ebc:8080/automator/getTVBr7deSetembro2022InteracoesPendentes',
+    'http://automator-prod01.ebc:8080/automator/getTVBrEleicoes2022Pendentes',
 ]
 
 itens = []
@@ -48,7 +49,7 @@ print(len(itens))
 
 for item in itens:
     endereco = item['endereco']
-    # arq = automator.alteraStatus(endereco, 'gerar')
+    arq = automator.alteraStatus(endereco, 'gerar')
 
 for item in itens:
     endereco = item['endereco']
@@ -97,6 +98,13 @@ for item in itens:
         DESTINO = local + '/TVBr_Programacao_Agencia_2022/'
         SAIDA = lib_dados.getTVBrProgramacaoDestaqueAgencia2022(dados)
 
+    elif tipo == "TVBr 7deSetembro2022 Interacoes":
+        ID = 'tvbr_7desetembro2022_interatividade'
+        JSX = ROOT + 'scripts/tvbr_7setembro2022_interacoes.jsx'
+        EXPORT = ROOT + 'export/tvbr_7setembro2022_interacoes/'
+        DESTINO = local + '/TVBr_7deSetembro2022/'
+        SAIDA = lib_dados.getTVBr7deSetembro2022Interatividade(dados)
+
     elif tipo == "TVBr Eleicoes2022 Agenda":
         ID = 'tvbr_eleicoes2022_agenda'
         JSX = ROOT + 'scripts/tvbr_eleicoes2022_agenda.jsx'
@@ -104,12 +112,12 @@ for item in itens:
         DESTINO = local + '/TVBr_Eleicoes2022/'
         SAIDA = lib_dados.getTVBrEleicoes2022Agenda(dados)
 
-    elif tipo == "TVBr 7deSetembro2022 Interacoes":
-        ID = 'tvbr_7desetembro2022_interatividade'
-        JSX = ROOT + 'scripts/tvbr_7setembro2022_interacoes.jsx'
-        EXPORT = ROOT + 'export/tvbr_7setembro2022_interacoes/'
-        DESTINO = local + '/TVBr_7deSetembro2022/'
-        SAIDA = lib_dados.getTVBr7deSetembro2022Interatividade(dados)
+    elif tipo == "TVBr Eleicoes2022 Perfil":
+        ID = 'tvbr_eleicoes2022_perfil'
+        JSX = ROOT + 'scripts/tvbr_eleicoes2022_perfil.jsx'
+        EXPORT = ROOT + 'export/tvbr_eleicoes2022_perfil/'
+        DESTINO = local + '/TVBr_Eleicoes2022/'
+        SAIDA = lib_dados.getTVBrEleicoes2022Perfil(dados)
 
     logger.info("%r - Preparando JSON", titulo)
 
@@ -171,9 +179,9 @@ for item in itens:
             arquivo = automator.converter(render['converter'], arquivo)
             print(arquivo)
 
-        # retorno = automator.enviaCut(arquivo, dest)
-        # logger.info("%r - %r - Arte copiada para destino: " + arquivo, titulo, retorno)
+        retorno = automator.enviaCut(arquivo, dest)
+        logger.info("%r - %r - Arte copiada para destino: " + arquivo, titulo, retorno)
 
 
     # FINALIZA
-    # arq = requests.get(endereco+'/setWorkflowState?acao=finalizar')
+    arq = requests.get(endereco+'/setWorkflowState?acao=finalizar')
