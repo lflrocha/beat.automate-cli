@@ -24,6 +24,7 @@ CUT = '/Volumes/cut/Automator/'
 
 TEMP = ROOT + 'temp/'
 LOGS = ROOT + 'logs/'
+BIN = ROOT + 'bin/'
 
 AERENDER = '/Applications/Adobe\ After\ Effects\ CS6/aerender'
 AERENDER = 'C:/Program Files/Adobe/Adobe After Effects CS6/Support Files/aerender.exe'
@@ -189,23 +190,23 @@ def converter(tipo, arquivo):
     arq_out = arquivo.rsplit('.mov', 1)
     if tipo == "MXF":
         arq_out = arq_out[0] + '.mxf'
-        parametros = ['ffmpeg', '-i', arquivo, '-y', '-pix_fmt', 'yuv422p', '-vcodec', 'mpeg2video', '-non_linear_quant', '1', '-flags', '+ildct+ilme', '-top', '1', '-dc', '10', '-intra_vlc', '1', '-qmax', '3', '-lmin', '1*QP2LAMBDA', '-vtag', 'xd5c', '-rc_max_vbv_use', '1', '-rc_min_vbv_use', '1', '-g', '12', '-b:v', '50000k', '-minrate', '50000k', '-maxrate', '50000k', '-bufsize', '8000k', '-acodec', 'pcm_s16le', '-ar', '48000', '-bf', '2', '-ac', '2', arq_out]
+        parametros = [BIN + 'ffmpeg', '-i', arquivo, '-y', '-pix_fmt', 'yuv422p', '-vcodec', 'mpeg2video', '-non_linear_quant', '1', '-flags', '+ildct+ilme', '-top', '1', '-dc', '10', '-intra_vlc', '1', '-qmax', '3', '-lmin', '1*QP2LAMBDA', '-vtag', 'xd5c', '-rc_max_vbv_use', '1', '-rc_min_vbv_use', '1', '-g', '12', '-b:v', '50000k', '-minrate', '50000k', '-maxrate', '50000k', '-bufsize', '8000k', '-acodec', 'pcm_s16le', '-ar', '48000', '-bf', '2', '-ac', '2', arq_out]
         retorno = subprocess.call(parametros)
     elif tipo == "MP4":
         arq_out = arq_out[0] + '.mp4'
-        parametros = ['ffmpeg', '-i', arquivo, '-y', '-pix_fmt',  'yuv420p', '-b:v', '5M', '-vcodec', 'h264', '-an', arq_out]
+        parametros = [BIN + 'ffmpeg', '-i', arquivo, '-y', '-pix_fmt',  'yuv420p', '-b:v', '5M', '-vcodec', 'h264', '-an', arq_out]
         retorno = subprocess.call(parametros)
     elif tipo == "MP4-AUDIO":
         arq_out = arq_out[0] + '.mp4'
-        parametros = ['ffmpeg', '-i', arquivo, '-y', '-pix_fmt',  'yuv420p', '-b:v', '5M', '-vcodec', 'h264', arq_out]
+        parametros = [BIN + 'ffmpeg', '-i', arquivo, '-y', '-pix_fmt',  'yuv420p', '-b:v', '5M', '-vcodec', 'h264', arq_out]
         retorno = subprocess.call(parametros)
     elif tipo == "MP4-LOW":
         arq_out = arq_out[0] + '.mp4'
-        parametros = ['ffmpeg', '-i', arquivo, '-y', '-pix_fmt',  'yuv420p', '-b:v', '1M', '-vcodec', 'h264', '-an', arq_out]
+        parametros = [BIN + 'ffmpeg', '-i', arquivo, '-y', '-pix_fmt',  'yuv420p', '-b:v', '1M', '-vcodec', 'h264', '-an', arq_out]
         retorno = subprocess.call(parametros)
     elif tipo == "MP4-ROTATE":
         arq_out = arq_out[0] + '.mp4'
-        parametros = ['ffmpeg', '-i', arquivo, '-y', '-pix_fmt',  'yuv420p', '-vf', "transpose=2", '-b:v', '1M', '-vcodec', 'h264', '-an', arq_out]
+        parametros = [BIN + 'ffmpeg', '-i', arquivo, '-y', '-pix_fmt',  'yuv420p', '-vf', "transpose=2", '-b:v', '1M', '-vcodec', 'h264', '-an', arq_out]
         retorno = subprocess.call(parametros)
     return(arq_out)
 
