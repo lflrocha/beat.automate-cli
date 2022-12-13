@@ -40,11 +40,9 @@ receivers = ['luis.rocha@ebc.com.br']
 
 listas = [
     'http://automator-prod01.ebc:8080/automator/getTVBrRadiosChamadaPendentes',
-    # 'http://automator-prod01.ebc:8080/automator/getTVBrProgramacaoAgenciaPendentes',
-    # 'http://automator-prod01.ebc:8080/automator/getTVBrProgramacao2022Pendentes',
-    # 'http://automator-prod01.ebc:8080/automator/getTVBrEleicoes2022AgendaPendentes',
-    # 'http://automator-prod01.ebc:8080/automator/getTVBr7deSetembro2022InteracoesPendentes',
-    # 'http://automator-prod01.ebc:8080/automator/getTVBrEleicoes2022Pendentes',
+    'http://automator-prod01.ebc:8080/automator/getMarketingPendentes',
+    'http://automator-prod01.ebc:8080/automator/getTVBrProgramacaoAgenciaPendentes',
+    'http://automator-prod01.ebc:8080/automator/getTVBrProgramacao2022Pendentes',
 ]
 
 itens = []
@@ -56,7 +54,7 @@ print(len(itens))
 
 for item in itens:
     endereco = item['endereco']
-    # arq = automator.alteraStatus(endereco, 'gerar')
+    arq = automator.alteraStatus(endereco, 'gerar')
 
 for item in itens:
     endereco = item['endereco']
@@ -73,7 +71,7 @@ for item in itens:
     logger.addHandler(handler)
     logger.info("%r - %r - Iniciando item", titulo, tipo)
 
-    # arq = automator.alteraStatus(endereco, 'gerar')
+    arq = automator.alteraStatus(endereco, 'gerar')
     logger.info("%r - Setando status para 'gerando'", titulo)
 
     dados = automator.buscaDados(endereco)
@@ -183,4 +181,4 @@ for item in itens:
 
 
     # FINALIZA
-    # arq = requests.get(endereco+'/setWorkflowState?acao=finalizar')
+    arq = requests.get(endereco+'/setWorkflowState?acao=finalizar')
