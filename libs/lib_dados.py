@@ -4,7 +4,7 @@
 import libs.automator as automator
 import libs.lib_abr as lib_abr
 import urllib
-
+import os
 import json
 
 from slugify import slugify
@@ -85,6 +85,14 @@ def getMktMidiaIndoorAgencia2022(dados):
             "fim": "300",
             "OM": "MOV",
             "arquivo": arquivo_saida + "-2160x3840_relogio_SP.mov",
+            "converter": "MP4"
+        },
+        {
+            "comp": "render07",
+            "inicio": "1",
+            "fim": "450",
+            "OM": "MOV",
+            "arquivo": arquivo_saida + "-1920x1152_aeroporto_BSB.mov",
             "converter": "MP4"
         },
 
@@ -188,155 +196,39 @@ def getTVBrProgramacaoDestaqueAgencia2022(dados):
 
 
 
-def getTVBr7deSetembro2022Interatividade(dados):
-    novo_projeto = dados['novo_projeto']
-    identificador = dados['identificador']
-    arquivo_saida = slugify(identificador)
-
-    novo_projeto = dados['novo_projeto']
-    identificador = dados['identificador']
-    nome = dados['nome']
-    rede = dados['rede']
-    cidade = dados['cidade']
-    texto = dados['texto']
-    foto_arquivo = dados['arquivo']
-    foto_endereco = dados['endereco']
-
-    ext = foto_arquivo.rsplit('.',1)[1]
-    novo_nome_arq_imagem = 'imagem' + '-' + novo_projeto + '.' + ext
-    urllib.request.urlretrieve(foto_endereco, TEMP + novo_nome_arq_imagem)
-
-    aux_dados = {
-        "nome": nome,
-        "rede": rede,
-        "cidade": cidade,
-        "texto": texto,
-        "foto_arquivo": novo_nome_arq_imagem,
-    }
-
-    renders = [
-        {
-            "comp": "!render",
-            "inicio": "1",
-            "fim": "0",
-            "OM": "MAM",
-            "arquivo": arquivo_saida + ".mov",
-            "converter": "MXF"
-        },
-
-    ]
-
-    saida = {"dados": aux_dados, "renders": renders}
-    return saida
 
 
-
-
-def getTVBrEleicoes2022Agenda(dados):
+def getMktMidiaIndoorTVBrasil2022(dados):
     novo_projeto = dados['novo_projeto']
     identificador = dados['identificador']
     arquivo_saida = slugify(novo_projeto + '-' + identificador)
 
-    novo_projeto = dados['novo_projeto']
-    identificador = dados['identificador']
-    nome = dados['nome']
-    cargo = dados['cargo']
-    partido = dados['partido']
-    foto_arquivo = dados['foto_arquivo']
-    foto_endereco = dados['foto_endereco']
-    data = dados['data']
-    local = dados['local']
+    variaveis = dados['variaveis']
+    link = variaveis['link']
 
-    ext = foto_arquivo.rsplit('.',1)[1]
-    novo_nome_arq_imagem = 'imagem' + '-' + novo_projeto + '.' + ext
-    urllib.request.urlretrieve(foto_endereco, TEMP + novo_nome_arq_imagem)
+    arq_qrcode = novo_projeto + '_qrcode.png'
+    arq_video = variaveis['arquivo']
+    automator.geraQRCode(link, arq_qrcode)
+    aux_dados = {}
+    aux_dados['texto1'] = variaveis['texto1']
+    aux_dados['texto2'] = variaveis['texto2']
+    aux_dados['arq_qrcode'] = arq_qrcode
+    aux_dados['arq_video'] = arq_video
 
-    turno = {
-        '': '',
-        'manha': 'Manhã',
-        'tarde': 'Tarde',
-        'noite': 'Noite',
-    }
+    caminho_video = "/Volumes/Automator_Envios/Marketing/"
+    if not os.path.isdir(caminho_video):
+        retorno = os.system('osascript '+ROOT+'scripts/mountEnvio.scpt')
+    retorno = os.system('cp "' + caminho_video + arq_video + '" "' + TEMP + '"')
 
-
-    aux_dados = {
-        "nome": nome,
-        "cargo": cargo,
-        "partido": partido,
-        "foto_arquivo": novo_nome_arq_imagem,
-        "data": data,
-        "local": local,
-        "linha1": dados["texto1"],
-        "linha2": dados["texto2"],
-        "linha3": dados["texto3"],
-        "linha4": dados["texto4"],
-        "linha5": dados["texto5"],
-        "linha6": dados["texto6"],
-        "turno1": dados["turno1"],
-        "turno2": dados["turno2"],
-        "turno3": dados["turno3"],
-        "turno4": dados["turno4"],
-        "turno5": dados["turno5"],
-        "turno6": dados["turno6"],
-    }
 
     renders = [
         {
-            "comp": "!Render",
+            "comp": "01_render",
             "inicio": "1",
             "fim": "0",
-            "OM": "MAM",
-            "arquivo": arquivo_saida + ".mov",
-            "converter": "MXF"
-        }
-    ]
-
-    saida = {"dados": aux_dados, "renders": renders}
-    return saida
-
-
-
-def getTVBrEleicoes2022Perfil(dados):
-    novo_projeto = dados['novo_projeto']
-    identificador = dados['identificador']
-    arquivo_saida = slugify(novo_projeto + '-' + identificador)
-    local = dados['local']
-
-    nome = dados['nome']
-    cargo = dados['cargo']
-    partido = dados['partido']
-    cod_partido = dados['cod_partido']
-    uf = dados['uf']
-    estado = dados['estado']
-    naturalidade = dados['naturalidade']
-    profissao = dados['profissao']
-    perfil = dados['perfil']
-    idade = dados['idade']
-    foto = ROOT + 'assets/eleicoes2022/' + uf + '/' + cod_partido + '.jpg'
-
-    aux_dados = {
-        "local": local,
-        "nome": nome,
-        "cargo": cargo,
-        "partido": partido,
-        "foto": foto,
-        "uf": uf,
-        "estado": estado,
-        "naturalidade": naturalidade,
-        "profissao": profissao,
-        "perfil": perfil,
-        "foto": foto,
-        "idade": str(idade) + ' anos',
-    }
-
-    renders = [
-        {
-            "comp": "!render",
-            "inicio": "1",
-            "fim": "0",
-            "OM": "MAM",
-            "arquivo": arquivo_saida + ".mov",
-            # "converter": "MP4"
+            "OM": "MOV",
+            "arquivo": arquivo_saida + "_tvbrasil_SP.mov",
+            "converter": "MP4"
         }
     ]
 
@@ -347,141 +239,49 @@ def getTVBrEleicoes2022Perfil(dados):
 
 
 
-def getTVBrEleicoes2022MapaApuracao(dados):
+
+
+
+def getTVBrRadiosChamada(dados):
     novo_projeto = dados['novo_projeto']
     identificador = dados['identificador']
-    url_consolidado = dados['url_consolidado']
-    data_hora = dados['data_hora']
-    arquivo_saida = slugify(identificador)
-    arquivo_json = TEMP + "consolidado_" + data_hora + '.json'
-    urllib.request.urlretrieve(url_consolidado, arquivo_json)
+    arquivo_saida = slugify(novo_projeto + '-' + identificador)
 
-    with open(arquivo_json) as f:
-        dados_consolidado = json.load(f)
+    variaveis = dados['variaveis']
 
-    aux_dados = {
-        "AC_dado": 0,
-        "AL_dado": 0,
-        "AP_dado": 0,
-        "AM_dado": 0,
-        "BA_dado": 0,
-        "CE_dado": 0,
-        "DF_dado": 0,
-        "ES_dado": 0,
-        "GO_dado": 0,
-        "MA_dado": 0,
-        "MT_dado": 0,
-        "MS_dado": 0,
-        "MG_dado": 0,
-        "PA_dado": 0,
-        "PB_dado": 0,
-        "PR_dado": 0,
-        "PE_dado": 0,
-        "PI_dado": 0,
-        "RJ_dado": 0,
-        "RN_dado": 0,
-        "RS_dado": 0,
-        "RO_dado": 0,
-        "RR_dado": 0,
-        "SC_dado": 0,
-        "SP_dado": 0,
-        "SE_dado": 0,
-        "TO_dado": 0,
-        "BR_dado": "0%"
-    }
+    arq_imagem1 = variaveis['arq_imagem1']
+    arq_imagem2 = variaveis['arq_imagem2']
+    arq_imagem3 = variaveis['arq_imagem3']
+    arq_audio = variaveis['arq_audio']
 
-    for item in dados_consolidado:
-        id = item['sigla_uf'] + '_dado'
-        valor_inteiro = item['secoes_totalizadas_percent'].split(',')
-        aux_dados[id] = valor_inteiro[0]
+    end_imagem1 = variaveis['end_imagem1']
+    end_imagem2 = variaveis['end_imagem2']
+    end_imagem3 = variaveis['end_imagem3']
+    end_audio = variaveis['end_audio']
 
-        if id == "BR_dado":
-            aux_dados[id] = aux_dados[id] + '%'
+    download = [
+        (end_imagem1, arq_imagem1),
+        (end_imagem2, arq_imagem2),
+        (end_imagem3, arq_imagem3),
+        (end_audio, arq_audio)
+    ]
+
+    automator.baixaArquivos(download)
+
+    automator.resizeImage(TEMP + arq_imagem1)
+    automator.resizeImage(TEMP + arq_imagem2)
+    automator.resizeImage(TEMP + arq_imagem3)
 
     renders = [
         {
-            "comp": "!render",
-            "inicio": "0",
+            "comp": "01_render",
+            "inicio": "1",
             "fim": "0",
-            "OM": "PNG",
-            "arquivo": arquivo_saida + ".png",
-            "renomear": True
-        },
+            "OM": "MAM",
+            "arquivo": arquivo_saida + "_radios_chamada.mov",
+            "converter": "MP4-AUDIO"
+        }
     ]
 
-    saida = {"dados": aux_dados, "renders": renders}
-    return saida
-
-
-
-
-
-def getTVBrEleicoes2022MapaGovernador(dados):
-    novo_projeto = dados['novo_projeto']
-    identificador = dados['identificador']
-    url_consolidado = dados['url_consolidado']
-    data_hora = dados['data_hora']
-    arquivo_saida = slugify(identificador)
-    arquivo_json = TEMP + "consolidado_" + data_hora + '.json'
-    urllib.request.urlretrieve(url_consolidado, arquivo_json)
-
-    with open(arquivo_json) as f:
-        dados_consolidado = json.load(f)
-
-    aux_dados = {
-        "AC_dado": 0,
-        "AL_dado": 0,
-        "AP_dado": 0,
-        "AM_dado": 0,
-        "BA_dado": 0,
-        "CE_dado": 0,
-        "DF_dado": 0,
-        "ES_dado": 0,
-        "GO_dado": 0,
-        "MA_dado": 0,
-        "MT_dado": 0,
-        "MS_dado": 0,
-        "MG_dado": 0,
-        "PA_dado": 0,
-        "PB_dado": 0,
-        "PR_dado": 0,
-        "PE_dado": 0,
-        "PI_dado": 0,
-        "RJ_dado": 0,
-        "RN_dado": 0,
-        "RS_dado": 0,
-        "RO_dado": 0,
-        "RR_dado": 0,
-        "SC_dado": 0,
-        "SP_dado": 0,
-        "SE_dado": 0,
-        "TO_dado": 0,
-    }
-
-    for item in dados_consolidado:
-        id = item['sigla_uf'] + '_dado'
-        status_eleicao = item['status']
-        if status_eleicao == "eleito":
-            aux_dados[id] = 3
-        elif status_eleicao == "turno2":
-            aux_dados[id] = 2
-        else:
-            totalizadas = item['secoes_totalizadas_percent']
-            if float(totalizadas.replace(',', '.')) > 0:
-                aux_dados[id] = 1
-            else:
-                aux_dados[id] = 0
-
-    renders = [
-        {
-            "comp": "!render",
-            "inicio": "0",
-            "fim": "0",
-            "OM": "PNG",
-            "arquivo": arquivo_saida + ".png",
-            "renomear": True
-        },
-    ]
-
-    saida = {"dados": aux_dados, "renders": renders}
+    saida = {"dados": variaveis, "renders": renders}
     return saida

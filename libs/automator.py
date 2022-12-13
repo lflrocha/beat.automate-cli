@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
 
 import ast
@@ -15,6 +14,9 @@ from bs4 import BeautifulSoup
 from os.path import dirname, abspath
 from datetime import datetime, timedelta
 
+import qrcode
+from PIL import Image
+
 
 #ROOT = '/Volumes/Automator/Automator2019/'
 ROOT = dirname(dirname(abspath(__file__))) + '/'
@@ -25,7 +27,7 @@ LOGS = ROOT + 'logs/'
 
 AERENDER = '/Applications/Adobe\ After\ Effects\ CS6/aerender'
 AERENDER = 'C:/Program Files/Adobe/Adobe After Effects CS6/Support Files/aerender.exe'
-AERENDER = '/Applications/Adobe After Effects 2022/aerender'
+AERENDER = '/Applications/Adobe After Effects 2023/aerender'
 
 AEFX = 'C:/Program Files/Adobe/Adobe After Effects CS6/Support Files/AfterFX.exe'
 SCPT = ROOT + 'scripts/atualizaProjeto.scpt'
@@ -38,6 +40,16 @@ DIAS_SEMANA = [
     'Sex',
     'Sab',
     'Dom',
+]
+
+DIAS_SEMANA_FULL = [
+    'Segunda',
+    'Terça',
+    'Quarta',
+    'Quinta',
+    'Sexta',
+    'Sábado',
+    'Domingo',
 ]
 
 def getBase():
@@ -70,7 +82,7 @@ def buscaDados(endereco):
 
 def baixaArquivos(dados):
     "Baixa arquivos para o temp"
-    # print(dados)
+    print(dados)
     # arquivos = eval(dados)
     for enderecofoto, nome in dados:
         r = requests.get(enderecofoto)
@@ -219,3 +231,42 @@ def getDataHora(*args):
 
     if len(args) > 1:
         raise NameError('Somente um parâmetro deve ser informado.')
+
+
+def geraQRCode(link, arquivo):
+    print(link)
+    qr = qrcode.QRCode(
+        version=5,
+        error_correction=qrcode.constants.ERROR_CORRECT_H,
+        box_size=5,
+        border=2,
+    )
+    qr.add_data(link)
+    qr.make(fit=True)
+    img_qr_big = qr.make_image(fill_color="black", back_color="white")
+    img_qr_big.save(TEMP + arquivo)
+
+
+def resizeImage(arquivo):
+    from PIL import Image
+
+    foto = Image.open(arquivo).convert('RGB')
+    f_w = foto.size[0]
+    f_h = foto.size[1]
+
+    if  (f_w / f_h) > (1920/1080):
+        novo_w = 1920 * (f_h / 1080.0)
+        x1 = (f_w - novo_w) / 2
+        y1 = 0
+        x2 = x1 + novo_w
+        y2 = f_h
+        foto = foto.crop((x1, y1, x2, y2))
+    else:
+        novo_h = 1080 * (f_w / 1920.0)
+        y1 = (f_h - novo_h) / 2
+        x1 = 0
+        y2 = y1 + novo_h
+        x2 = f_w
+        foto = foto.crop((x1, y1, x2, y2))
+    foto = foto.resize((1920,1080), Image.ANTIALIAS)
+    foto.save(arquivo)

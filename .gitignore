@@ -2,6 +2,7 @@
 /logs
 /projetos
 /temp
+/_arquivo
 .DS_Store
 ._*
 *.pyc
