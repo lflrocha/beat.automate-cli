@@ -87,12 +87,26 @@ for item in itens:
         DESTINO = local + '/Marketing2/'
         SAIDA = lib_dados.getMktMidiaIndoorAgencia2022(dados)
 
-    if tipo == "MKT Midia Indoor TVBrasil 2022":
+    elif tipo == "MKT Midia Indoor TVBrasil 2022":
         ID = 'mkt_midia_indoor_tvbrasil_2022'
         JSX = ROOT + 'scripts/mkt_midia_indoor_tvbrasil_2022.jsx'
         EXPORT = ROOT + 'export/mkt_midia_indoor_tvbrasil_2022/'
         DESTINO = local + '/Marketing2/'
         SAIDA = lib_dados.getMktMidiaIndoorTVBrasil2022(dados)
+
+    elif tipo == "MKT Midia Indoor TVBrasilPlay 2022":
+        ID = 'mkt_midia_indoor_tvbrasilplay_2022'
+        JSX = ROOT + 'scripts/mkt_midia_indoor_tvbrasilplay_2022.jsx'
+        EXPORT = ROOT + 'export/mkt_midia_indoor_tvbrasilplay_2022/'
+        DESTINO = local + '/Marketing2/'
+        SAIDA = lib_dados.getMktMidiaIndoorTVBrasilPlay2022(dados)
+
+    elif tipo == "MKT Midia Indoor RadioNacional 2022":
+        ID = 'mkt_midia_indoor_radionacional_2022'
+        JSX = ROOT + 'scripts/mkt_midia_indoor_radionacional_2022.jsx'
+        EXPORT = ROOT + 'export/mkt_midia_indoor_radionacional_2022/'
+        DESTINO = local + '/Marketing2/'
+        SAIDA = lib_dados.getMktMidiaIndoorRadioNacional2022(dados)
 
     elif tipo == "TVBr Programacao Chamadas 2022":
         ID = 'tvbr_programacao_chamadas_2022'

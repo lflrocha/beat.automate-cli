@@ -220,14 +220,13 @@ def getMktMidiaIndoorTVBrasil2022(dados):
         retorno = os.system('osascript '+ROOT+'scripts/mountEnvio.scpt')
     retorno = os.system('cp "' + caminho_video + arq_video + '" "' + TEMP + '"')
 
-
     renders = [
         {
             "comp": "01_render",
             "inicio": "1",
             "fim": "0",
             "OM": "MOV",
-            "arquivo": arquivo_saida + "_tvbrasil_SP.mov",
+            "arquivo": arquivo_saida + "_tvbrasil.mov",
             "converter": "MP4"
         }
     ]
@@ -235,6 +234,79 @@ def getMktMidiaIndoorTVBrasil2022(dados):
     saida = {"dados": aux_dados, "renders": renders}
     return saida
 
+
+def getMktMidiaIndoorTVBrasilPlay2022(dados):
+    novo_projeto = dados['novo_projeto']
+    identificador = dados['identificador']
+    arquivo_saida = slugify(novo_projeto + '-' + identificador)
+
+    variaveis = dados['variaveis']
+    link = variaveis['link']
+
+    arq_qrcode = novo_projeto + '_qrcode.png'
+    arq_video = variaveis['arquivo']
+    automator.geraQRCode(link, arq_qrcode)
+    aux_dados = {}
+    aux_dados['texto1'] = variaveis['texto1']
+    aux_dados['texto2'] = variaveis['texto2']
+    aux_dados['arq_qrcode'] = arq_qrcode
+    aux_dados['arq_video'] = arq_video
+
+    caminho_video = "/Volumes/Automator_Envios/Marketing/"
+    if not os.path.isdir(caminho_video):
+        retorno = os.system('osascript '+ROOT+'scripts/mountEnvio.scpt')
+    retorno = os.system('cp "' + caminho_video + arq_video + '" "' + TEMP + '"')
+
+    renders = [
+        {
+            "comp": "01_render",
+            "inicio": "1",
+            "fim": "0",
+            "OM": "MOV",
+            "arquivo": arquivo_saida + "_tvbrasilplay.mov",
+            "converter": "MP4"
+        }
+    ]
+
+    saida = {"dados": aux_dados, "renders": renders}
+    return saida
+
+
+def getMktMidiaIndoorRadioNacional2022(dados):
+    novo_projeto = dados['novo_projeto']
+    identificador = dados['identificador']
+    arquivo_saida = slugify(novo_projeto + '-' + identificador)
+
+    variaveis = dados['variaveis']
+    link = variaveis['link']
+
+    arq_qrcode = novo_projeto + '_qrcode.png'
+    arq_video = variaveis['arquivo']
+    automator.geraQRCode(link, arq_qrcode)
+    aux_dados = {}
+    aux_dados['texto1'] = variaveis['texto1']
+    aux_dados['texto2'] = variaveis['texto2']
+    aux_dados['arq_qrcode'] = arq_qrcode
+    aux_dados['arq_video'] = arq_video
+
+    caminho_video = "/Volumes/Automator_Envios/Marketing/"
+    if not os.path.isdir(caminho_video):
+        retorno = os.system('osascript '+ROOT+'scripts/mountEnvio.scpt')
+    retorno = os.system('cp "' + caminho_video + arq_video + '" "' + TEMP + '"')
+
+    renders = [
+        {
+            "comp": "01_render",
+            "inicio": "1",
+            "fim": "0",
+            "OM": "MOV",
+            "arquivo": arquivo_saida + "_radionacional.mov",
+            "converter": "MP4"
+        }
+    ]
+
+    saida = {"dados": aux_dados, "renders": renders}
+    return saida
 
 
 
