@@ -30,15 +30,31 @@ var arq_midia = dados.arquivo
 var arq_bg = dados.arq_background
 
 var compDados = app.project.item(2)
+var compVideo = app.project.item(3)
+var arqVideo = app.project.item(4)
+var arqBG = app.project.item(5)
+
+
 TrocarTexto(compDados, "txt", texto1)
 
 novaImagem = baseFolder + 'temp/' + arq_midia
 var arquivoImagem = new File(novaImagem)
-app.project.item(3).replace(arquivoImagem)
+arqVideo.replace(arquivoImagem)
 
 novaImagem = baseFolder + 'temp/' + arq_bg
 var arquivoImagem = new File(novaImagem)
-app.project.item(4).replace(arquivoImagem)
+arqBG.replace(arquivoImagem)
+
+
+var duracao = arqVideo.duration
+if (duracao < 10) {
+  duracao = 10
+}
+
+compDados.duration = duracao
+compVideo.duration = duracao
+
+
 
 //função trocar texto
 function TrocarTexto (nome_comp, nome_layer, novo_texto) {
