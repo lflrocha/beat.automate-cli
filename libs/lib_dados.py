@@ -95,7 +95,14 @@ def getMktMidiaIndoorAgencia2022(dados):
             "arquivo": arquivo_saida + "-1920x1152_aeroporto_BSB.mov",
             "converter": "MP4"
         },
-
+        {
+            "comp": "render08",
+            "inicio": "1",
+            "fim": "450",
+            "OM": "MOV",
+            "arquivo": arquivo_saida + "-225x337_relogio_SP.mov",
+            "converter": "MP4-ODD"
+        }
     ]
 
     saida = {"dados": aux_dados, "renders": renders}
