@@ -275,3 +275,28 @@ def resizeImage(arquivo):
         foto = foto.crop((x1, y1, x2, y2))
     foto = foto.resize((1920,1080), Image.ANTIALIAS)
     foto.save(arquivo)
+
+
+def resizeImage1080X1920(arquivo):
+    from PIL import Image
+
+    foto = Image.open(arquivo).convert('RGB')
+    f_w = foto.size[0]
+    f_h = foto.size[1]
+
+    if  (f_w / f_h) > (1080/1920):
+        novo_w = 1080 * (f_h / 1920.0)
+        x1 = (f_w - novo_w) / 2
+        y1 = 0
+        x2 = x1 + novo_w
+        y2 = f_h
+        foto = foto.crop((x1, y1, x2, y2))
+    else:
+        novo_h = 1920 * (f_w / 1080.0)
+        y1 = (f_h - novo_h) / 2
+        x1 = 0
+        y2 = y1 + novo_h
+        x2 = f_w
+        foto = foto.crop((x1, y1, x2, y2))
+    foto = foto.resize((1080,1920), Image.ANTIALIAS)
+    foto.save(arquivo)

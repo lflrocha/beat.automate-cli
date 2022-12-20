@@ -171,6 +171,7 @@ def getTVBrProgramacaoChamadas2022(dados):
     saida = {"dados": aux_dados, "renders": renders}
     return saida
 
+
 def getTVBrProgramacaoDestaqueAgencia2022(dados):
     novo_projeto = dados['novo_projeto']
     identificador = dados['identificador']
@@ -200,9 +201,6 @@ def getTVBrProgramacaoDestaqueAgencia2022(dados):
 
     saida = {"dados": aux_dados, "renders": renders}
     return saida
-
-
-
 
 
 def getMktMidiaIndoorTVBrasil2022(dados):
@@ -316,11 +314,6 @@ def getMktMidiaIndoorRadioNacional2022(dados):
     return saida
 
 
-
-
-
-
-
 def getTVBrRadiosChamada(dados):
     novo_projeto = dados['novo_projeto']
     identificador = dados['identificador']
@@ -346,7 +339,6 @@ def getTVBrRadiosChamada(dados):
     ]
 
     automator.baixaArquivos(download)
-
     automator.resizeImage(TEMP + arq_imagem1)
     automator.resizeImage(TEMP + arq_imagem2)
     automator.resizeImage(TEMP + arq_imagem3)
@@ -358,6 +350,43 @@ def getTVBrRadiosChamada(dados):
             "fim": "0",
             "OM": "MAM",
             "arquivo": arquivo_saida + "_radios_chamada.mov",
+            "converter": "MP4-AUDIO"
+        }
+    ]
+
+    saida = {"dados": variaveis, "renders": renders}
+    return saida
+
+
+def getRedesTiktok(dados):
+    novo_projeto = dados['novo_projeto']
+    identificador = dados['identificador']
+    arquivo_saida = slugify(novo_projeto + '-' + identificador)
+
+    variaveis = dados['variaveis']
+    arq_imagem1 = variaveis['arq_background']
+    end_imagem1 = variaveis['end_background']
+    arquivo_video = variaveis['arquivo']
+
+    download = [
+        (end_imagem1, arq_imagem1)
+    ]
+
+    automator.baixaArquivos(download)
+    automator.resizeImage1080X1920(TEMP + arq_imagem1)
+
+    caminho_video = "/Volumes/Automator_Envios/Redes/"
+    if not os.path.isdir(caminho_video):
+        retorno = os.system('osascript '+ROOT+'scripts/mountEnvio.scpt')
+    retorno = os.system('cp "' + caminho_video + arquivo_video + '" "' + TEMP + '"')
+
+    renders = [
+        {
+            "comp": "01_render",
+            "inicio": "1",
+            "fim": "0",
+            "OM": "MAM",
+            "arquivo": arquivo_saida + "_tiktok.mov",
             "converter": "MP4-AUDIO"
         }
     ]

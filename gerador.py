@@ -43,6 +43,8 @@ listas = [
     'http://automator-prod01.ebc:8080/automator/getMarketingPendentes',
     'http://automator-prod01.ebc:8080/automator/getTVBrProgramacaoAgenciaPendentes',
     'http://automator-prod01.ebc:8080/automator/getTVBrProgramacao2022Pendentes',
+    'http://automator-prod01.ebc:8080/automator/getRedesTiktokPendentes',
+
 ]
 
 itens = []
@@ -128,6 +130,13 @@ for item in itens:
         EXPORT = ROOT + 'export/tvbr_radios_chamada/'
         DESTINO = local + '/TVBr_Radios_Chamada/'
         SAIDA = lib_dados.getTVBrRadiosChamada(dados)
+
+    elif tipo == "Redes TikTok":
+        ID = 'redes_tiktok'
+        JSX = ROOT + 'scripts/redes_tiktok_vertical.jsx'
+        EXPORT = ROOT + 'export/redes_tiktok/'
+        DESTINO = local + '/Redes_Tiktok/'
+        SAIDA = lib_dados.getRedesTiktok(dados)
 
 
     logger.info("%r - Preparando JSON", titulo)
