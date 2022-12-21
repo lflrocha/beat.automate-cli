@@ -98,7 +98,7 @@ def getMktMidiaIndoorAgencia2022(dados):
         {
             "comp": "render08",
             "inicio": "1",
-            "fim": "450",
+            "fim": "300",
             "OM": "MOV",
             "arquivo": arquivo_saida + "-225x337_relogio_SP.mov",
             "converter": "MP4-ODD"
