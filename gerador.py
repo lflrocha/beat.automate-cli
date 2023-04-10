@@ -4,6 +4,7 @@
 import libs.automator as automator
 import libs.lib_abr as lib_abr
 import libs.lib_dados as lib_dados
+import libs.lib_esportes2023 as lib_esportes
 
 import datetime
 import json
@@ -44,6 +45,8 @@ listas = [
     'http://automator-prod01.ebc:8080/automator/getTVBrProgramacaoAgenciaPendentes',
     'http://automator-prod01.ebc:8080/automator/getTVBrProgramacao2022Pendentes',
     'http://automator-prod01.ebc:8080/automator/getRedesTiktokPendentes',
+    'http://vmebc:8080/automator/getEsportes2023Pendentes',
+    'http://vmebc:8080/automator/getGovInformaPendentes',
 
 ]
 
@@ -56,7 +59,7 @@ print(len(itens))
 
 for item in itens:
     endereco = item['endereco']
-    arq = automator.alteraStatus(endereco, 'gerar')
+    # arq = automator.alteraStatus(endereco, 'gerar')
 
 for item in itens:
     endereco = item['endereco']
@@ -73,7 +76,7 @@ for item in itens:
     logger.addHandler(handler)
     logger.info("%r - %r - Iniciando item", titulo, tipo)
 
-    arq = automator.alteraStatus(endereco, 'gerar')
+    # arq = automator.alteraStatus(endereco, 'gerar')
     logger.info("%r - Setando status para 'gerando'", titulo)
 
     dados = automator.buscaDados(endereco)
@@ -138,6 +141,27 @@ for item in itens:
         DESTINO = local + '/Redes_Tiktok/'
         SAIDA = lib_dados.getRedesTiktok(dados)
 
+    elif tipo == "Gov Informa Cor":
+        ID = 'gov_informa_cor'
+        JSX = ROOT + 'scripts/gov_informa_cor.jsx'
+        EXPORT = ROOT + 'export/gov_informa_cor/'
+        DESTINO = local + '/GovInforma/'
+        SAIDA = lib_dados.getGovInforma(dados)
+
+    elif tipo == "Gov Informa PB":
+        ID = 'gov_informa_pb'
+        JSX = ROOT + 'scripts/gov_informa_pb.jsx'
+        EXPORT = ROOT + 'export/gov_informa_pb/'
+        DESTINO = local + '/GovInforma/'
+        SAIDA = lib_dados.getGovInforma(dados)
+
+    elif tipo == "Esportes2023 Tabela Futebol":
+        ID = 'esportes2023_tabela_futebol'
+        JSX = ROOT + 'scripts/esportes2023_tabela_futebol.jsx'
+        EXPORT = ROOT + 'export/esportes2023_tabela_futebol/'
+        DESTINO = local + '/Esportes2023/'
+        SAIDA = lib_esportes.getEsportes2023TabelaFutebol(dados)
+
 
     logger.info("%r - Preparando JSON", titulo)
 
@@ -187,7 +211,7 @@ for item in itens:
         retorno = automator.geraArte(projetoAfter, comp, inicio, fim, om, arquivo)
         logger.info("%r - %r - Gerando Arte " + arquivo, titulo, retorno)
         if retorno != 0:
-            arq = requests.get(endereco+'/setWorkflowState?acao=erro')
+            # arq = requests.get(endereco+'/setWorkflowState?acao=erro')
             break
 
         if 'renomear' in render.keys():
@@ -204,4 +228,4 @@ for item in itens:
 
 
     # FINALIZA
-    arq = requests.get(endereco+'/setWorkflowState?acao=finalizar')
+    # arq = requests.get(endereco+'/setWorkflowState?acao=finalizar')
