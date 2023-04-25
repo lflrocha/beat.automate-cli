@@ -83,7 +83,6 @@ def buscaDados(endereco):
 
 def baixaArquivos(dados):
     "Baixa arquivos para o temp"
-    print(dados)
     # arquivos = eval(dados)
     for enderecofoto, nome in dados:
         r = requests.get(enderecofoto)
@@ -210,7 +209,7 @@ def converter(tipo, arquivo):
         retorno = subprocess.call(parametros)
     elif tipo == "MP4-ODD":
         arq_out = arq_out[0] + '.mp4'
-        parametros = [BIN + 'ffmpeg', '-i', arquivo, '-y', '-pix_fmt',  'yuv420p', '-vf', "crop=trunc(iw/2)*2:trunc(ih/2)*2", '-b:v', '900k', '-vcodec', 'h264', '-an', arq_out]
+        parametros = [BIN + 'ffmpeg', '-i', arquivo, '-y', '-pix_fmt',  'yuv420p', '-vf', "crop=trunc(iw/2)*2:trunc(ih/2)*2", '-b:v', '900k', '-vcodec', 'h264', '-fs', '1', '-an', arq_out]
         retorno = subprocess.call(parametros)
     return(arq_out)
 
@@ -239,7 +238,6 @@ def getDataHora(*args):
 
 
 def geraQRCode(link, arquivo):
-    print(link)
     qr = qrcode.QRCode(
         version=5,
         error_correction=qrcode.constants.ERROR_CORRECT_H,

@@ -40,14 +40,14 @@ if not os.path.isdir(CUT):
 receivers = ['luis.rocha@ebc.com.br']
 
 listas = [
-    # 'http://automator-prod01.ebc:8080/automator/getTVBrRadiosChamadaPendentes',
-    # 'http://automator-prod01.ebc:8080/automator/getMarketingPendentes',
-    # 'http://automator-prod01.ebc:8080/automator/getTVBrProgramacaoAgenciaPendentes',
-    # 'http://automator-prod01.ebc:8080/automator/getTVBrProgramacao2022Pendentes',
-    # 'http://automator-prod01.ebc:8080/automator/getRedesTiktokPendentes',
-    # 'http://vmebc:8080/automator/getEsportes2023Pendentes',
+    'http://automator-prod01.ebc:8080/automator/getTVBrRadiosChamadaPendentes',
+    'http://automator-prod01.ebc:8080/automator/getMarketingPendentes',
+    'http://automator-prod01.ebc:8080/automator/getTVBrProgramacaoAgenciaPendentes',
+    'http://automator-prod01.ebc:8080/automator/getTVBrProgramacao2022Pendentes',
+    'http://automator-prod01.ebc:8080/automator/getRedesTiktokPendentes',
+    'http://automator-prod01.ebc:8080/automator/getEsportes2023Pendentes',
+    'http://automator-prod01.ebc:8080/automator/getEducacaoPendentes',
     # 'http://vmebc:8080/automator/getGovInformaPendentes',
-    'http://vmebc:8080/automator/getEducacaoPendentes',
 
 ]
 
@@ -59,7 +59,7 @@ print(len(itens))
 
 for item in itens:
     endereco = item['endereco']
-    # arq = automator.alteraStatus(endereco, 'gerar')
+    arq = automator.alteraStatus(endereco, 'gerar')
 
 for item in itens:
     endereco = item['endereco']
@@ -76,7 +76,7 @@ for item in itens:
     logger.addHandler(handler)
     logger.info("%r - %r - Iniciando item", titulo, tipo)
 
-    # arq = automator.alteraStatus(endereco, 'gerar')
+    arq = automator.alteraStatus(endereco, 'gerar')
     logger.info("%r - Setando status para 'gerando'", titulo)
 
     dados = automator.buscaDados(endereco)
@@ -193,7 +193,7 @@ for item in itens:
             json.dump(SAIDA['dados'], f, indent=4, sort_keys=True)
         logger.info("%r - Salvando JSON", titulo)
     else:
-        # arq = requests.get(endereco+'/setWorkflowState?acao=erro')
+        arq = requests.get(endereco+'/setWorkflowState?acao=erro')
         logger.info("%r - %r - Erro salvando JSON", titulo, arq)
         break
 
@@ -205,8 +205,8 @@ for item in itens:
     logger.info("%r - %r - Atualizando o projeto JSX", titulo, retorno)
 
     if retorno != 0:
-        # arq = automator.alteraStatus(endereco, 'erro')
-        # logger.info("%r - %r - Erro atualizando o projeto JSX", titulo, arq)
+        arq = automator.alteraStatus(endereco, 'erro')
+        logger.info("%r - %r - Erro atualizando o projeto JSX", titulo, arq)
         break
 
     # CRIA PASTA NO EXPORT
@@ -232,7 +232,7 @@ for item in itens:
         retorno = automator.geraArte(projetoAfter, comp, inicio, fim, om, arquivo)
         logger.info("%r - %r - Gerando Arte " + arquivo, titulo, retorno)
         if retorno != 0:
-            # arq = requests.get(endereco+'/setWorkflowState?acao=erro')
+            arq = requests.get(endereco+'/setWorkflowState?acao=erro')
             break
 
         if 'renomear' in render.keys():
@@ -244,9 +244,9 @@ for item in itens:
         origem_aux = arquivo
         destino_aux = dest
         retorno = os.system("cp  %s  %s" % (origem_aux,  destino_aux))
-        # retorno = automator.enviaCut(arquivo, dest + nome_arquivo)
-        # logger.info("%r - %r - Arte copiada para destino: " + arquivo, titulo, retorno)
+        retorno = automator.enviaCut(arquivo, dest + nome_arquivo)
+        logger.info("%r - %r - Arte copiada para destino: " + arquivo, titulo, retorno)
 
 
     # FINALIZA
-    # arq = requests.get(endereco+'/setWorkflowState?acao=finalizar')
+    arq = requests.get(endereco+'/setWorkflowState?acao=finalizar')
