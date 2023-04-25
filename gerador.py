@@ -40,13 +40,14 @@ if not os.path.isdir(CUT):
 receivers = ['luis.rocha@ebc.com.br']
 
 listas = [
-    'http://automator-prod01.ebc:8080/automator/getTVBrRadiosChamadaPendentes',
-    'http://automator-prod01.ebc:8080/automator/getMarketingPendentes',
-    'http://automator-prod01.ebc:8080/automator/getTVBrProgramacaoAgenciaPendentes',
-    'http://automator-prod01.ebc:8080/automator/getTVBrProgramacao2022Pendentes',
-    'http://automator-prod01.ebc:8080/automator/getRedesTiktokPendentes',
-    'http://vmebc:8080/automator/getEsportes2023Pendentes',
-    'http://vmebc:8080/automator/getGovInformaPendentes',
+    # 'http://automator-prod01.ebc:8080/automator/getTVBrRadiosChamadaPendentes',
+    # 'http://automator-prod01.ebc:8080/automator/getMarketingPendentes',
+    # 'http://automator-prod01.ebc:8080/automator/getTVBrProgramacaoAgenciaPendentes',
+    # 'http://automator-prod01.ebc:8080/automator/getTVBrProgramacao2022Pendentes',
+    # 'http://automator-prod01.ebc:8080/automator/getRedesTiktokPendentes',
+    # 'http://vmebc:8080/automator/getEsportes2023Pendentes',
+    # 'http://vmebc:8080/automator/getGovInformaPendentes',
+    'http://vmebc:8080/automator/getEducacaoPendentes',
 
 ]
 
@@ -54,7 +55,6 @@ itens = []
 for lista in listas:
     itens = itens + automator.baixaLista(lista)
 
-print(itens)
 print(len(itens))
 
 for item in itens:
@@ -162,6 +162,27 @@ for item in itens:
         DESTINO = local + '/Esportes2023/'
         SAIDA = lib_esportes.getEsportes2023TabelaFutebol(dados)
 
+    elif tipo == "Esportes2023 Confrontos Futebol":
+        ID = 'esportes2023_confrontos_futebol'
+        JSX = ROOT + 'scripts/esportes2023_confrontos_futebol.jsx'
+        EXPORT = ROOT + 'export/esportes2023_confrontos_futebol/'
+        DESTINO = local + '/Esportes2023/'
+        SAIDA = lib_esportes.getEsportes2023ConfrontosFutebol(dados)
+
+    elif tipo == "Educacao Bussola Hoje":
+        ID = 'educacao_bussola_hoje'
+        JSX = ROOT + 'scripts/educacao_bussola_hoje.jsx'
+        EXPORT = ROOT + 'export/educacao_bussola_hoje/'
+        DESTINO = local + '/CanalEducacao/'
+        SAIDA = lib_dados.getEducacaoBussolaHoje(dados)
+
+    elif tipo == "Educacao Chamada Simples":
+        ID = 'educacao_chamada_simples'
+        JSX = ROOT + 'scripts/educacao_chamada_simples.jsx'
+        EXPORT = ROOT + 'export/educacao_chamada_simples/'
+        DESTINO = local + '/CanalEducacao/'
+        SAIDA = lib_dados.getEducacaoChamadaSimples(dados)
+
 
     logger.info("%r - Preparando JSON", titulo)
 
@@ -172,7 +193,7 @@ for item in itens:
             json.dump(SAIDA['dados'], f, indent=4, sort_keys=True)
         logger.info("%r - Salvando JSON", titulo)
     else:
-        arq = requests.get(endereco+'/setWorkflowState?acao=erro')
+        # arq = requests.get(endereco+'/setWorkflowState?acao=erro')
         logger.info("%r - %r - Erro salvando JSON", titulo, arq)
         break
 
@@ -184,8 +205,8 @@ for item in itens:
     logger.info("%r - %r - Atualizando o projeto JSX", titulo, retorno)
 
     if retorno != 0:
-        arq = automator.alteraStatus(endereco, 'erro')
-        logger.info("%r - %r - Erro atualizando o projeto JSX", titulo, arq)
+        # arq = automator.alteraStatus(endereco, 'erro')
+        # logger.info("%r - %r - Erro atualizando o projeto JSX", titulo, arq)
         break
 
     # CRIA PASTA NO EXPORT
@@ -224,7 +245,7 @@ for item in itens:
         destino_aux = dest
         retorno = os.system("cp  %s  %s" % (origem_aux,  destino_aux))
         # retorno = automator.enviaCut(arquivo, dest + nome_arquivo)
-        logger.info("%r - %r - Arte copiada para destino: " + arquivo, titulo, retorno)
+        # logger.info("%r - %r - Arte copiada para destino: " + arquivo, titulo, retorno)
 
 
     # FINALIZA

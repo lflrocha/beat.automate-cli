@@ -4,7 +4,6 @@ app.setSavePreferencesOnQuit(false);
 
 function TrocarTexto (nome_comp, nome_layer, novo_texto) {
   var texto = nome_comp.layer(nome_layer);
-  alert(nome_layer + novo_texto)
   texto.property("sourceText").setValue(novo_texto);
 }
 
@@ -43,12 +42,8 @@ var programa = dados['programa'];
 var campeonato = dados['campeonato_nome'];
 var telas = dados['telas'];
 
-alert(campeonato)
-
 comp_base = app.project.item(2);
 comp_linha = app.project.item(3);
-
-
 
 for (var i = 0; i < telas.length; i++) {
 

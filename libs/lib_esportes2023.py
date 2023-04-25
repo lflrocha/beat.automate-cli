@@ -27,21 +27,16 @@ def getEsportes2023TabelaFutebol(dados):
     r = requests.get('http://api-abtabelas.devel.ebc/?campeonato=' + campeonato_id)
     dados_tabela = r.json()
 
-    print(dados_tabela)
     tabela = dados_tabela['fases'][0]['dados'][0]['grupos']['Único']
 
     num_telas = int(len(tabela) / 10)
     if len(tabela) % 10 > 0:
         num_telas = num_telas + 1
 
-
-
     aux = np.array_split(tabela, num_telas)
     telas = []
     for grupo in aux:
         telas.append(grupo.tolist())
-
-
 
     aux_dados = {
         'programa': programa,
@@ -51,7 +46,6 @@ def getEsportes2023TabelaFutebol(dados):
     }
 
     renders = []
-
     for tela in range(num_telas):
         renders.append(
         {

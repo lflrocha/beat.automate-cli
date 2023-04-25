@@ -392,3 +392,86 @@ def getRedesTiktok(dados):
 
     saida = {"dados": variaveis, "renders": renders}
     return saida
+
+
+
+
+def getGovInforma(dados):
+    novo_projeto = dados['novo_projeto']
+    identificador = dados['identificador']
+    arquivo_saida = slugify(novo_projeto + '-' + identificador)
+
+    variaveis = dados['variaveis']
+    arq_imagem1 = variaveis['foto_arquivo']
+    end_imagem1 = variaveis['foto_endereco']
+
+    download = [
+        (end_imagem1, arq_imagem1)
+    ]
+
+    automator.baixaArquivos(download)
+
+    renders = [
+        {
+            "comp": "01_render",
+            "inicio": "1",
+            "fim": "0",
+            "OM": "MAM",
+            "arquivo": arquivo_saida + ".mov",
+            "converter": "MP4-AUDIO"
+        }
+    ]
+
+    saida = {"dados": variaveis, "renders": renders}
+    return saida
+
+
+
+
+def getEducacaoBussolaHoje(dados):
+    novo_projeto = dados['novo_projeto']
+    identificador = dados['identificador']
+    arquivo_saida = slugify(novo_projeto + '-' + identificador)
+    variaveis = dados['variaveis']
+
+    renders = [
+        {
+            "comp": "01_render",
+            "inicio": "1",
+            "fim": "0",
+            "OM": "MAM",
+            "arquivo": arquivo_saida + ".mov",
+            "converter": "MXF"
+        }
+    ]
+
+    saida = {"dados": variaveis, "renders": renders}
+    return saida
+
+
+def getEducacaoChamadaSimples(dados):
+    novo_projeto = dados['novo_projeto']
+    identificador = dados['identificador']
+    arquivo_saida = slugify(novo_projeto + '-' + identificador)
+    variaveis = dados['variaveis']
+
+    video = variaveis['video']
+
+    caminho_video = "/Volumes/Automator_Envios/Educacao/"
+    if not os.path.isdir(caminho_video):
+        retorno = os.system('osascript '+ROOT+'scripts/mountEnvio.scpt')
+    retorno = os.system('cp "' + caminho_video + video + '" "' + TEMP + '"')
+
+    renders = [
+        {
+            "comp": "01_render",
+            "inicio": "1",
+            "fim": "0",
+            "OM": "MAM",
+            "arquivo": arquivo_saida + ".mov",
+            "converter": "MXF"
+        }
+    ]
+
+    saida = {"dados": variaveis, "renders": renders}
+    return saida
