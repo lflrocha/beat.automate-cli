@@ -4,14 +4,13 @@ app.setSavePreferencesOnQuit(false);
 
 function TrocarTexto(nome_comp, nome_layer, novo_texto) {
   var texto = nome_comp.layer(nome_layer);
-  // alert(nome_layer + ' - ' + novo_texto);
   texto.property("sourceText").setValue(novo_texto);
 }
 
 var arqScript = new File($.fileName);
 var nomeProjeto = arqScript.name.split(".")[0];
 var baseFolder = arqScript.parent.path + "/";
-var _io = new ImportOptions(File(baseFolder + "projetos/esportes2023_confrontos_futebol.aep"));
+var _io = new ImportOptions(File(baseFolder + "projetos/esportes2023_resultados_futebol.aep"));
 if(_io.canImportAs(ImportAsType.PROJECT)){
     _io.importAs = ImportAsType.PROJECT;
 }
@@ -81,23 +80,19 @@ for (var i = 0; i < telas.length; i++) {
 
 
     for (var j = 1; j <= jogos.length; j++) {
-      aux_date = (jogos[j-1]['data']).split("T")[0]
-      aux_date = aux_date.split("-")
-      data = aux_date[2] + '/' + aux_date[1]
-      horario = jogos[j-1]['hora']
-      local = jogos[j-1]['estadio']
-      TrocarTexto(comp_tela, "J" + j.toString() + "Dia", data);
-      TrocarTexto(comp_tela, "J" + j.toString() + "Horario", horario);
-      TrocarTexto(comp_tela, "J" + j.toString() + "Local", local);
-
       nomeTimeA = jogos[j-1]['nome_time1']
       siglaTimeA = jogos[j-1]['sigla_time1']
+      placarTimeA = jogos[j-1]['placar_time1']
 
       nomeTimeB = jogos[j-1]['nome_time2']
       siglaTimeB = jogos[j-1]['sigla_time2']
+      placarTimeB = jogos[j-1]['placar_time2']
 
       TrocarTexto(comp_tela, "J" + j.toString() + "NomeTimeA", nomeTimeA);
+      TrocarTexto(comp_tela, "J" + j.toString() + "PlacarTimeA", placarTimeA.toString());
+
       TrocarTexto(comp_tela, "J" + j.toString() + "NomeTimeB", nomeTimeB);
+      TrocarTexto(comp_tela, "J" + j.toString() + "PlacarTimeB", placarTimeB.toString());
 
       var escudoLayerA = comp_tela.layer("J" + j.toString() + "EscudoTimeA")
       var importOptionsA = new ImportOptions();
@@ -123,7 +118,6 @@ for (var i = 0; i < telas.length; i++) {
         obj = comp_tela.layer("tarja" + j.toString())
         obj.effect("COR").property("Color").setValue([2/255,67/255,129/255])
       }
-
 
     }
 }

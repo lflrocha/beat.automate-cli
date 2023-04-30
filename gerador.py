@@ -3,8 +3,12 @@
 
 import libs.automator as automator
 import libs.lib_abr as lib_abr
-import libs.lib_dados as lib_dados
-import libs.lib_esportes2023 as lib_esportes
+import libs.lib_educacao as lib_educacao
+import libs.lib_esportes as lib_esportes
+import libs.lib_gov as lib_gov
+import libs.lib_marketing as lib_marketing
+import libs.lib_programacao as lib_programacao
+import libs.lib_redes as lib_redes
 
 import datetime
 import json
@@ -40,15 +44,17 @@ if not os.path.isdir(CUT):
 receivers = ['luis.rocha@ebc.com.br']
 
 listas = [
-    'http://automator-prod01.ebc:8080/automator/getTVBrRadiosChamadaPendentes',
     'http://automator-prod01.ebc:8080/automator/getMarketingPendentes',
     'http://automator-prod01.ebc:8080/automator/getTVBrProgramacaoAgenciaPendentes',
     'http://automator-prod01.ebc:8080/automator/getTVBrProgramacao2022Pendentes',
     'http://automator-prod01.ebc:8080/automator/getRedesTiktokPendentes',
     'http://automator-prod01.ebc:8080/automator/getEsportes2023Pendentes',
     'http://automator-prod01.ebc:8080/automator/getEducacaoPendentes',
+    'http://automator-prod01.ebc:8080/automator/getGovInformaPendentes',
+    'http://automator-prod01.ebc:8080/automator/getTVBrRadiosChamadaPendentes',
+    # 'http://vmebc:8080/automator/getEducacaoPendentes',
     # 'http://vmebc:8080/automator/getGovInformaPendentes',
-
+    # 'http://vmebc:8080/automator/getEsportes2023Pendentes',
 ]
 
 itens = []
@@ -56,6 +62,16 @@ for lista in listas:
     itens = itens + automator.baixaLista(lista)
 
 print(len(itens))
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+handler = logging.FileHandler(LOGS + 'automatorcc.log')
+handler.setLevel(logging.INFO)
+formatter = logging.Formatter('%(asctime)s -  %(levelname)s - %(message)s')
+handler.setFormatter(formatter)
+logger.addHandler(handler)
+
+logger.info("%r - Itens pendentes: ", len(itens))
 
 for item in itens:
     endereco = item['endereco']
@@ -67,17 +83,7 @@ for item in itens:
     tipo = item['tipo']
     print(tipo)
 
-    logger = logging.getLogger(__name__)
-    logger.setLevel(logging.INFO)
-    handler = logging.FileHandler(LOGS + tipo + '.log')
-    handler.setLevel(logging.INFO)
-    formatter = logging.Formatter('%(asctime)s -  %(levelname)s - %(message)s')
-    handler.setFormatter(formatter)
-    logger.addHandler(handler)
     logger.info("%r - %r - Iniciando item", titulo, tipo)
-
-    arq = automator.alteraStatus(endereco, 'gerar')
-    logger.info("%r - Setando status para 'gerando'", titulo)
 
     dados = automator.buscaDados(endereco)
     novo_projeto = dados['novo_projeto']
@@ -90,70 +96,70 @@ for item in itens:
         JSX = ROOT + 'scripts/mkt_midia_indoor_agencia_2022.jsx'
         EXPORT = ROOT + 'export/mkt_midia_indoor_agencia_2022/'
         DESTINO = local + '/Marketing2/'
-        SAIDA = lib_dados.getMktMidiaIndoorAgencia2022(dados)
+        SAIDA = lib_marketing.getMktMidiaIndoorAgencia2022(dados)
 
     elif tipo == "MKT Midia Indoor TVBrasil 2022":
         ID = 'mkt_midia_indoor_tvbrasil_2022'
         JSX = ROOT + 'scripts/mkt_midia_indoor_tvbrasil_2022.jsx'
         EXPORT = ROOT + 'export/mkt_midia_indoor_tvbrasil_2022/'
         DESTINO = local + '/Marketing2/'
-        SAIDA = lib_dados.getMktMidiaIndoorTVBrasil2022(dados)
+        SAIDA = lib_marketing.getMktMidiaIndoorTVBrasil2022(dados)
 
     elif tipo == "MKT Midia Indoor TVBrasilPlay 2022":
         ID = 'mkt_midia_indoor_tvbrasilplay_2022'
         JSX = ROOT + 'scripts/mkt_midia_indoor_tvbrasilplay_2022.jsx'
         EXPORT = ROOT + 'export/mkt_midia_indoor_tvbrasilplay_2022/'
         DESTINO = local + '/Marketing2/'
-        SAIDA = lib_dados.getMktMidiaIndoorTVBrasilPlay2022(dados)
+        SAIDA = lib_marketing.getMktMidiaIndoorTVBrasilPlay2022(dados)
 
     elif tipo == "MKT Midia Indoor RadioNacional 2022":
         ID = 'mkt_midia_indoor_radionacional_2022'
         JSX = ROOT + 'scripts/mkt_midia_indoor_radionacional_2022.jsx'
         EXPORT = ROOT + 'export/mkt_midia_indoor_radionacional_2022/'
         DESTINO = local + '/Marketing2/'
-        SAIDA = lib_dados.getMktMidiaIndoorRadioNacional2022(dados)
+        SAIDA = lib_marketing.getMktMidiaIndoorRadioNacional2022(dados)
 
     elif tipo == "TVBr Programacao Chamadas 2022":
         ID = 'tvbr_programacao_chamadas_2022'
         JSX = ROOT + 'scripts/tvbr_programacao_chamadas_2022.jsx'
         EXPORT = ROOT + 'export/tvbr_programacao_chamadas_2022/'
         DESTINO = local + '/TVBr_Programacao_Chamadas_2022/'
-        SAIDA = lib_dados.getTVBrProgramacaoChamadas2022(dados)
+        SAIDA = lib_programacao.getTVBrProgramacaoChamadas2022(dados)
 
     elif tipo == "TVBr Programacao Agencia":
         ID = 'tvbr_programacao_destaque_agencia_2022'
         JSX = ROOT + 'scripts/tvbr_programacao_destaque_agencia_2022.jsx'
         EXPORT = ROOT + 'export/tvbr_programacao_destaque_agencia_2022/'
         DESTINO = local + '/TVBr_Programacao_Agencia_2022/'
-        SAIDA = lib_dados.getTVBrProgramacaoDestaqueAgencia2022(dados)
+        SAIDA = lib_programacao.getTVBrProgramacaoDestaqueAgencia2022(dados)
 
     elif tipo == "TVBr Radios Chamada":
         ID = 'tvbr_radios_chamada'
         JSX = ROOT + 'scripts/tvbr_radios_chamada.jsx'
         EXPORT = ROOT + 'export/tvbr_radios_chamada/'
         DESTINO = local + '/TVBr_Radios_Chamada/'
-        SAIDA = lib_dados.getTVBrRadiosChamada(dados)
+        SAIDA = lib_programacao.getTVBrRadiosChamada(dados)
 
     elif tipo == "Redes TikTok":
         ID = 'redes_tiktok'
         JSX = ROOT + 'scripts/redes_tiktok_vertical.jsx'
         EXPORT = ROOT + 'export/redes_tiktok/'
         DESTINO = local + '/Redes_Tiktok/'
-        SAIDA = lib_dados.getRedesTiktok(dados)
+        SAIDA = lib_redes.getRedesTiktok(dados)
 
     elif tipo == "Gov Informa Cor":
         ID = 'gov_informa_cor'
         JSX = ROOT + 'scripts/gov_informa_cor.jsx'
         EXPORT = ROOT + 'export/gov_informa_cor/'
         DESTINO = local + '/GovInforma/'
-        SAIDA = lib_dados.getGovInforma(dados)
+        SAIDA = lib_gov.getGovInforma(dados)
 
     elif tipo == "Gov Informa PB":
         ID = 'gov_informa_pb'
         JSX = ROOT + 'scripts/gov_informa_pb.jsx'
         EXPORT = ROOT + 'export/gov_informa_pb/'
         DESTINO = local + '/GovInforma/'
-        SAIDA = lib_dados.getGovInforma(dados)
+        SAIDA = lib_gov.getGovInforma(dados)
 
     elif tipo == "Esportes2023 Tabela Futebol":
         ID = 'esportes2023_tabela_futebol'
@@ -169,20 +175,26 @@ for item in itens:
         DESTINO = local + '/Esportes2023/'
         SAIDA = lib_esportes.getEsportes2023ConfrontosFutebol(dados)
 
+    elif tipo == "Esportes2023 Resultados Futebol":
+        ID = 'esportes2023_resultados_futebol'
+        JSX = ROOT + 'scripts/esportes2023_resultados_futebol.jsx'
+        EXPORT = ROOT + 'export/esportes2023_resultados_futebol/'
+        DESTINO = local + '/Esportes2023/'
+        SAIDA = lib_esportes.getEsportes2023ResultadosFutebol(dados)
+
     elif tipo == "Educacao Bussola Hoje":
         ID = 'educacao_bussola_hoje'
         JSX = ROOT + 'scripts/educacao_bussola_hoje.jsx'
         EXPORT = ROOT + 'export/educacao_bussola_hoje/'
         DESTINO = local + '/CanalEducacao/'
-        SAIDA = lib_dados.getEducacaoBussolaHoje(dados)
+        SAIDA = lib_educacao.getEducacaoBussolaHoje(dados)
 
     elif tipo == "Educacao Chamada Simples":
         ID = 'educacao_chamada_simples'
         JSX = ROOT + 'scripts/educacao_chamada_simples.jsx'
         EXPORT = ROOT + 'export/educacao_chamada_simples/'
         DESTINO = local + '/CanalEducacao/'
-        SAIDA = lib_dados.getEducacaoChamadaSimples(dados)
-
+        SAIDA = lib_educacao.getEducacaoChamadaSimples(dados)
 
     logger.info("%r - Preparando JSON", titulo)
 
@@ -241,10 +253,7 @@ for item in itens:
         if 'converter' in render.keys():
             arquivo = automator.converter(render['converter'], arquivo)
 
-        origem_aux = arquivo
-        destino_aux = dest
         retorno = os.system("cp  %s  %s" % (origem_aux,  destino_aux))
-        retorno = automator.enviaCut(arquivo, dest + nome_arquivo)
         logger.info("%r - %r - Arte copiada para destino: " + arquivo, titulo, retorno)
 
 

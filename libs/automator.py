@@ -146,7 +146,6 @@ def geraArte(projeto, comp, inicio, fim, output_module, output):
         inicio = "1"
 
     # inicio = "1"
-
     parametros = [AERENDER, '-project', projeto, '-comp', comp, '-s', inicio, '-e', fim,  '-OMtemplate', output_module, '-output', output]
 
     if not fim or fim == "0":
@@ -199,19 +198,27 @@ def converter(tipo, arquivo):
         arq_out = arq_out[0] + '.mp4'
         parametros = [BIN + 'ffmpeg', '-i', arquivo, '-y', '-pix_fmt',  'yuv420p', '-b:v', '5M', '-vcodec', 'h264', arq_out]
         retorno = subprocess.call(parametros)
-    elif tipo == "MP4-LOW":
+
+
+    elif tipo == "JCDECAUX":
         arq_out = arq_out[0] + '.mp4'
-        parametros = [BIN + 'ffmpeg', '-i', arquivo, '-y', '-pix_fmt',  'yuv420p', '-b:v', '1M', '-vcodec', 'h264', '-an', arq_out]
+        parametros = [BIN + 'ffmpeg', '-i', arquivo, '-y', '-pix_fmt',  'yuv420p', '-b:v', '4M', '-vcodec', 'h264', '-fs', '5000000', '-an', arq_out]
         retorno = subprocess.call(parametros)
-    elif tipo == "MP4-ROTATE":
+    elif tipo == "JCDECAUX-LOW":
         arq_out = arq_out[0] + '.mp4'
-        parametros = [BIN + 'ffmpeg', '-i', arquivo, '-y', '-pix_fmt',  'yuv420p', '-vf', "transpose=2", '-b:v', '1M', '-vcodec', 'h264', '-an', arq_out]
+        parametros = [BIN + 'ffmpeg', '-i', arquivo, '-y', '-pix_fmt',  'yuv420p', '-b:v', '1M', '-vcodec', 'h264', '-fs', '1000000',  '-an', arq_out]
         retorno = subprocess.call(parametros)
-    elif tipo == "MP4-ODD":
+    elif tipo == "JCDECAUX-ROTATE":
         arq_out = arq_out[0] + '.mp4'
-        parametros = [BIN + 'ffmpeg', '-i', arquivo, '-y', '-pix_fmt',  'yuv420p', '-vf', "crop=trunc(iw/2)*2:trunc(ih/2)*2", '-b:v', '900k', '-vcodec', 'h264', '-fs', '1', '-an', arq_out]
+        parametros = [BIN + 'ffmpeg', '-i', arquivo, '-y', '-pix_fmt',  'yuv420p', '-vf', "transpose=2", '-b:v', '1M', '-vcodec', 'h264', '-fs', '5000000',  '-an', arq_out]
+        retorno = subprocess.call(parametros)
+    elif tipo == "JCDECAUX-ODD":
+        arq_out = arq_out[0] + '.mp4'
+        parametros = [BIN + 'ffmpeg', '-i', arquivo, '-y', '-pix_fmt',  'yuv420p', '-vf', "crop=trunc(iw/2)*2:trunc(ih/2)*2", '-b:v', '900k', '-vcodec', 'h264', '-fs', '1000000', '-an', arq_out]
         retorno = subprocess.call(parametros)
     return(arq_out)
+
+
 
 def getDataHora(*args):
     """
