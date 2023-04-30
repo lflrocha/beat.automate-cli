@@ -115,7 +115,7 @@ def enviaCut(origem, destino):
     plataforma = platform.system()
     retorno = ""
     if plataforma == "Darwin":
-        destino = '/Volumes/Automator/' + destino
+        # destino = '/Volumes/Automator/' + destino
         if not os.path.isdir(CUT):
             script = ROOT + 'scripts/mountCut.scpt'
             parametros = ['osascript', script ]

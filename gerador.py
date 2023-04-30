@@ -59,7 +59,6 @@ listas = [
 
 itens = []
 for lista in listas:
-    print(lista)
     itens = itens + automator.baixaLista(lista)
 
 print(len(itens))
