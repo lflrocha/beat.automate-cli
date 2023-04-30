@@ -102,7 +102,7 @@ def getEsportes2023ConfrontosFutebol(dados):
         'campeonato_id': campeonato_id,
         'campeonato_nome': campeonato_nome,
         'subtitulo': subtitulo,
-        'jogos': telas
+        # 'jogos': telas
     }
 
     renders = []
@@ -114,7 +114,7 @@ def getEsportes2023ConfrontosFutebol(dados):
             "fim": "300",
             "OM": "MOV",
             "arquivo": arquivo_saida + "_%s.mov"  % str(tela + 1),
-            "converter": "MP4"
+            # "converter": "MP4"
         })
 
     saida = {"dados": aux_dados, "renders": renders}
@@ -176,7 +176,7 @@ def getEsportes2023ResultadosFutebol(dados):
             "fim": "300",
             "OM": "MOV",
             "arquivo": arquivo_saida + "_%s.mov"  % str(tela + 1),
-            "converter": "MP4"
+            # "converter": "MP4"
         })
 
     saida = {"dados": aux_dados, "renders": renders}
