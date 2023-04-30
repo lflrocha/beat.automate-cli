@@ -50,7 +50,7 @@ listas = [
     'http://automator-prod01.ebc:8080/automator/getRedesTiktokPendentes',
     'http://automator-prod01.ebc:8080/automator/getEsportes2023Pendentes',
     'http://automator-prod01.ebc:8080/automator/getEducacaoPendentes',
-    'http://automator-prod01.ebc:8080/automator/getGovInformaPendentes',
+    # 'http://automator-prod01.ebc:8080/automator/getGovInformaPendentes',
     'http://automator-prod01.ebc:8080/automator/getTVBrRadiosChamadaPendentes',
     # 'http://vmebc:8080/automator/getEducacaoPendentes',
     # 'http://vmebc:8080/automator/getGovInformaPendentes',
@@ -59,6 +59,7 @@ listas = [
 
 itens = []
 for lista in listas:
+    print(lista)
     itens = itens + automator.baixaLista(lista)
 
 print(len(itens))
@@ -253,7 +254,7 @@ for item in itens:
         if 'converter' in render.keys():
             arquivo = automator.converter(render['converter'], arquivo)
 
-        retorno = os.system("cp  %s  %s" % (origem_aux,  destino_aux))
+        retorno = automator.enviaCut(arquivo, dest + nome_arquivo)
         logger.info("%r - %r - Arte copiada para destino: " + arquivo, titulo, retorno)
 
 
