@@ -50,11 +50,13 @@ listas = [
     'http://automator-prod01.ebc:8080/automator/getRedesTiktokPendentes',
     'http://automator-prod01.ebc:8080/automator/getEsportes2023Pendentes',
     'http://automator-prod01.ebc:8080/automator/getEducacaoPendentes',
-    # 'http://automator-prod01.ebc:8080/automator/getGovInformaPendentes',
     'http://automator-prod01.ebc:8080/automator/getTVBrRadiosChamadaPendentes',
+    # 'http://automator-prod01.ebc:8080/automator/getGovInformaPendentes',
     # 'http://vmebc:8080/automator/getEducacaoPendentes',
     # 'http://vmebc:8080/automator/getGovInformaPendentes',
     # 'http://vmebc:8080/automator/getEsportes2023Pendentes',
+    # 'http://vmebc:8080/automator/getEducacaoPendentes',
+
 ]
 
 itens = []
@@ -189,6 +191,13 @@ for item in itens:
         DESTINO = local + '/CanalEducacao/'
         SAIDA = lib_educacao.getEducacaoBussolaHoje(dados)
 
+    elif tipo == "Educacao Bussola Assista":
+        ID = 'educacao_bussola_assista'
+        JSX = ROOT + 'scripts/educacao_bussola_assista.jsx'
+        EXPORT = ROOT + 'export/educacao_bussola_assista/'
+        DESTINO = local + '/CanalEducacao/'
+        SAIDA = lib_educacao.getEducacaoBussolaAssista(dados)
+
     elif tipo == "Educacao Chamada Simples":
         ID = 'educacao_chamada_simples'
         JSX = ROOT + 'scripts/educacao_chamada_simples.jsx'
@@ -253,7 +262,11 @@ for item in itens:
         if 'converter' in render.keys():
             arquivo = automator.converter(render['converter'], arquivo)
 
-        retorno = automator.enviaCut(arquivo, dest + nome_arquivo)
+        origem_aux = arquivo
+        destino_aux = dest
+        retorno = os.system("cp  %s  %s" % (origem_aux,  destino_aux))
+
+        # retorno = automator.enviaCut(arquivo, dest)
         logger.info("%r - %r - Arte copiada para destino: " + arquivo, titulo, retorno)
 
 

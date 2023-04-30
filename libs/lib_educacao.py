@@ -31,6 +31,37 @@ def getEducacaoBussolaHoje(dados):
     saida = {"dados": variaveis, "renders": renders}
     return saida
 
+def getEducacaoBussolaAssista(dados):
+    novo_projeto = dados['novo_projeto']
+    identificador = dados['identificador']
+    arquivo_saida = slugify(novo_projeto + '-' + identificador)
+    variaveis = dados['variaveis']
+
+    codigo1 = variaveis['codigo']
+    codigo2 = variaveis['codigo2']
+
+    renders = [
+        {
+            "comp": "01_render",
+            "inicio": "1",
+            "fim": "150",
+            "OM": "MAM",
+            "arquivo": arquivo_saida + '_' + codigo1 + ".mov",
+            "converter": "MXF"
+        },
+        {
+            "comp": "02_render",
+            "inicio": "1",
+            "fim": "150",
+            "OM": "MAM",
+            "arquivo": arquivo_saida + '_' + codigo2 + ".mov",
+            "converter": "MXF"
+        }
+    ]
+
+    saida = {"dados": variaveis, "renders": renders}
+    return saida
+
 
 def getEducacaoChamadaSimples(dados):
     novo_projeto = dados['novo_projeto']
