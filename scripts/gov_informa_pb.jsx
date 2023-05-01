@@ -45,7 +45,6 @@ app.project.item(3).replace(arquivoImagem)
 
 var texto = compDados.layer("texto");
 var altura = texto.sourceRectAtTime(10, true).height;
-alert(altura)
 var posicao = texto.property("position").value;
 var novo_x = posicao[0]
 var novo_y = 1017 - altura

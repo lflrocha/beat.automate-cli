@@ -51,7 +51,7 @@ listas = [
     'http://automator-prod01.ebc:8080/automator/getEsportes2023Pendentes',
     'http://automator-prod01.ebc:8080/automator/getEducacaoPendentes',
     'http://automator-prod01.ebc:8080/automator/getTVBrRadiosChamadaPendentes',
-    # 'http://automator-prod01.ebc:8080/automator/getGovInformaPendentes',
+    'http://automator-prod01.ebc:8080/automator/getGovInformaPendentes',
     # 'http://vmebc:8080/automator/getEducacaoPendentes',
     # 'http://vmebc:8080/automator/getGovInformaPendentes',
     # 'http://vmebc:8080/automator/getEsportes2023Pendentes',

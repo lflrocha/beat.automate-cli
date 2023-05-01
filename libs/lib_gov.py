@@ -30,10 +30,11 @@ def getGovInforma(dados):
         {
             "comp": "01_render",
             "inicio": "1",
-            "fim": "0",
+            "fim": "450",
             "OM": "MAM",
             "arquivo": arquivo_saida + ".mov",
-            "converter": "MP4-AUDIO"
+            # "converter": "MP4-AUDIO"
+            "converter": "MXF"
         }
     ]
 
