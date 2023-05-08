@@ -87,7 +87,6 @@ def getEsportes2023ConfrontosFutebol(dados):
     if rodada:
         subtitulo = rodada
 
-
     num_telas = int(len(dados) / 4)
     if len(dados) % 4 > 0:
         num_telas = num_telas + 1
@@ -102,7 +101,7 @@ def getEsportes2023ConfrontosFutebol(dados):
         'campeonato_id': campeonato_id,
         'campeonato_nome': campeonato_nome,
         'subtitulo': subtitulo,
-        # 'jogos': telas
+        'jogos': telas
     }
 
     renders = []
