@@ -117,7 +117,7 @@ for (var i = 0; i < telas.length; i++) {
       }
       if (programa == "Mundo da Bola") {
          obj = comp_tela.layer("tarja" + j.toString())
-         obj.effect("COR").property("Color").setValue([0/255,39/255,37/255])
+         obj.effect("COR").property("Color").setValue([0 , 62, 59])
       }
       if (programa == "Repórter Brasil") {
         obj = comp_tela.layer("tarja" + j.toString())

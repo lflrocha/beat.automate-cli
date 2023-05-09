@@ -202,7 +202,7 @@ def converter(tipo, arquivo):
 
     elif tipo == "JCDECAUX":
         arq_out = arq_out[0] + '.mp4'
-        parametros = [BIN + 'ffmpeg', '-i', arquivo, '-y', '-pix_fmt',  'yuv420p', '-b:v', '4M', '-vcodec', 'h264', '-fs', '5000000', '-an', arq_out]
+        parametros = [BIN + 'ffmpeg', '-i', arquivo, '-y', '-pix_fmt',  'yuv420p', '-b:v', '4M', '-vcodec', 'h264', '-an', arq_out]
         retorno = subprocess.call(parametros)
     elif tipo == "JCDECAUX-LOW":
         arq_out = arq_out[0] + '.mp4'

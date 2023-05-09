@@ -79,8 +79,10 @@ for(var x = 1; x <= 7; x++) {
         if ((x == 5) || (x == 6) || (x == 7)) {
           var texto = compDados.layer("NomeProgramaLinha");
           var altura = texto.sourceRectAtTime(80, true).height;
-          if (altura < 60) {
+          if (altura < 65) {
+
             var posicao = texto.property("position").value;
+            alert(posicao[1])
             var novo_x = posicao[0]
             var novo_y = posicao[1] + 66
             texto.property("position").setValueAtTime(0, [novo_x, novo_y]);
