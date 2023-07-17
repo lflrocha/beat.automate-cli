@@ -75,7 +75,7 @@ def getTempo5Dias(dados):
             "fim": "0",
             "OM": "MAM",
             "arquivo": arquivo_saida + ".mov",
-            "converter": "MP4"
+            "converter": "MXF"
         }
     ]
 

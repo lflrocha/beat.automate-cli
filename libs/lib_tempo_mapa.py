@@ -239,10 +239,10 @@ def getTempoMapa(dados):
         {
             "comp": comp,
             "inicio": "1",
-            "fim": "300",
+            "fim": "0",
             "OM": "MAM",
             "arquivo": arquivo_saida + ".mov",
-            "converter": "MP4"
+            "converter": "MXF"
         }
     ]
 
