@@ -53,22 +53,17 @@ if not os.path.isdir(CUT):
 receivers = ['luis.rocha@ebc.com.br']
 
 listas = [
-    # 'http://automator-prod01.ebc:8080/automator/getMarketingPendentes',
-    # 'http://automator-prod01.ebc:8080/automator/getTVBrProgramacaoAgenciaPendentes',
-    # 'http://automator-prod01.ebc:8080/automator/getTVBrProgramacao2022Pendentes',
-    # 'http://automator-prod01.ebc:8080/automator/getRedesTiktokPendentes',
-    # 'http://automator-prod01.ebc:8080/automator/getEsportes2023Pendentes',
-    # 'http://automator-prod01.ebc:8080/automator/getEducacaoPendentes',
-    # 'http://automator-prod01.ebc:8080/automator/getTVBrRadiosChamadaPendentes',
-    # 'http://automator-prod01.ebc:8080/automator/getGovInformaPendentes',
-    # 'http://vmebc:8080/automator/getEducacaoPendentes',
-    # 'http://vmebc:8080/automator/getGovInformaPendentes',
-    # 'http://vmebc:8080/automator/getEsportes2023Pendentes',
-    # 'http://vmebc:8080/automator/getEducacaoPendentes',
-    'http://vmebc:8080/automator/getTVBrTempo2023Pendentes',
-    'http://vmebc:8080/automator/getTVBrRB2023Pendentes',
-    # 'http://vmebc:8080/automator/getTVBrProgramacao2023Pendentes',
-    # 'http://vmebc:8080/automator/getCanalGov2023Pendentes',
+    'http://automator-prod01.ebc:8080/automator/getMarketingPendentes',
+    'http://automator-prod01.ebc:8080/automator/getTVBrProgramacaoAgenciaPendentes',
+    'http://automator-prod01.ebc:8080/automator/getTVBrProgramacao2022Pendentes',
+    'http://automator-prod01.ebc:8080/automator/getRedesTiktokPendentes',
+    'http://automator-prod01.ebc:8080/automator/getEsportes2023Pendentes',
+    'http://automator-prod01.ebc:8080/automator/getEducacaoPendentes',
+    'http://automator-prod01.ebc:8080/automator/getTVBrRadiosChamadaPendentes',
+    'http://automator-prod01.ebc:8080/automator/getGovInformaPendentes',
+    'http://automator-prod01.ebc:8080/getTVBrTempo2023Pendentes',
+    'http://automator-prod01.ebc:8080/getTVBrRB2023Pendentes',
+    'http://automator-prod01.ebc:8080/getTVBrProgramacao2023Pendentes',
 
 ]
 
