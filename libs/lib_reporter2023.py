@@ -21,10 +21,10 @@ def getFocus(dados):
         {
             "comp": "!01_render",
             "inicio": "1",
-            "fim": "300",
+            "fim": "900",
             "OM": "MAM",
             "arquivo": arquivo_saida + ".mov",
-            "converter": "MP4"
+            "converter": "MXF"
         }
     ]
 
@@ -42,10 +42,10 @@ def getLista(dados):
         {
             "comp": "!01_render",
             "inicio": "1",
-            "fim": "300",
+            "fim": "900",
             "OM": "MAM",
             "arquivo": arquivo_saida + ".mov",
-            "converter": "MP4"
+            "converter": "MXF"
         }
     ]
 

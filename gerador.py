@@ -61,9 +61,9 @@ listas = [
     'http://automator-prod01.ebc:8080/automator/getEducacaoPendentes',
     'http://automator-prod01.ebc:8080/automator/getTVBrRadiosChamadaPendentes',
     'http://automator-prod01.ebc:8080/automator/getGovInformaPendentes',
-    'http://automator-prod01.ebc:8080/getTVBrTempo2023Pendentes',
-    'http://automator-prod01.ebc:8080/getTVBrRB2023Pendentes',
-    'http://automator-prod01.ebc:8080/getTVBrProgramacao2023Pendentes',
+    'http://automator-prod01.ebc:8080/automator/getTVBrTempo2023Pendentes',
+    'http://automator-prod01.ebc:8080/automator/getTVBrRB2023Pendentes',
+    'http://automator-prod01.ebc:8080/automator/getTVBrProgramacao2023Pendentes',
 
 ]
 
@@ -86,7 +86,7 @@ logger.info("%r - Itens pendentes: ", len(itens))
 
 for item in itens:
     endereco = item['endereco']
-    # arq = automator.alteraStatus(endereco, 'gerar')
+    arq = automator.alteraStatus(endereco, 'gerar')
 
 for item in itens:
     endereco = item['endereco']
@@ -345,11 +345,11 @@ for item in itens:
 
         origem_aux = arquivo
         destino_aux = dest
-        # retorno = os.system("cp  %s  %s" % (origem_aux,  destino_aux))
+        retorno = os.system("cp  %s  %s" % (origem_aux,  destino_aux))
 
         # retorno = automator.enviaCut(arquivo, dest)
-        # logger.info("%r - %r - Arte copiada para destino: " + arquivo, titulo, retorno)
+        logger.info("%r - %r - Arte copiada para destino: " + arquivo, titulo, retorno)
 
 
     # FINALIZA
-    # arq = requests.get(endereco+'/setWorkflowState?acao=finalizar')
+    arq = requests.get(endereco+'/setWorkflowState?acao=finalizar')
