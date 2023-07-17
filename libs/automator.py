@@ -39,7 +39,7 @@ DIAS_SEMANA = [
     'Qua',
     'Qui',
     'Sex',
-    'Sab',
+    'Sáb',
     'Dom',
 ]
 
@@ -305,3 +305,20 @@ def resizeImage1080X1920(arquivo):
         foto = foto.crop((x1, y1, x2, y2))
     foto = foto.resize((1080,1920), Image.ANTIALIAS)
     foto.save(arquivo)
+
+
+def guess_mime_type(f):
+    '''
+    Function guesses an image mime type.
+    Supported filetypes are JPG, BMP, PNG.
+    '''
+    with open(f, 'rb') as f:
+        data = f.read(11)
+    if data[:4] == '\xff\xd8\xff\xe0' and data[6:] == 'JFIF\0':
+        return 'jpg'
+    elif data[1:4] == "PNG":
+        return 'png'
+    elif data[:2] == "BM":
+        return 'bmp'
+    else:
+        return ''

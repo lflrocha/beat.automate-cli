@@ -9,6 +9,15 @@ import libs.lib_gov as lib_gov
 import libs.lib_marketing as lib_marketing
 import libs.lib_programacao as lib_programacao
 import libs.lib_redes as lib_redes
+import libs.lib_reporter2023 as lib_reporter2023
+import libs.lib_tempo_alertas as lib_tempo_alertas
+import libs.lib_tempo_lista as lib_tempo_lista
+import libs.lib_tempo_box as lib_tempo_box
+import libs.lib_tempo_3dias as lib_tempo_3dias
+import libs.lib_tempo_5dias as lib_tempo_5dias
+import libs.lib_tempo_mapa as lib_tempo_mapa
+import libs.lib_programacao2023 as lib_programacao2023
+import libs.lib_canalgovprogramacao2023 as lib_canalgovprogramacao2023
 
 import datetime
 import json
@@ -44,24 +53,29 @@ if not os.path.isdir(CUT):
 receivers = ['luis.rocha@ebc.com.br']
 
 listas = [
-    'http://automator-prod01.ebc:8080/automator/getMarketingPendentes',
-    'http://automator-prod01.ebc:8080/automator/getTVBrProgramacaoAgenciaPendentes',
-    'http://automator-prod01.ebc:8080/automator/getTVBrProgramacao2022Pendentes',
-    'http://automator-prod01.ebc:8080/automator/getRedesTiktokPendentes',
-    'http://automator-prod01.ebc:8080/automator/getEsportes2023Pendentes',
-    'http://automator-prod01.ebc:8080/automator/getEducacaoPendentes',
-    'http://automator-prod01.ebc:8080/automator/getTVBrRadiosChamadaPendentes',
-    'http://automator-prod01.ebc:8080/automator/getGovInformaPendentes',
+    # 'http://automator-prod01.ebc:8080/automator/getMarketingPendentes',
+    # 'http://automator-prod01.ebc:8080/automator/getTVBrProgramacaoAgenciaPendentes',
+    # 'http://automator-prod01.ebc:8080/automator/getTVBrProgramacao2022Pendentes',
+    # 'http://automator-prod01.ebc:8080/automator/getRedesTiktokPendentes',
+    # 'http://automator-prod01.ebc:8080/automator/getEsportes2023Pendentes',
+    # 'http://automator-prod01.ebc:8080/automator/getEducacaoPendentes',
+    # 'http://automator-prod01.ebc:8080/automator/getTVBrRadiosChamadaPendentes',
+    # 'http://automator-prod01.ebc:8080/automator/getGovInformaPendentes',
     # 'http://vmebc:8080/automator/getEducacaoPendentes',
     # 'http://vmebc:8080/automator/getGovInformaPendentes',
     # 'http://vmebc:8080/automator/getEsportes2023Pendentes',
     # 'http://vmebc:8080/automator/getEducacaoPendentes',
+    'http://vmebc:8080/automator/getTVBrTempo2023Pendentes',
+    'http://vmebc:8080/automator/getTVBrRB2023Pendentes',
+    # 'http://vmebc:8080/automator/getTVBrProgramacao2023Pendentes',
+    # 'http://vmebc:8080/automator/getCanalGov2023Pendentes',
 
 ]
 
 itens = []
 for lista in listas:
     itens = itens + automator.baixaLista(lista)
+    print(itens)
 
 print(len(itens))
 
@@ -77,7 +91,7 @@ logger.info("%r - Itens pendentes: ", len(itens))
 
 for item in itens:
     endereco = item['endereco']
-    arq = automator.alteraStatus(endereco, 'gerar')
+    # arq = automator.alteraStatus(endereco, 'gerar')
 
 for item in itens:
     endereco = item['endereco']
@@ -205,6 +219,78 @@ for item in itens:
         DESTINO = local + '/CanalEducacao/'
         SAIDA = lib_educacao.getEducacaoChamadaSimples(dados)
 
+    elif tipo == "TVBr Tempo2023 Alerta":
+        ID = 'tvbr_tempo2023_alerta'
+        JSX = ROOT + 'scripts/tvbr_tempo2023_alerta.jsx'
+        EXPORT = ROOT + 'export/tvbr_tempo2023_alerta/'
+        DESTINO = local + '/TVBr_Tempo2023/'
+        SAIDA = lib_tempo_alertas.getTempoAlertas(dados)
+
+    elif tipo == "TVBr Tempo2023 Lista":
+        ID = 'tvbr_tempo2023_lista'
+        JSX = ROOT + 'scripts/tvbr_tempo2023_lista.jsx'
+        EXPORT = ROOT + 'export/tvbr_tempo2023_lista/'
+        DESTINO = local + '/TVBr_Tempo2023/'
+        SAIDA = lib_tempo_lista.getTempoLista(dados)
+
+    elif tipo == "TVBr Tempo2023 Box":
+        ID = 'tvbr_tempo2023_box'
+        JSX = ROOT + 'scripts/tvbr_tempo2023_box.jsx'
+        EXPORT = ROOT + 'export/tvbr_tempo2023_box/'
+        DESTINO = local + '/TVBr_Tempo2023/'
+        SAIDA = lib_tempo_box.getTempoBox(dados)
+
+    elif tipo == "TVBr Tempo2023 3Dias":
+        ID = 'tvbr_tempo2023_3dias'
+        JSX = ROOT + 'scripts/tvbr_tempo2023_3dias.jsx'
+        EXPORT = ROOT + 'export/tvbr_tempo2023_3dias/'
+        DESTINO = local + '/TVBr_Tempo2023/'
+        SAIDA = lib_tempo_3dias.getTempo3Dias(dados)
+
+    elif tipo == "TVBr Tempo2023 5Dias":
+        ID = 'tvbr_tempo2023_5dias'
+        JSX = ROOT + 'scripts/tvbr_tempo2023_5dias.jsx'
+        EXPORT = ROOT + 'export/tvbr_tempo2023_5dias/'
+        DESTINO = local + '/TVBr_Tempo2023/'
+        SAIDA = lib_tempo_5dias.getTempo5Dias(dados)
+
+    elif tipo == "TVBr Tempo2023 Mapa":
+        ID = 'tvbr_tempo2023_mapa'
+        JSX = ROOT + 'scripts/tvbr_tempo2023_mapa.jsx'
+        EXPORT = ROOT + 'export/tvbr_tempo2023_mapa/'
+        DESTINO = local + '/TVBr_Tempo2023/'
+        SAIDA = lib_tempo_mapa.getTempoMapa(dados)
+
+    elif tipo == "TVBr Reporter2023 Focus":
+        ID = 'tvbr_reporter2023_focus'
+        JSX = ROOT + 'scripts/tvbr_reporter2023_focus.jsx'
+        EXPORT = ROOT + 'export/tvbr_reporter2023_focus/'
+        DESTINO = local + '/TVBr_Reporter2023/'
+        SAIDA = lib_reporter2023.getFocus(dados)
+
+    elif tipo == "TVBr Reporter2023 Lista":
+        ID = 'tvbr_reporter2023_lista'
+        JSX = ROOT + 'scripts/tvbr_reporter2023_lista.jsx'
+        EXPORT = ROOT + 'export/tvbr_reporter2023_lista/'
+        DESTINO = local + '/TVBr_Reporter2023/'
+        SAIDA = lib_reporter2023.getLista(dados)
+
+    elif tipo == "TVBr Programacao2023 Bussola":
+        ID = 'tvbr_programacao2023_bussola'
+        JSX = ROOT + 'scripts/tvbr_programacao2023_bussolas.jsx'
+        EXPORT = ROOT + 'export/tvbr_programacao2023_bussola/'
+        DESTINO = local + '/TVBr_Programacao2023/'
+        SAIDA = lib_programacao2023.getBussolas(dados)
+
+    elif tipo == "CanalGov Twitter 2023":
+        ID = 'canalgov_programacao2023_twitter'
+        JSX = ROOT + 'scripts/canalgov_programacao2023_twitter.jsx'
+        EXPORT = ROOT + 'export/canalgov_programacao2023_twitter/'
+        DESTINO = local + '/CanalGov_Programacao2023/'
+        SAIDA = lib_canalgovprogramacao2023.getTwitter2023(dados)
+
+
+
     logger.info("%r - Preparando JSON", titulo)
 
     # SALVA ARQUIVO JSON
@@ -264,11 +350,11 @@ for item in itens:
 
         origem_aux = arquivo
         destino_aux = dest
-        retorno = os.system("cp  %s  %s" % (origem_aux,  destino_aux))
+        # retorno = os.system("cp  %s  %s" % (origem_aux,  destino_aux))
 
         # retorno = automator.enviaCut(arquivo, dest)
-        logger.info("%r - %r - Arte copiada para destino: " + arquivo, titulo, retorno)
+        # logger.info("%r - %r - Arte copiada para destino: " + arquivo, titulo, retorno)
 
 
     # FINALIZA
-    arq = requests.get(endereco+'/setWorkflowState?acao=finalizar')
+    # arq = requests.get(endereco+'/setWorkflowState?acao=finalizar')
