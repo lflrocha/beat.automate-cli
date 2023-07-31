@@ -70,7 +70,6 @@ listas = [
 itens = []
 for lista in listas:
     itens = itens + automator.baixaLista(lista)
-    print(itens)
 
 print(len(itens))
 
@@ -104,10 +103,10 @@ for item in itens:
 
     if tipo == "MKT Midia Indoor Agencia 2022":
         ID = 'mkt_midia_indoor_agencia_2022'
-        JSX = ROOT + 'scripts/mkt_midia_indoor_agencia_2022.jsx'
-        EXPORT = ROOT + 'export/mkt_midia_indoor_agencia_2022/'
-        DESTINO = local + '/Marketing2/'
-        SAIDA = lib_marketing.getMktMidiaIndoorAgencia2022(dados)
+        JSX = ROOT + 'scripts/mkt_midia_indoor_agencia_2023.jsx'
+        EXPORT = ROOT + 'export/mkt_midia_indoor_agencia_2023/'
+        DESTINO = local + '/Marketing/'
+        SAIDA = lib_marketing.getMktMidiaIndoorAgencia2023(dados)
 
     elif tipo == "MKT Midia Indoor TVBrasil 2022":
         ID = 'mkt_midia_indoor_tvbrasil_2022'

@@ -12,7 +12,7 @@ from slugify import slugify
 ROOT = automator.getBase()
 TEMP = ROOT + 'temp/'
 
-def getMktMidiaIndoorAgencia2022(dados):
+def getMktMidiaIndoorAgencia2023(dados):
     novo_projeto = dados['novo_projeto']
     identificador = dados['identificador']
     arquivo_saida = slugify(novo_projeto + '-' + identificador)
