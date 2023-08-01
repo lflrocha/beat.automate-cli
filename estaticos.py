@@ -38,7 +38,7 @@ if not os.path.isdir(CUT):
 receivers = ['luis.rocha@ebc.com.br']
 
 listas = [
-    'http://vmebc:8080/automator/getAgenciaPendentes'
+    'http://automator-prod01.ebc:8080/automator/getAgenciaPendentes'
 ]
 
 itens = []
@@ -91,52 +91,34 @@ for item in itens:
     # CRIA PASTA NO EXPORT
 
     if tipo == "ABr Card Link 1":
-        ARQ_GERADO = lib_agencia_cards.gera_modelo_link01(dados, export)
+        ARQ_GERADO1 = lib_agencia_cards.gera_modelo_link01(dados, export)
+        ARQ_GERADO2 = lib_agencia_cards.gera_modelo_square01(dados, export)
+        ARQ_GERADO3 = lib_agencia_cards.gera_modelo_stories01(dados, export)
 
     elif tipo == "ABr Card Link 2":
-        ARQ_GERADO = lib_agencia_cards.gera_modelo_link02(dados, export)
+        ARQ_GERADO1 = lib_agencia_cards.gera_modelo_link02(dados, export)
+        ARQ_GERADO2 = lib_agencia_cards.gera_modelo_square02(dados, export)
+        ARQ_GERADO3 = lib_agencia_cards.gera_modelo_stories02(dados, export)
 
     elif tipo == "ABr Card Link 3":
-        ARQ_GERADO = lib_agencia_cards.gera_modelo_link03(dados, export)
+        ARQ_GERADO1 = lib_agencia_cards.gera_modelo_link03(dados, export)
+        ARQ_GERADO2 = lib_agencia_cards.gera_modelo_square03(dados, export)
+        ARQ_GERADO3 = lib_agencia_cards.gera_modelo_stories03(dados, export)
 
     elif tipo == "ABr Card Link 4":
-        ARQ_GERADO = lib_agencia_cards.gera_modelo_link04(dados, export)
+        ARQ_GERADO1 = lib_agencia_cards.gera_modelo_link04(dados, export)
+        ARQ_GERADO2 = lib_agencia_cards.gera_modelo_square04(dados, export)
+        ARQ_GERADO3 = lib_agencia_cards.gera_modelo_stories04(dados, export)
 
     elif tipo == "ABr Card Link 5":
-        ARQ_GERADO = lib_agencia_cards.gera_modelo_link05(dados, export)
-
-    elif tipo == "ABr Card Square 1":
-        ARQ_GERADO = lib_agencia_cards.gera_modelo_square01(dados, export)
-
-    elif tipo == "ABr Card Square 2":
-        ARQ_GERADO = lib_agencia_cards.gera_modelo_square02(dados, export)
-
-    elif tipo == "ABr Card Square 3":
-        ARQ_GERADO = lib_agencia_cards.gera_modelo_square03(dados, export)
-
-    elif tipo == "ABr Card Square 4":
-        ARQ_GERADO = lib_agencia_cards.gera_modelo_square04(dados, export)
-
-    elif tipo == "ABr Card Square 5":
-        ARQ_GERADO = lib_agencia_cards.gera_modelo_square05(dados, export)
-
-    elif tipo == "ABr Card Stories 1":
-        ARQ_GERADO = lib_agencia_cards.gera_modelo_stories01(dados, export)
-
-    elif tipo == "ABr Card Stories 2":
-        ARQ_GERADO = lib_agencia_cards.gera_modelo_stories02(dados, export)
-
-    elif tipo == "ABr Card Stories 3":
-        ARQ_GERADO = lib_agencia_cards.gera_modelo_stories03(dados, export)
-
-    elif tipo == "ABr Card Stories 4":
-        ARQ_GERADO = lib_agencia_cards.gera_modelo_stories04(dados, export)
-
-    elif tipo == "ABr Card Stories 5":
-        ARQ_GERADO = lib_agencia_cards.gera_modelo_stories05(dados, export)
+        ARQ_GERADO1 = lib_agencia_cards.gera_modelo_link05(dados, export)
+        ARQ_GERADO2 = lib_agencia_cards.gera_modelo_square05(dados, export)
+        ARQ_GERADO3 = lib_agencia_cards.gera_modelo_stories05(dados, export)
 
 
-    retorno = os.system("cp  %s  %s" % (ARQ_GERADO,  dest))
+    retorno = os.system("cp  %s  %s" % (ARQ_GERADO1,  dest))
+    retorno = os.system("cp  %s  %s" % (ARQ_GERADO2,  dest))
+    retorno = os.system("cp  %s  %s" % (ARQ_GERADO3,  dest))
     logger.info("%r - Arte copiada para destino: " +  titulo, retorno)
 
     # FINALIZA
