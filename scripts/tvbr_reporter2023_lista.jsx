@@ -41,6 +41,7 @@ var item1 = dados['item1'];
 var item2 = dados['item2'];
 var item3 = dados['item3'];
 var item4 = dados['item4'];
+var fonte = dados['fonte'];
 
 var comp_tela = app.project.item(2);
 
@@ -48,6 +49,7 @@ TrocarTexto(comp_tela, "T_TITULO", titulo);
 TrocarTexto(comp_tela, "T_SUBTITULO", subtitulo);
 TrocarTexto(comp_tela, "T_TEXTO1", item1);
 
+TrocarTexto(comp_tela, "T_FONTE", fonte);
 
 if (item2.length > 0) {
     TrocarTexto(comp_tela, "T_TEXTO2", item2);
@@ -85,6 +87,7 @@ if (item4.length > 0) {
     layer_bg = comp_tela.layer("T_BG_BULLET4")
     layer_bg.enabled = true;
 }
+
 
 
 app.endSuppressDialogs(false);

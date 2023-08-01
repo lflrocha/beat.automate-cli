@@ -34,6 +34,8 @@ if(_io.canImportAs(ImportAsType.PROJECT)){
 }
 var projetoImportado = app.project.importFile(_io);
 
+var comp_projeto = app.project.item(2);
+TrocarTexto(comp_projeto, "titulo", dados['titulo']);
 
 var comp_cidade1 = app.project.item(3);
 var comp_cidade2 = app.project.item(4);
