@@ -226,7 +226,7 @@ def gera_modelo_link03(dados, export):
     open(TEMP + foto, 'wb').write(r.content)
 
     w = 1200
-    h = 628
+    h =  628
     base = Image.new('RGBA', (w, h), (255,255,255,0))
 
     base_img = ImageDraw.Draw(base)

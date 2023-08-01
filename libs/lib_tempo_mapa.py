@@ -107,8 +107,13 @@ def geraMapaTempo(data, novo_projeto, turno):
         tipo = "diaria"
         turno = "tarde"
 
-    print(url)
-    r = requests.post(url, json={"data": data, "tipo": tipo, "turno": turno}, headers=headers)
+    aux_json = {"data": data, "tipo": tipo, "turno": turno}
+
+    aux_data = data.split('/')
+    aux_data = aux_data[2] + '' + aux_data[1] + '' + aux_data[0]
+    aux_json = {"data": aux_data, "tipo": tipo, "turno": turno}
+    r = requests.post(url, json=aux_json, headers=headers)
+
     dados_inmet = r.json()
     with open(TEMP + "inmet.json", "w") as f:
         f.write(json.dumps(dados_inmet, indent=4) )
