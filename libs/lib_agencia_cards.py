@@ -56,7 +56,7 @@ fonte_verde_escuro = (12, 26, 61, 255)
 def gera_modelo_link01(dados, export):
 
     # BUSCA DADOS
-    nome_arquivo = slugify(dados['novo_projeto'] + '_' + dados['identificador']) + '.png'
+    nome_arquivo = slugify(dados['novo_projeto'] + '_' + dados['identificador']) + '_link.png'
     variaveis = dados['variaveis']
     credito = variaveis['credito']
     foto = variaveis['arquivo']
@@ -71,7 +71,7 @@ def gera_modelo_link01(dados, export):
 
     # GERA ARTE
     w = 1200
-    h = 682
+    h = 628
     base = Image.new('RGBA', (w, h), (255,255,255,0))
 
     base_img = ImageDraw.Draw(base)
@@ -144,7 +144,7 @@ def gera_modelo_link01(dados, export):
 def gera_modelo_link02(dados, export):
 
     # BUSCA DADOS
-    nome_arquivo = slugify(dados['novo_projeto'] + '_' + dados['identificador']) + '.png'
+    nome_arquivo = slugify(dados['novo_projeto'] + '_' + dados['identificador']) + '_link.png'
     variaveis = dados['variaveis']
     credito = variaveis['credito']
     foto = variaveis['arquivo']
@@ -156,7 +156,7 @@ def gera_modelo_link02(dados, export):
     open(TEMP + foto, 'wb').write(r.content)
 
     w = 1200
-    h = 682
+    h = 628
     base = Image.new('RGBA', (w, h), (255,255,255,0))
 
     base_img = ImageDraw.Draw(base)
@@ -214,7 +214,7 @@ def gera_modelo_link02(dados, export):
 def gera_modelo_link03(dados, export):
 
     # BUSCA DADOS
-    nome_arquivo = slugify(dados['novo_projeto'] + '_' + dados['identificador']) + '.png'
+    nome_arquivo = slugify(dados['novo_projeto'] + '_' + dados['identificador']) + '_link.png'
     variaveis = dados['variaveis']
     credito = variaveis['credito']
     foto = variaveis['arquivo']
@@ -226,7 +226,7 @@ def gera_modelo_link03(dados, export):
     open(TEMP + foto, 'wb').write(r.content)
 
     w = 1200
-    h = 682
+    h = 628
     base = Image.new('RGBA', (w, h), (255,255,255,0))
 
     base_img = ImageDraw.Draw(base)
@@ -254,7 +254,7 @@ def gera_modelo_link03(dados, export):
 
     background_img = numpy.array(base)  # Inputs to blend_modes need to be numpy arrays.
     background_img_float = background_img.astype(float)  # Inputs to blend_modes need to be floats.
-    middle_img_raw = Image.open(ARQUIVOS + "bg/Stories-AgenciaBrasil_shadow.png")  # RGBA image
+    middle_img_raw = Image.open(ARQUIVOS + "bg/Link-AgenciaBrasil_shadow.png")  # RGBA image
     middle_img = numpy.array(middle_img_raw)  # Inputs to blend_modes need to be numpy arrays.
     middle_img_float = middle_img.astype(float)  # Inputs to blend_modes need to be floats.
     opacity = .9  # The opacity of the foreground that is blended onto the background is 70 %.
@@ -263,7 +263,7 @@ def gera_modelo_link03(dados, export):
     shape = Image.fromarray(blended_img)  # Note that alpha channels are displayed in black by PIL by default.
     base.paste(shape, (0, 0), mask=shape)
 
-    bg = Image.open(ARQUIVOS + "bg/Stories-AgenciaBrasil_3.png").convert('RGBA')
+    bg = Image.open(ARQUIVOS + "bg/Link-AgenciaBrasil_3.png").convert('RGBA')
     base.paste(bg, (0, 0), mask=bg)
 
     textoX = 60
@@ -297,7 +297,7 @@ def gera_modelo_link03(dados, export):
 def gera_modelo_link04(dados, export):
 
     # BUSCA DADOS
-    nome_arquivo = slugify(dados['novo_projeto'] + '_' + dados['identificador']) + '.png'
+    nome_arquivo = slugify(dados['novo_projeto'] + '_' + dados['identificador']) + '_link.png'
     variaveis = dados['variaveis']
     credito = variaveis['credito']
     foto = variaveis['arquivo']
@@ -310,7 +310,7 @@ def gera_modelo_link04(dados, export):
     open(TEMP + foto, 'wb').write(r.content)
 
     w = 1200
-    h = 682
+    h = 628
     base = Image.new('RGBA', (w, h), (255,255,255,0))
 
     base_img = ImageDraw.Draw(base)
@@ -337,7 +337,7 @@ def gera_modelo_link04(dados, export):
 
     background_img = numpy.array(base)  # Inputs to blend_modes need to be numpy arrays.
     background_img_float = background_img.astype(float)  # Inputs to blend_modes need to be floats.
-    middle_img_raw = Image.open(ARQUIVOS + "bg/Stories-AgenciaBrasil_shadow.png")  # RGBA image
+    middle_img_raw = Image.open(ARQUIVOS + "bg/Link-AgenciaBrasil_shadow.png")  # RGBA image
     middle_img = numpy.array(middle_img_raw)  # Inputs to blend_modes need to be numpy arrays.
     middle_img_float = middle_img.astype(float)  # Inputs to blend_modes need to be floats.
     opacity = .9  # The opacity of the foreground that is blended onto the background is 70 %.
@@ -346,7 +346,7 @@ def gera_modelo_link04(dados, export):
     shape = Image.fromarray(blended_img)  # Note that alpha channels are displayed in black by PIL by default.
     base.paste(shape, (0, 0), mask=shape)
 
-    bg = Image.open(ARQUIVOS + "bg/Stories-AgenciaBrasil_4.png").convert('RGBA')
+    bg = Image.open(ARQUIVOS + "bg/Link-AgenciaBrasil_4.png").convert('RGBA')
     base.paste(bg, (0, 0), mask=bg)
 
     textoX = 60
@@ -371,15 +371,15 @@ def gera_modelo_link04(dados, export):
     texto2X = 825
     texto2Y = 240
 
-    linha1X = texto2X
-    linha1Y = texto2Y
-    base_img.text((linha1X, linha1Y), texto2[0].strip(), font=fonte_link_texto2, fill=fonte_verde)
+    # linha1X = texto2X
+    # linha1Y = texto2Y
+    # base_img.text((linha1X, linha1Y), texto2[0].strip(), font=fonte_link_texto2, fill=fonte_verde)
+    #
+    # linha2X = texto2X
+    # linha2Y = linha1Y + 60
+    # base_img.text((linha2X, linha2Y), texto2[1].strip(), font=fonte_link_texto2, fill=fonte_verde)
 
-    linha2X = texto2X
-    linha2Y = linha1Y + 60
-    base_img.text((linha2X, linha2Y), texto2[1].strip(), font=fonte_link_texto2, fill=fonte_verde)
-
-    tamanho = base_img.textlength("Foto: " + credito.strip(), font=fonte_credito)
+    tamanho = base_img.textlength("Foto: " + credito.strip(), font=fonte_link_credito)
     creditoX = 1000 - tamanho
     creditoY = 1760
     base_img.text((creditoX, creditoY), "Foto: " + credito.strip(), font=fonte_link_credito, fill=fonte_branca)
@@ -405,7 +405,7 @@ def gera_modelo_link04(dados, export):
 def gera_modelo_link05(dados, export):
 
     # BUSCA DADOS
-    nome_arquivo = slugify(dados['novo_projeto'] + '_' + dados['identificador']) + '.png'
+    nome_arquivo = slugify(dados['novo_projeto'] + '_' + dados['identificador']) + '_link.png'
     variaveis = dados['variaveis']
     credito = variaveis['credito']
     foto = variaveis['arquivo']
@@ -418,7 +418,7 @@ def gera_modelo_link05(dados, export):
     open(TEMP + foto, 'wb').write(r.content)
 
     w = 1200
-    h = 682
+    h = 628
     base = Image.new('RGBA', (w, h), (255,255,255,0))
 
     base_img = ImageDraw.Draw(base)
@@ -445,7 +445,7 @@ def gera_modelo_link05(dados, export):
 
     background_img = numpy.array(base)  # Inputs to blend_modes need to be numpy arrays.
     background_img_float = background_img.astype(float)  # Inputs to blend_modes need to be floats.
-    middle_img_raw = Image.open(ARQUIVOS + "bg/Stories-AgenciaBrasil_shadow.png")  # RGBA image
+    middle_img_raw = Image.open(ARQUIVOS + "bg/Link-AgenciaBrasil_shadow.png")  # RGBA image
     middle_img = numpy.array(middle_img_raw)  # Inputs to blend_modes need to be numpy arrays.
     middle_img_float = middle_img.astype(float)  # Inputs to blend_modes need to be floats.
     opacity = .9  # The opacity of the foreground that is blended onto the background is 70 %.
@@ -454,7 +454,7 @@ def gera_modelo_link05(dados, export):
     shape = Image.fromarray(blended_img)  # Note that alpha channels are displayed in black by PIL by default.
     base.paste(shape, (0, 0), mask=shape)
 
-    bg = Image.open(ARQUIVOS + "bg/Stories-AgenciaBrasil_5.png").convert('RGBA')
+    bg = Image.open(ARQUIVOS + "bg/Link-AgenciaBrasil_5.png").convert('RGBA')
     base.paste(bg, (0, 0), mask=bg)
 
     textoX = 60
@@ -499,7 +499,7 @@ def gera_modelo_link05(dados, export):
 def gera_modelo_square01(dados, export):
 
     # BUSCA DADOS
-    nome_arquivo = slugify(dados['novo_projeto'] + '_' + dados['identificador']) + '.png'
+    nome_arquivo = slugify(dados['novo_projeto'] + '_' + dados['identificador']) + '_square.png'
     variaveis = dados['variaveis']
     credito = variaveis['credito']
     foto = variaveis['arquivo']
@@ -588,7 +588,7 @@ def gera_modelo_square01(dados, export):
 def gera_modelo_square02(dados, export):
 
     # BUSCA DADOS
-    nome_arquivo = slugify(dados['novo_projeto'] + '_' + dados['identificador']) + '.png'
+    nome_arquivo = slugify(dados['novo_projeto'] + '_' + dados['identificador']) + '_square.png'
     variaveis = dados['variaveis']
     credito = variaveis['credito']
     foto = variaveis['arquivo']
@@ -660,7 +660,7 @@ def gera_modelo_square02(dados, export):
 def gera_modelo_square03(dados, export):
 
     # BUSCA DADOS
-    nome_arquivo = slugify(dados['novo_projeto'] + '_' + dados['identificador']) + '.png'
+    nome_arquivo = slugify(dados['novo_projeto'] + '_' + dados['identificador']) + '_square.png'
     variaveis = dados['variaveis']
     credito = variaveis['credito']
     foto = variaveis['arquivo']
@@ -749,7 +749,7 @@ def gera_modelo_square03(dados, export):
 def gera_modelo_square04(dados, export):
 
     # BUSCA DADOS
-    nome_arquivo = slugify(dados['novo_projeto'] + '_' + dados['identificador']) + '.png'
+    nome_arquivo = slugify(dados['novo_projeto'] + '_' + dados['identificador']) + '_square.png'
     variaveis = dados['variaveis']
     credito = variaveis['credito']
     foto = variaveis['arquivo']
@@ -863,7 +863,7 @@ def gera_modelo_square04(dados, export):
 def gera_modelo_square05(dados, export):
 
     # BUSCA DADOS
-    nome_arquivo = slugify(dados['novo_projeto'] + '_' + dados['identificador']) + '.png'
+    nome_arquivo = slugify(dados['novo_projeto'] + '_' + dados['identificador']) + '_square.png'
     variaveis = dados['variaveis']
     credito = variaveis['credito']
     foto = variaveis['arquivo']
@@ -955,7 +955,7 @@ def gera_modelo_stories01(dados, export):
 
 
     # BUSCA DADOS
-    nome_arquivo = slugify(dados['novo_projeto'] + '_' + dados['identificador']) + '.png'
+    nome_arquivo = slugify(dados['novo_projeto'] + '_' + dados['identificador']) + '_stories.png'
     variaveis = dados['variaveis']
     credito = variaveis['credito']
     foto = variaveis['arquivo']
@@ -1042,7 +1042,7 @@ def gera_modelo_stories01(dados, export):
 def gera_modelo_stories02(dados, export):
 
     # BUSCA DADOS
-    nome_arquivo = slugify(dados['novo_projeto'] + '_' + dados['identificador']) + '.png'
+    nome_arquivo = slugify(dados['novo_projeto'] + '_' + dados['identificador']) + '_stories.png'
     variaveis = dados['variaveis']
     credito = variaveis['credito']
     foto = variaveis['arquivo']
@@ -1113,7 +1113,7 @@ def gera_modelo_stories02(dados, export):
 def gera_modelo_stories03(dados, export):
 
     # BUSCA DADOS
-    nome_arquivo = slugify(dados['novo_projeto'] + '_' + dados['identificador']) + '.png'
+    nome_arquivo = slugify(dados['novo_projeto'] + '_' + dados['identificador']) + '_stories.png'
     variaveis = dados['variaveis']
     credito = variaveis['credito']
     foto = variaveis['arquivo']
@@ -1197,7 +1197,7 @@ def gera_modelo_stories03(dados, export):
 def gera_modelo_stories04(dados, export):
 
     # BUSCA DADOS
-    nome_arquivo = slugify(dados['novo_projeto'] + '_' + dados['identificador']) + '.png'
+    nome_arquivo = slugify(dados['novo_projeto'] + '_' + dados['identificador']) + '_stories.png'
     variaveis = dados['variaveis']
     credito = variaveis['credito']
     foto = variaveis['arquivo']
@@ -1306,7 +1306,7 @@ def gera_modelo_stories04(dados, export):
 def gera_modelo_stories05(dados, export):
 
     # BUSCA DADOS
-    nome_arquivo = slugify(dados['novo_projeto'] + '_' + dados['identificador']) + '.png'
+    nome_arquivo = slugify(dados['novo_projeto'] + '_' + dados['identificador']) + '_stories.png'
     variaveis = dados['variaveis']
     credito = variaveis['credito']
     foto = variaveis['arquivo']
