@@ -29,7 +29,7 @@ def getDestaqueAgencia(link, id):
     soup = BeautifulSoup(aux, 'html.parser')
     ret['imagem'] = soup.find('meta', property="og:image")['content']
     ret['credito'] = soup.find('figcaption').get_text().strip().replace('"','\"')
-    ret['editoria'] = soup.find('span', 'badge badge-pill badge-primary').get_text().strip().replace('"','\"')
+    ret['editoria'] = soup.find('span', 'badge badge-pill badge-warning').get_text().strip().replace('"','\"')
     ret['titulo'] = soup.find('meta', property="og:title")['content'].replace('"','\"')
     ret['descricao'] = soup.find('meta', property="og:description")['content'].replace('"','\"')
 
