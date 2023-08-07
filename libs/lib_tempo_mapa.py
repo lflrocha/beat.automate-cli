@@ -19,8 +19,6 @@ ROOT = automator.getBase()
 TEMP = ROOT + 'temp/'
 ARQUIVOS = ROOT + 'arquivos/'
 
-
-
 conversao_cores = {
     (0, 91, 7): "#006A4C",
     (0, 102, 8): "#006A4C",
@@ -88,6 +86,8 @@ def geraMapaTempo(data, novo_projeto, turno):
     data_hora = datetime.datetime.now()
     data_hora = data_hora.strftime("%Y%m%d-%H%M%S")
 
+    aux_data = data.split('/')
+    aux_data = aux_data[2] + '-' + aux_data[1] + '-' + aux_data[0]
 
     arquivos_gerados = []
     url = 'https://apiprevmet3.inmet.gov.br/Previsao_Portal'
@@ -99,7 +99,7 @@ def geraMapaTempo(data, novo_projeto, turno):
     amanha = amanha.strftime("%Y-%m-%d")
 
     tipo = "diaria"
-    if data == hoje or data == amanha:
+    if aux_data == hoje or aux_data == amanha:
         tipo = "turno"
         if turno not in ['manha', 'tarde', 'noite']:
             turno = "tarde"
@@ -107,10 +107,6 @@ def geraMapaTempo(data, novo_projeto, turno):
         tipo = "diaria"
         turno = "tarde"
 
-    aux_json = {"data": data, "tipo": tipo, "turno": turno}
-
-    aux_data = data.split('/')
-    aux_data = aux_data[2] + '' + aux_data[1] + '' + aux_data[0]
     aux_json = {"data": aux_data, "tipo": tipo, "turno": turno}
     r = requests.post(url, json=aux_json, headers=headers)
 
@@ -162,8 +158,10 @@ def geraMapaTempo(data, novo_projeto, turno):
         transposed.save(TEMP + "%s_%s_%s.png" % (data_hora, novo_projeto, str(i)))
         arquivos_gerados.append("%s_%s_%s.png" % (data_hora, novo_projeto, str(i)))
     transposed2 = image2.transpose(Image.FLIP_TOP_BOTTOM)
-    transposed2.save(TEMP + "%s_%s.png" % (data_hora, novo_projeto))
-    return arquivos_gerados
+    arq_final = "%s_%s.png" % (data_hora, novo_projeto)
+    transposed2.save(TEMP + arq_final)
+    print(arq_final)
+    return arq_final
 
 
 
@@ -204,10 +202,11 @@ def getTempoMapa(dados):
     regiao = variaveis['regiao']
 
 
-    arquivos = geraMapaTempo(data, novo_projeto, turno)
+    arquivo_mapa = geraMapaTempo(data, novo_projeto, turno)
     dados_tempo = getTempoCidades(cidades, data, tipo_mapa)
 
     variaveis['dados_tempo'] = dados_tempo
+    variaveis['arquivo'] = arquivo_mapa
     print(dados_tempo)
 
 

@@ -31,6 +31,8 @@ var projetoImportado = app.project.importFile(_io);
 var tipo_mapa = dados['tipo_mapa'];
 var dados_tempo = dados['dados_tempo'];
 var regiao = dados['regiao'];
+var arquivo = dados['arquivo'];
+
 
 if (tipo_mapa == 'tempo') {
 
@@ -118,6 +120,12 @@ if (tipo_mapa == 'tempo') {
     }
   }
 }
+
+var importOptions = new ImportOptions();
+importOptions.file = new File(arquivo);
+var mapaImportado = app.project.importFile(importOptions);
+var mapaLayer = comp_tela.layer("T_MAPA");
+mapaLayer.replaceSource(mapaImportado, false);
 
 
 app.endSuppressDialogs(false);
