@@ -75,6 +75,8 @@ if (item3.length > 0) {
     layer_bg.enabled = true;
     layer_linha = comp_tela.layer("T_LINHA3")
     layer_linha.enabled = true;
+} else {
+  TrocarTexto(comp_tela, "T_TEXTO3", "");
 }
 
 if (item4.length > 0) {
@@ -86,7 +88,10 @@ if (item4.length > 0) {
     layer_bullet.enabled = true;
     layer_bg = comp_tela.layer("T_BG_BULLET4")
     layer_bg.enabled = true;
+} else {
+  TrocarTexto(comp_tela, "T_TEXTO4", "");
 }
+
 
 
 
