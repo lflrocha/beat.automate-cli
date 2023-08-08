@@ -76,8 +76,15 @@ if (item3.length > 0) {
     layer_linha = comp_tela.layer("T_LINHA3")
     layer_linha.enabled = true;
 } else {
-  TrocarTexto(comp_tela, "T_TEXTO3", "");
-}
+  layer_texto = comp_tela.layer("T_TEXTO3")
+  layer_texto.enabled = false;
+
+  layer_bullet = comp_tela.layer("T_BULLET3")
+  layer_bullet.enabled = false;
+  layer_bg = comp_tela.layer("T_BG_BULLET3")
+  layer_bg.enabled = false;
+  layer_linha = comp_tela.layer("T_LINHA3")
+  layer_linha.enabled = false;}
 
 if (item4.length > 0) {
     TrocarTexto(comp_tela, "T_TEXTO4", item4);
@@ -89,7 +96,13 @@ if (item4.length > 0) {
     layer_bg = comp_tela.layer("T_BG_BULLET4")
     layer_bg.enabled = true;
 } else {
-  TrocarTexto(comp_tela, "T_TEXTO4", "");
+  layer_texto = comp_tela.layer("T_TEXTO4")
+  layer_texto.enabled = false;
+
+  layer_bullet = comp_tela.layer("T_BULLET4")
+  layer_bullet.enabled = false;
+  layer_bg = comp_tela.layer("T_BG_BULLET4")
+  layer_bg.enabled = false;
 }
 
 
