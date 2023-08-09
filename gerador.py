@@ -64,8 +64,6 @@ listas = [
     'http://automator-prod01.ebc:8080/automator/getTVBrTempo2023Pendentes',
     'http://automator-prod01.ebc:8080/automator/getTVBrRB2023Pendentes',
     'http://automator-prod01.ebc:8080/automator/getTVBrProgramacao2023Pendentes',
-
-    'http://vmebc:8080/automator/getTVBrRB2023Pendentes',
 ]
 
 itens = []
