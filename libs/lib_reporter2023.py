@@ -76,7 +76,7 @@ def getDestaqueAgencia(dados):
             "fim": "300",
             "OM": "MAM",
             "arquivo": arquivo_saida + ".mov",
-            "converter": "MP4"
+            "converter": "MXF"
         }
     ]
 
