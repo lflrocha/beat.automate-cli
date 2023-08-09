@@ -65,6 +65,7 @@ listas = [
     'http://automator-prod01.ebc:8080/automator/getTVBrRB2023Pendentes',
     'http://automator-prod01.ebc:8080/automator/getTVBrProgramacao2023Pendentes',
 
+    'http://vmebc:8080/automator/getTVBrRB2023Pendentes',
 ]
 
 itens = []
@@ -268,6 +269,13 @@ for item in itens:
         EXPORT = ROOT + 'export/tvbr_reporter2023_lista/'
         DESTINO = local + '/TVBr_Reporter2023/'
         SAIDA = lib_reporter2023.getLista(dados)
+
+    elif tipo == "TVBr Reporter2023 Destaque Agencia":
+        ID = 'tvbr_reporter2023_destaque_agencia'
+        JSX = ROOT + 'scripts/tvbr_reporter2023_destaque_agencia.jsx'
+        EXPORT = ROOT + 'export/tvbr_reporter2023_destaque_agencia/'
+        DESTINO = local + '/TVBr_Reporter2023/'
+        SAIDA = lib_reporter2023.getDestaqueAgencia(dados)
 
     elif tipo == "TVBr Programacao2023 Bussola":
         ID = 'tvbr_programacao2023_bussola'
