@@ -14,12 +14,12 @@ var baseFolder = arqScript.parent.path + "/";
 
 // Abre o arquivo JSON
 var caminhoDados = arqScript.path + "/" + nomeProjeto + ".json";
-var arquivoJson = new File(caminhoDados)
-if (arquivoJson.open("r")) {arquivoJson.encoding = "UTF-8";
-    var meuJSON = arquivoJson.read();
-    var dados = JSON.parse(meuJSON);
-    arquivoJson.close();
-}
+var scriptFile = new File(caminhoDados);
+scriptFile.open('r');
+var content = scriptFile.read();
+scriptFile.close();
+var dados = (new Function( "return " + content ))() ;
+
 
 modelo = dados['modelo']
 if (modelo == "Tarde") {

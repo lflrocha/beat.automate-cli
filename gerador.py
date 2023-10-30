@@ -64,6 +64,13 @@ listas = [
     'http://automator-prod01.ebc:8080/automator/getTVBrTempo2023Pendentes',
     'http://automator-prod01.ebc:8080/automator/getTVBrRB2023Pendentes',
     'http://automator-prod01.ebc:8080/automator/getTVBrProgramacao2023Pendentes',
+
+'http://automator-prod01.ebc:8080/automator2023/getTVBrReporterBrasilPendentes',
+'http://automator-prod01.ebc:8080/automator2023/getTVBrStadiumPendentes',
+'http://automator-prod01.ebc:8080/automator2023/getTVBrMDBPendentes',
+'http://automator-prod01.ebc:8080/automator2023/getTVBrProgramacao2023Pendentes',
+'http://automator-prod01.ebc:8080/automator2023/getCanalGov2023Pendentes',
+'http://automator-prod01.ebc:8080/automator2023/getMarketingPendentes',
 ]
 
 itens = []
@@ -288,6 +295,151 @@ for item in itens:
         EXPORT = ROOT + 'export/canalgov_programacao2023_twitter/'
         DESTINO = local + '/CanalGov_Programacao2023/'
         SAIDA = lib_canalgovprogramacao2023.getTwitter2023(dados)
+
+
+    ###############################################################################
+    # NOVOS
+    ###############################################################################
+
+
+    elif tipo == "RB2023 Boletim Focus":
+        ID = 'tvbr_reporter2023_focus'
+        JSX = ROOT + 'scripts/tvbr_reporter2023_focus.jsx'
+        EXPORT = ROOT + 'export/tvbr_reporter2023_focus/'
+        DESTINO = local + '/TVBr_Reporter2023/'
+        SAIDA = lib_reporter2023.getFocus(dados)
+
+    elif tipo == "RB2023 Lista":
+        ID = 'tvbr_reporter2023_lista'
+        JSX = ROOT + 'scripts/tvbr_reporter2023_lista.jsx'
+        EXPORT = ROOT + 'export/tvbr_reporter2023_lista/'
+        DESTINO = local + '/TVBr_Reporter2023/'
+        SAIDA = lib_reporter2023.getLista(dados)
+
+    elif tipo == "RB2023 Destaque Agencia Brasil":
+        ID = 'tvbr_reporter2023_destaque_agencia'
+        JSX = ROOT + 'scripts/tvbr_reporter2023_destaque_agencia.jsx'
+        EXPORT = ROOT + 'export/tvbr_reporter2023_destaque_agencia/'
+        DESTINO = local + '/TVBr_Reporter2023/'
+        SAIDA = lib_reporter2023.getDestaqueAgencia(dados)
+
+    elif tipo == "RB2023 Tempo Alerta":
+        ID = 'tvbr_tempo2023_alerta'
+        JSX = ROOT + 'scripts/tvbr_tempo2023_alerta.jsx'
+        EXPORT = ROOT + 'export/tvbr_tempo2023_alerta/'
+        DESTINO = local + '/TVBr_Tempo2023/'
+        SAIDA = lib_tempo_alertas.getTempoAlertas(dados)
+
+    elif tipo == "RB2023 Tempo Lista":
+        ID = 'tvbr_tempo2023_lista'
+        JSX = ROOT + 'scripts/tvbr_tempo2023_lista.jsx'
+        EXPORT = ROOT + 'export/tvbr_tempo2023_lista/'
+        DESTINO = local + '/TVBr_Tempo2023/'
+        SAIDA = lib_tempo_lista.getTempoLista(dados)
+
+    elif tipo == "RB2023 Tempo Box":
+        ID = 'tvbr_tempo2023_box'
+        JSX = ROOT + 'scripts/tvbr_tempo2023_box.jsx'
+        EXPORT = ROOT + 'export/tvbr_tempo2023_box/'
+        DESTINO = local + '/TVBr_Tempo2023/'
+        SAIDA = lib_tempo_box.getTempoBox(dados)
+
+    elif tipo == "RB2023 Tempo 3Dias":
+        ID = 'tvbr_tempo2023_3dias'
+        JSX = ROOT + 'scripts/tvbr_tempo2023_3dias.jsx'
+        EXPORT = ROOT + 'export/tvbr_tempo2023_3dias/'
+        DESTINO = local + '/TVBr_Tempo2023/'
+        SAIDA = lib_tempo_3dias.getTempo3Dias(dados)
+
+    elif tipo == "RB2023 Tempo 5Dias":
+        ID = 'tvbr_tempo2023_5dias'
+        JSX = ROOT + 'scripts/tvbr_tempo2023_5dias.jsx'
+        EXPORT = ROOT + 'export/tvbr_tempo2023_5dias/'
+        DESTINO = local + '/TVBr_Tempo2023/'
+        SAIDA = lib_tempo_5dias.getTempo5Dias(dados)
+
+    elif tipo == "RB2023 Tempo Mapa":
+        ID = 'tvbr_tempo2023_mapa'
+        JSX = ROOT + 'scripts/tvbr_tempo2023_mapa.jsx'
+        EXPORT = ROOT + 'export/tvbr_tempo2023_mapa/'
+        DESTINO = local + '/TVBr_Tempo2023/'
+        SAIDA = lib_tempo_mapa.getTempoMapa(dados)
+
+    elif tipo == "Stadium Tabelas":
+        ID = 'esportes2023_tabela_futebol'
+        JSX = ROOT + 'scripts/esportes2023_tabela_futebol.jsx'
+        EXPORT = ROOT + 'export/esportes2023_tabela_futebol/'
+        DESTINO = local + '/TVBr_Stadium/'
+        SAIDA = lib_esportes.getEsportes2023TabelaFutebol(dados)
+
+    elif tipo == "Stadium Confrontos":
+        ID = 'esportes2023_confrontos_futebol'
+        JSX = ROOT + 'scripts/esportes2023_confrontos_futebol.jsx'
+        EXPORT = ROOT + 'export/esportes2023_confrontos_futebol/'
+        DESTINO = local + '/TVBr_Stadium/'
+        SAIDA = lib_esportes.getEsportes2023ConfrontosFutebol(dados)
+
+    elif tipo == "Stadium Resultados":
+        ID = 'esportes2023_resultados_futebol'
+        JSX = ROOT + 'scripts/esportes2023_resultados_futebol.jsx'
+        EXPORT = ROOT + 'export/esportes2023_resultados_futebol/'
+        DESTINO = local + '/TVBr_Stadium/'
+        SAIDA = lib_esportes.getEsportes2023ResultadosFutebol(dados)
+
+    elif tipo == "MDB Tabela":
+        ID = 'esportes2023_tabela_futebol'
+        JSX = ROOT + 'scripts/esportes2023_tabela_futebol.jsx'
+        EXPORT = ROOT + 'export/esportes2023_tabela_futebol/'
+        DESTINO = local + '/TVBr_MDB/'
+        SAIDA = lib_esportes.getEsportes2023TabelaFutebol(dados)
+
+    elif tipo == "MDB Confrontos":
+        ID = 'esportes2023_confrontos_futebol'
+        JSX = ROOT + 'scripts/esportes2023_confrontos_futebol.jsx'
+        EXPORT = ROOT + 'export/esportes2023_confrontos_futebol/'
+        DESTINO = local + '/TVBr_MDB/'
+        SAIDA = lib_esportes.getEsportes2023ConfrontosFutebol(dados)
+
+    elif tipo == "MDB Resultados":
+        ID = 'esportes2023_resultados_futebol'
+        JSX = ROOT + 'scripts/esportes2023_resultados_futebol.jsx'
+        EXPORT = ROOT + 'export/esportes2023_resultados_futebol/'
+        DESTINO = local + '/TVBr_MDB/'
+        SAIDA = lib_esportes.getEsportes2023ResultadosFutebol(dados)
+
+    elif tipo == "Programacao Bussolas":
+        ID = 'tvbr_programacao2023_bussola'
+        JSX = ROOT + 'scripts/tvbr_programacao2023_bussolas.jsx'
+        EXPORT = ROOT + 'export/tvbr_programacao2023_bussola/'
+        DESTINO = local + '/TVBr_Programacao/'
+        SAIDA = lib_programacao2023.getBussolas(dados)
+
+    elif tipo == "GovInforma Cor":
+        ID = 'gov_informa_cor'
+        JSX = ROOT + 'scripts/gov_informa_cor.jsx'
+        EXPORT = ROOT + 'export/gov_informa_cor/'
+        DESTINO = local + '/GovInforma/'
+        SAIDA = lib_gov.getGovInforma(dados)
+
+    elif tipo == "GovInforma PB":
+        ID = 'gov_informa_pb'
+        JSX = ROOT + 'scripts/gov_informa_pb.jsx'
+        EXPORT = ROOT + 'export/gov_informa_pb/'
+        DESTINO = local + '/GovInforma/'
+        SAIDA = lib_gov.getGovInforma(dados)
+
+    elif tipo == "MidiaIndoor Agencia Brasil":
+        ID = 'mkt_midia_indoor_agencia_2022'
+        JSX = ROOT + 'scripts/mkt_midia_indoor_agencia_2023.jsx'
+        EXPORT = ROOT + 'export/mkt_midia_indoor_agencia_2023/'
+        DESTINO = local + '/Marketing/'
+        SAIDA = lib_marketing.getMktMidiaIndoorAgencia2023(dados)
+
+
+
+
+
+
 
 
 

@@ -25,6 +25,7 @@ def getDestaqueAgencia(link, id):
     categoria = link.split('/')[3]
     req = requests.get(link)
     aux = req.text
+
     ret = {}
     soup = BeautifulSoup(aux, 'html.parser')
     ret['imagem'] = soup.find('meta', property="og:image")['content']

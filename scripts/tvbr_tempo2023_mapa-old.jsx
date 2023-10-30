@@ -32,9 +32,6 @@ var tipo_mapa = dados['tipo_mapa'];
 var dados_tempo = dados['dados_tempo'];
 var regiao = dados['regiao'];
 var arquivo = dados['arquivo'];
-var titulo = dados['titulo'];
-
-
 
 
 if (tipo_mapa == 'tempo') {
@@ -42,8 +39,6 @@ if (tipo_mapa == 'tempo') {
   switch (regiao) {
       case "brasil":
           var comp_tela = app.project.item(3);
-          t_titulo = comp_tela.layer("T_TITULO");
-          t_titulo.property("sourceText").setValue(titulo);
           break;
       case "norte":
           var comp_tela = app.project.item(7);
@@ -88,8 +83,6 @@ if (tipo_mapa == 'tempo') {
   switch (regiao) {
       case "brasil":
           var comp_tela = app.project.item(2);
-          t_titulo = comp_tela.layer("T_TITULO");
-          t_titulo.property("sourceText").setValue(titulo);
           break;
       case "norte":
           var comp_tela = app.project.item(6);
@@ -127,8 +120,6 @@ if (tipo_mapa == 'tempo') {
     }
   }
 }
-
-
 
 var importOptions = new ImportOptions();
 importOptions.file = new File(arquivo);
