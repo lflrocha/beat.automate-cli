@@ -18,24 +18,24 @@ ROOT = automator.getBase()
 ARQUIVOS = ROOT + 'arquivos/abr-cards/'
 TEMP = ROOT + 'temp/'
 
-fonte_link_texto = ImageFont.truetype(ARQUIVOS + 'fonts/TipoBrasilRounded-600Medium.otf', 72)
-fonte_link_texto2 = ImageFont.truetype(ARQUIVOS + 'fonts/TipoBrasilRounded-600Medium.otf', 54)
-fonte_link_texto3 = ImageFont.truetype(ARQUIVOS + 'fonts/TipoBrasilRounded-600Medium.otf', 72)
+fonte_link_texto = ImageFont.truetype(ARQUIVOS + 'fonts/TipoBrasilRounded-850Bold.otf', 72)
+fonte_link_texto2 = ImageFont.truetype(ARQUIVOS + 'fonts/TipoBrasilRounded-850Bold.otf', 54)
+fonte_link_texto3 = ImageFont.truetype(ARQUIVOS + 'fonts/TipoBrasilRounded-850Bold.otf', 72)
 fonte_link_texto4 = ImageFont.truetype(ARQUIVOS + 'fonts/TipoBrasilRounded-850Bold.otf', 56)
 fonte_link_credito = ImageFont.truetype(ARQUIVOS + 'fonts/TipoBrasilRounded-600Medium.otf', 24)
 fonte_link_editoria = ImageFont.truetype(ARQUIVOS + 'fonts/TipoBrasilRounded-850Bolditalic.otf', 28)
 
 
-fonte_square_texto = ImageFont.truetype(ARQUIVOS + 'fonts/TipoBrasilRounded-600Medium.otf', 56)
-fonte_square_texto2 = ImageFont.truetype(ARQUIVOS + 'fonts/TipoBrasilRounded-600Medium.otf', 54)
-fonte_square_texto3 = ImageFont.truetype(ARQUIVOS + 'fonts/TipoBrasilRounded-600Medium.otf', 72)
+fonte_square_texto = ImageFont.truetype(ARQUIVOS + 'fonts/TipoBrasilRounded-850Bold.otf', 56)
+fonte_square_texto2 = ImageFont.truetype(ARQUIVOS + 'fonts/TipoBrasilRounded-850Bold.otf', 54)
+fonte_square_texto3 = ImageFont.truetype(ARQUIVOS + 'fonts/TipoBrasilRounded-850Bold.otf', 72)
 fonte_square_texto4 = ImageFont.truetype(ARQUIVOS + 'fonts/TipoBrasilRounded-850Bold.otf', 56)
 fonte_square_credito = ImageFont.truetype(ARQUIVOS + 'fonts/TipoBrasilRounded-600Medium.otf', 14)
 fonte_square_editoria = ImageFont.truetype(ARQUIVOS + 'fonts/TipoBrasilRounded-850Bolditalic.otf', 24)
 
-fonte_stories_texto = ImageFont.truetype(ARQUIVOS + 'fonts/TipoBrasilRounded-600Medium.otf', 72)
-fonte_stories_texto2 = ImageFont.truetype(ARQUIVOS + 'fonts/TipoBrasilRounded-600Medium.otf', 54)
-fonte_stories_texto3 = ImageFont.truetype(ARQUIVOS + 'fonts/TipoBrasilRounded-600Medium.otf', 72)
+fonte_stories_texto = ImageFont.truetype(ARQUIVOS + 'fonts/TipoBrasilRounded-850Bold.otf', 72)
+fonte_stories_texto2 = ImageFont.truetype(ARQUIVOS + 'fonts/TipoBrasilRounded-850Bold.otf', 54)
+fonte_stories_texto3 = ImageFont.truetype(ARQUIVOS + 'fonts/TipoBrasilRounded-850Bold.otf', 72)
 fonte_stories_texto4 = ImageFont.truetype(ARQUIVOS + 'fonts/TipoBrasilRounded-850Bold.otf', 56)
 fonte_stories_credito = ImageFont.truetype(ARQUIVOS + 'fonts/TipoBrasilRounded-600Medium.otf', 24)
 fonte_stories_editoria = ImageFont.truetype(ARQUIVOS + 'fonts/TipoBrasilRounded-850Bolditalic.otf', 28)
