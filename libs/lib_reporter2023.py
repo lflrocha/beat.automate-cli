@@ -4,6 +4,7 @@ import libs.automator as automator
 import urllib
 import os
 import json
+import requests
 
 import libs.lib_abr as abr
 
@@ -11,6 +12,102 @@ from slugify import slugify
 
 ROOT = automator.getBase()
 TEMP = ROOT + 'temp/'
+
+
+def baixaFotoAlbum(arquivo, endereco):
+    r = requests.get(endereco)
+    open(TEMP + arquivo, 'wb').write(r.content)
+    return arquivo
+
+
+def getAlbum(dados):
+    novo_projeto = dados['novo_projeto']
+    identificador = dados['identificador']
+    arquivo_saida = slugify(novo_projeto + '-' + identificador)
+    variaveis = dados['variaveis']
+    modelo = variaveis['modelo']
+
+    fotos = []
+
+    foto01_arquivo = variaveis['foto01_arquivo']
+    foto01_endereco = variaveis['foto01_endereco']
+    if foto01_arquivo:
+        arq01 = baixaFotoAlbum(foto01_arquivo, foto01_endereco)
+        fotos.append(arq01)
+
+    foto02_arquivo = variaveis['foto02_arquivo']
+    foto02_endereco = variaveis['foto02_endereco']
+    if foto02_arquivo:
+        arq02 = baixaFotoAlbum(foto02_arquivo, foto02_endereco)
+        fotos.append(arq02)
+
+    foto03_arquivo = variaveis['foto03_arquivo']
+    foto03_endereco = variaveis['foto03_endereco']
+    if foto03_arquivo:
+        arq03 = baixaFotoAlbum(foto03_arquivo, foto03_endereco)
+        fotos.append(arq03)
+
+    foto04_arquivo = variaveis['foto04_arquivo']
+    foto04_endereco = variaveis['foto04_endereco']
+    if foto04_arquivo:
+        arq04 = baixaFotoAlbum(foto04_arquivo, foto04_endereco)
+        fotos.append(arq04)
+
+    foto05_arquivo = variaveis['foto05_arquivo']
+    foto05_endereco = variaveis['foto05_endereco']
+    if foto05_arquivo:
+        arq05 = baixaFotoAlbum(foto05_arquivo, foto05_endereco)
+        fotos.append(arq05)
+
+    foto06_arquivo = variaveis['foto06_arquivo']
+    foto06_endereco = variaveis['foto06_endereco']
+    if foto06_arquivo:
+        arq06 = baixaFotoAlbum(foto06_arquivo, foto06_endereco)
+        fotos.append(arq06)
+
+    foto07_arquivo = variaveis['foto07_arquivo']
+    foto07_endereco = variaveis['foto07_endereco']
+    if foto07_arquivo:
+        arq07 = baixaFotoAlbum(foto07_arquivo, foto07_endereco)
+        fotos.append(arq07)
+
+    foto08_arquivo = variaveis['foto08_arquivo']
+    foto08_endereco = variaveis['foto08_endereco']
+    if foto08_arquivo:
+        arq08 = baixaFotoAlbum(foto08_arquivo, foto08_endereco)
+        fotos.append(arq08)
+
+    foto09_arquivo = variaveis['foto09_arquivo']
+    foto09_endereco = variaveis['foto09_endereco']
+    if foto09_arquivo:
+        arq09 = baixaFotoAlbum(foto09_arquivo, foto09_endereco)
+        fotos.append(arq09)
+
+    foto10_arquivo = variaveis['foto10_arquivo']
+    foto10_endereco = variaveis['foto10_endereco']
+    if foto10_arquivo:
+        arq10 = baixaFotoAlbum(foto10_arquivo, foto10_endereco)
+        fotos.append(arq10)
+
+
+    variaveis = {}
+    variaveis['fotos'] = fotos
+    variaveis['modelo'] = modelo
+
+    renders = [
+        {
+            "comp": "!01_render",
+            "inicio": "1",
+            "fim": "900",
+            "OM": "MAM",
+            "arquivo": arquivo_saida + ".mov",
+            "converter": "MXF"
+        }
+    ]
+
+    saida = {"dados": variaveis, "renders": renders}
+    return saida
+
 
 
 def getFocus(dados):

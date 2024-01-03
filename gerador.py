@@ -65,12 +65,15 @@ listas = [
     'http://automator-prod01.ebc:8080/automator/getTVBrRB2023Pendentes',
     'http://automator-prod01.ebc:8080/automator/getTVBrProgramacao2023Pendentes',
 
-'http://automator-prod01.ebc:8080/automator2023/getTVBrReporterBrasilPendentes',
-'http://automator-prod01.ebc:8080/automator2023/getTVBrStadiumPendentes',
-'http://automator-prod01.ebc:8080/automator2023/getTVBrMDBPendentes',
-'http://automator-prod01.ebc:8080/automator2023/getTVBrProgramacao2023Pendentes',
-'http://automator-prod01.ebc:8080/automator2023/getCanalGov2023Pendentes',
-'http://automator-prod01.ebc:8080/automator2023/getMarketingPendentes',
+    'http://automator-prod01.ebc:8080/automator2023/getTVBrReporterBrasilPendentes',
+    'http://automator-prod01.ebc:8080/automator2023/getTVBrStadiumPendentes',
+    'http://automator-prod01.ebc:8080/automator2023/getTVBrMDBPendentes',
+    'http://automator-prod01.ebc:8080/automator2023/getTVBrProgramacao2023Pendentes',
+    'http://automator-prod01.ebc:8080/automator2023/getCanalGov2023Pendentes',
+    'http://automator-prod01.ebc:8080/automator2023/getMarketingPendentes',
+
+
+    'http://vmebc:8080/automator2023/getTVBrReporterBrasilPendentes',
 ]
 
 itens = []
@@ -91,7 +94,7 @@ logger.info("%r - Itens pendentes: ", len(itens))
 
 for item in itens:
     endereco = item['endereco']
-    arq = automator.alteraStatus(endereco, 'gerar')
+    # arq = automator.alteraStatus(endereco, 'gerar')
 
 for item in itens:
     endereco = item['endereco']
@@ -302,6 +305,14 @@ for item in itens:
     ###############################################################################
 
 
+    elif tipo == "RB2023 Album":
+        print("entrou")
+        ID = 'tvbr_reporter2023_album'
+        JSX = ROOT + 'scripts/tvbr_reporter2023_album.jsx'
+        EXPORT = ROOT + 'export/tvbr_reporter2023_album/'
+        DESTINO = local + '/TVBr_Reporter2023/'
+        SAIDA = lib_reporter2023.getAlbum(dados)
+
     elif tipo == "RB2023 Boletim Focus":
         ID = 'tvbr_reporter2023_focus'
         JSX = ROOT + 'scripts/tvbr_reporter2023_focus.jsx'
@@ -344,12 +355,26 @@ for item in itens:
         DESTINO = local + '/TVBr_Tempo2023/'
         SAIDA = lib_tempo_box.getTempoBox(dados)
 
+    elif tipo == "RB2023 Tempo Box 3 Cidades":
+        ID = 'tvbr_tempo2023_box_3cidades'
+        JSX = ROOT + 'scripts/tvbr_tempo2023_box_3cidades.jsx'
+        EXPORT = ROOT + 'export/tvbr_tempo2023_box_3cidades/'
+        DESTINO = local + '/TVBr_Tempo2023/'
+        SAIDA = lib_tempo_box.getTempoBox3Cidades(dados)
+
     elif tipo == "RB2023 Tempo 3Dias":
         ID = 'tvbr_tempo2023_3dias'
         JSX = ROOT + 'scripts/tvbr_tempo2023_3dias.jsx'
         EXPORT = ROOT + 'export/tvbr_tempo2023_3dias/'
         DESTINO = local + '/TVBr_Tempo2023/'
         SAIDA = lib_tempo_3dias.getTempo3Dias(dados)
+
+    elif tipo == "RB2023 Tempo 3Dias 2Cidades":
+        ID = 'tvbr_tempo2023_3dias_2cidades'
+        JSX = ROOT + 'scripts/tvbr_tempo2023_3dias_2cidades.jsx'
+        EXPORT = ROOT + 'export/tvbr_tempo2023_3dias_2cidades/'
+        DESTINO = local + '/TVBr_Tempo2023/'
+        SAIDA = lib_tempo_3dias.getTempo3Dias2Cidades(dados)
 
     elif tipo == "RB2023 Tempo 5Dias":
         ID = 'tvbr_tempo2023_5dias'
@@ -509,4 +534,4 @@ for item in itens:
 
 
     # FINALIZA
-    arq = requests.get(endereco+'/setWorkflowState?acao=finalizar')
+    # arq = requests.get(endereco+'/setWorkflowState?acao=finalizar')
