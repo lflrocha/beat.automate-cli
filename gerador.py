@@ -74,7 +74,7 @@ listas = [
 
 
     # 'http://vmebc:8080/automator2023/getTVBrReporterBrasilPendentes',
-    'http://vmebc:8080/automator2023/getTVBrStadiumPendentes',
+    # 'http://vmebc:8080/automator2023/getTVBrStadiumPendentes',
 ]
 
 itens = []
@@ -592,4 +592,4 @@ for item in itens:
 
 
     # FINALIZA
-    # arq = requests.get(endereco+'/setWorkflowState?acao=finalizar')
+    arq = requests.get(endereco+'/setWorkflowState?acao=finalizar')
