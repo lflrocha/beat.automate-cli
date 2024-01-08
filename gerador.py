@@ -73,7 +73,8 @@ listas = [
     'http://automator-prod01.ebc:8080/automator2023/getMarketingPendentes',
 
 
-    'http://vmebc:8080/automator2023/getTVBrReporterBrasilPendentes',
+    # 'http://vmebc:8080/automator2023/getTVBrReporterBrasilPendentes',
+    'http://vmebc:8080/automator2023/getTVBrStadiumPendentes',
 ]
 
 itens = []
@@ -94,7 +95,7 @@ logger.info("%r - Itens pendentes: ", len(itens))
 
 for item in itens:
     endereco = item['endereco']
-    # arq = automator.alteraStatus(endereco, 'gerar')
+    arq = automator.alteraStatus(endereco, 'gerar')
 
 for item in itens:
     endereco = item['endereco']
@@ -404,12 +405,69 @@ for item in itens:
         DESTINO = local + '/TVBr_Stadium/'
         SAIDA = lib_esportes.getEsportes2023ConfrontosFutebol(dados)
 
+    elif tipo == "Stadium Confrontos Manual Volei":
+        ID = 'esportes2023_confrontos_manual_volei'
+        JSX = ROOT + 'scripts/esportes2023_confrontos_manual_volei.jsx'
+        EXPORT = ROOT + 'export/esportes2023_confrontos_volei/'
+        DESTINO = local + '/TVBr_Stadium/'
+        SAIDA = lib_esportes.getEsportes2023ConfrontosManualVolei(dados)
+
+    elif tipo == "Stadium Confrontos Manual Futebol Brasil":
+        ID = 'esportes2023_confrontos_manual_futebol_brasil'
+        JSX = ROOT + 'scripts/esportes2023_confrontos_manual_futebol.jsx'
+        EXPORT = ROOT + 'export/esportes2023_confrontos_futebol/'
+        DESTINO = local + '/TVBr_Stadium/'
+        SAIDA = lib_esportes.getEsportes2023ConfrontosManualFutebol(dados)
+
+    elif tipo == "Stadium Confrontos Manual Futebol America":
+        ID = 'esportes2023_confrontos_manual_futebol_america'
+        JSX = ROOT + 'scripts/esportes2023_confrontos_manual_futebol.jsx'
+        EXPORT = ROOT + 'export/esportes2023_confrontos_futebol/'
+        DESTINO = local + '/TVBr_Stadium/'
+        SAIDA = lib_esportes.getEsportes2023ConfrontosManualFutebol(dados)
+
+    elif tipo == "Stadium Confrontos Manual NBA":
+        ID = 'esportes2023_confrontos_manual_nba'
+        JSX = ROOT + 'scripts/esportes2023_confrontos_manual_nba.jsx'
+        EXPORT = ROOT + 'export/esportes2023_confrontos_nba/'
+        DESTINO = local + '/TVBr_Stadium/'
+        SAIDA = lib_esportes.getEsportes2023ConfrontosManualNBA(dados)
+
+
     elif tipo == "Stadium Resultados":
         ID = 'esportes2023_resultados_futebol'
         JSX = ROOT + 'scripts/esportes2023_resultados_futebol.jsx'
         EXPORT = ROOT + 'export/esportes2023_resultados_futebol/'
         DESTINO = local + '/TVBr_Stadium/'
         SAIDA = lib_esportes.getEsportes2023ResultadosFutebol(dados)
+
+    elif tipo == "Stadium Resultados Manual NBA":
+        ID = 'esportes2023_resultados_manual_nba'
+        JSX = ROOT + 'scripts/esportes2023_resultados_manual_nba.jsx'
+        EXPORT = ROOT + 'export/esportes2023_resultados_manual_nba/'
+        DESTINO = local + '/TVBr_Stadium/'
+        SAIDA = lib_esportes.getEsportes2023ResultadosManualNBA(dados)
+
+    elif tipo == "Stadium Resultados Manual Volei":
+        ID = 'esportes2023_resultados_manual_volei'
+        JSX = ROOT + 'scripts/esportes2023_resultados_manual_volei.jsx'
+        EXPORT = ROOT + 'export/esportes2023_resultados_manual_volei/'
+        DESTINO = local + '/TVBr_Stadium/'
+        SAIDA = lib_esportes.getEsportes2023ResultadosManualVolei(dados)
+
+    elif tipo == "Stadium Resultados Manual Futebol Brasil":
+        ID = 'esportes2023_resultados_manual_futebol_brasil'
+        JSX = ROOT + 'scripts/esportes2023_resultados_manual_futebol.jsx'
+        EXPORT = ROOT + 'export/esportes2023_resultados_manual_futebol_brasil/'
+        DESTINO = local + '/TVBr_Stadium/'
+        SAIDA = lib_esportes.getEsportes2023ResultadosManualFutebol(dados)
+
+    elif tipo == "Stadium Resultados Manual Futebol America":
+        ID = 'esportes2023_resultados_manual_futebol_america'
+        JSX = ROOT + 'scripts/esportes2023_resultados_manual_futebol.jsx'
+        EXPORT = ROOT + 'export/esportes2023_resultados_manual_futebol_america/'
+        DESTINO = local + '/TVBr_Stadium/'
+        SAIDA = lib_esportes.getEsportes2023ResultadosManualFutebol(dados)
 
     elif tipo == "MDB Tabela":
         ID = 'esportes2023_tabela_futebol'

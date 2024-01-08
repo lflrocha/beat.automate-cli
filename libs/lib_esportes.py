@@ -180,3 +180,127 @@ def getEsportes2023ResultadosFutebol(dados):
 
     saida = {"dados": aux_dados, "renders": renders}
     return saida
+
+
+
+def getEsportes2023ResultadosManualNBA(dados):
+    novo_projeto = dados['novo_projeto']
+    identificador = dados['identificador']
+    arquivo_saida = slugify(novo_projeto + '-' + identificador)
+    variaveis = dados['variaveis']
+
+    renders = [
+        {
+            "comp": "!render_0",
+            "inicio": "1",
+            "fim": "300",
+            "OM": "MOV",
+            "arquivo": arquivo_saida + ".mov",
+            # "converter": "MP4"
+        }
+    ]
+
+
+    saida = {"dados": variaveis, "renders": renders}
+    return saida
+
+
+
+def getEsportes2023ConfrontosManualFutebol(dados):
+    novo_projeto = dados['novo_projeto']
+    identificador = dados['identificador']
+    arquivo_saida = slugify(novo_projeto + '-' + identificador)
+    variaveis = dados['variaveis']
+
+    renders = [
+        {
+            "comp": "!render_0",
+            "inicio": "1",
+            "fim": "300",
+            "OM": "MOV",
+            "arquivo": arquivo_saida + ".mov",
+            # "converter": "MP4"
+        }
+    ]
+    saida = {"dados": variaveis, "renders": renders}
+    return saida
+
+
+def getEsportes2023ConfrontosManualNBA(dados):
+    novo_projeto = dados['novo_projeto']
+    identificador = dados['identificador']
+    arquivo_saida = slugify(novo_projeto + '-' + identificador)
+    variaveis = dados['variaveis']
+
+    renders = [
+        {
+            "comp": "!render_0",
+            "inicio": "1",
+            "fim": "300",
+            "OM": "MOV",
+            "arquivo": arquivo_saida + ".mov",
+            # "converter": "MP4"
+        }
+    ]
+    saida = {"dados": variaveis, "renders": renders}
+    return saida
+
+
+def getEsportes2023ResultadosManualFutebol(dados):
+    novo_projeto = dados['novo_projeto']
+    identificador = dados['identificador']
+    arquivo_saida = slugify(novo_projeto + '-' + identificador)
+    variaveis = dados['variaveis']
+
+    renders = [
+        {
+            "comp": "!render_0",
+            "inicio": "1",
+            "fim": "300",
+            "OM": "MOV",
+            "arquivo": arquivo_saida + ".mov",
+            # "converter": "MP4"
+        }
+    ]
+    saida = {"dados": variaveis, "renders": renders}
+    return saida
+
+
+def getEsportes2023ResultadosManualVolei(dados):
+    novo_projeto = dados['novo_projeto']
+    identificador = dados['identificador']
+    arquivo_saida = slugify(novo_projeto + '-' + identificador)
+    variaveis = dados['variaveis']
+
+    renders = [
+        {
+            "comp": "!render_0",
+            "inicio": "1",
+            "fim": "300",
+            "OM": "MOV",
+            "arquivo": arquivo_saida + ".mov",
+            # "converter": "MP4"
+        }
+    ]
+    saida = {"dados": variaveis, "renders": renders}
+    return saida
+
+
+def getEsportes2023ConfrontosManualVolei(dados):
+    novo_projeto = dados['novo_projeto']
+    identificador = dados['identificador']
+    arquivo_saida = slugify(novo_projeto + '-' + identificador)
+    variaveis = dados['variaveis']
+
+    renders = [
+        {
+            "comp": "!render_0",
+            "inicio": "1",
+            "fim": "300",
+            "OM": "MOV",
+            "arquivo": arquivo_saida + ".mov",
+            # "converter": "MP4"
+        }
+    ]
+    saida = {"dados": variaveis, "renders": renders}
+    return saida
