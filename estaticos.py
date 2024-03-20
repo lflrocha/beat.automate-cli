@@ -147,7 +147,7 @@ for item in itens:
     # retorno = os.system("cp  %s  %s" % (ARQ_GERADO1,  dest))
     retorno = os.system("cp  %s  %s" % (ARQ_GERADO2,  dest))
     retorno = os.system("cp  %s  %s" % (ARQ_GERADO3,  dest))
-    logger.info("%r - Arte copiada para destino: " +  titulo, retorno)
+    logger.info(str(retorno) + " Arte copiada para destino: " +  titulo)
 
     # FINALIZA
     arq = requests.get(endereco+'/setWorkflowState?acao=finalizar')
