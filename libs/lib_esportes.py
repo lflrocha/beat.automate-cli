@@ -75,7 +75,10 @@ def getEsportes2023ConfrontosFutebol(dados):
     data_fim = variaveis['data_final'].split('-')
     data_fim = data_fim[2] + '/' + data_fim[1] + '/' + data_fim[0]
 
-    r = requests.get('http://api-jogosbrasileirao.devel.ebc/confrontos?data=%s&data_final=%s' % (data_inicio, data_fim))
+    # r = requests.get('http://api-jogosbrasileirao.devel.ebc/confrontos?data=%s&data_final=%s' % (data_inicio, data_fim))
+    r = requests.get('https://api-brasileirao.ebc.com.br/confrontos?data=%s&data_final=%s' % (data_inicio, data_fim))
+
+
     dados_tabela = r.json()
 
     subtitulo = ""
@@ -136,7 +139,8 @@ def getEsportes2023ResultadosFutebol(dados):
     data_fim = data_fim[2] + '/' + data_fim[1] + '/' + data_fim[0]
 
 
-    r = requests.get('http://api-jogosbrasileirao.devel.ebc/confrontos?data=%s&data_final=%s' % (data_inicio, data_fim))
+    # r = requests.get('http://api-jogosbrasileirao.devel.ebc/confrontos?data=%s&data_final=%s' % (data_inicio, data_fim))
+    r = requests.get('https://api-brasileirao.ebc.com.br/confrontos?data=%s&data_final=%s' % (data_inicio, data_fim))
     dados_tabela = r.json()
 
 
