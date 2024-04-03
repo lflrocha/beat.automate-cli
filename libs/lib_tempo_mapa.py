@@ -169,7 +169,6 @@ def getTempoCidades(cidades, data, tipo):
     dados = {}
     for i, cidade in enumerate(cidades):
         aux = lib_tempo.getTempoCidadeDia(cidade, data)
-
         if tipo == "tempo":
             icone = aux['icone']
             uf = lib_tempo.codigo_estados[cidade[:2]]

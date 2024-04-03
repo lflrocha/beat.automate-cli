@@ -907,7 +907,7 @@ def gera_modelo_square05(dados, export):
     middle_img_raw = Image.open(ARQUIVOS + "bg/Square-AgenciaBrasil_shadow.png")  # RGBA image
     middle_img = numpy.array(middle_img_raw)  # Inputs to blend_modes need to be numpy arrays.
     middle_img_float = middle_img.astype(float)  # Inputs to blend_modes need to be floats.
-    opacity = .7  # The opacity of the foreground that is blended onto the background is 70 %.
+    opacity = .4  # The opacity of the foreground that is blended onto the background is 70 %.
     blended1_img_float = multiply(background_img_float, middle_img_float, opacity)
     blended_img = numpy.uint8(blended1_img_float)  # Image needs to be converted back to uint8 type for PIL handling.
     shape = Image.fromarray(blended_img)  # Note that alpha channels are displayed in black by PIL by default.
@@ -1349,7 +1349,7 @@ def gera_modelo_stories05(dados, export):
     middle_img_raw = Image.open(ARQUIVOS + "bg/Stories-AgenciaBrasil_shadow.png")  # RGBA image
     middle_img = numpy.array(middle_img_raw)  # Inputs to blend_modes need to be numpy arrays.
     middle_img_float = middle_img.astype(float)  # Inputs to blend_modes need to be floats.
-    opacity = .3  # The opacity of the foreground that is blended onto the background is 70 %.
+    opacity = .6  # The opacity of the foreground that is blended onto the background is 70 %.
     blended1_img_float = multiply(background_img_float, middle_img_float, opacity)
     blended_img = numpy.uint8(blended1_img_float)  # Image needs to be converted back to uint8 type for PIL handling.
     shape = Image.fromarray(blended_img)  # Note that alpha channels are displayed in black by PIL by default.
