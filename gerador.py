@@ -43,12 +43,12 @@ ARQUIVOS = ROOT + 'arquivos/'
 TEMP = ROOT + 'temp/'
 LOGS = ROOT + 'logs/'
 CUT = '/Volumes/Automator/'
-CUT = './Automator/'
+# CUT = './Automator/'
 
-# if not os.path.isdir(CUT):
-#     script = ROOT + 'scripts/mountCut.scpt'
-#     parametros = ['osascript', script ]
-#     retorno = subprocess.call(parametros)
+if not os.path.isdir(CUT):
+    script = ROOT + 'scripts/mountCut.scpt'
+    parametros = ['osascript', script ]
+    retorno = subprocess.call(parametros)
 
 receivers = ['luis.rocha@ebc.com.br']
 
