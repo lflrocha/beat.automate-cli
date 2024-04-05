@@ -53,29 +53,30 @@ CUT = './Automator/'
 receivers = ['luis.rocha@ebc.com.br']
 
 listas = [
-    # 'http://automator-prod01.ebc:8080/automator/getMarketingPendentes',
-    # 'http://automator-prod01.ebc:8080/automator/getTVBrProgramacaoAgenciaPendentes',
-    # 'http://automator-prod01.ebc:8080/automator/getTVBrProgramacao2022Pendentes',
-    # 'http://automator-prod01.ebc:8080/automator/getRedesTiktokPendentes',
-    # 'http://automator-prod01.ebc:8080/automator/getEsportes2023Pendentes',
-    # 'http://automator-prod01.ebc:8080/automator/getEducacaoPendentes',
-    # 'http://automator-prod01.ebc:8080/automator/getTVBrRadiosChamadaPendentes',
-    # 'http://automator-prod01.ebc:8080/automator/getGovInformaPendentes',
-    # 'http://automator-prod01.ebc:8080/automator/getTVBrTempo2023Pendentes',
-    # 'http://automator-prod01.ebc:8080/automator/getTVBrRB2023Pendentes',
-    # 'http://automator-prod01.ebc:8080/automator/getTVBrProgramacao2023Pendentes',
-    #
-    # 'http://automator-prod01.ebc:8080/automator2023/getTVBrReporterBrasilPendentes',
-    # 'http://automator-prod01.ebc:8080/automator2023/getTVBrStadiumPendentes',
-    # 'http://automator-prod01.ebc:8080/automator2023/getTVBrMDBPendentes',
-    # 'http://automator-prod01.ebc:8080/automator2023/getTVBrProgramacao2023Pendentes',
-    # 'http://automator-prod01.ebc:8080/automator2023/getCanalGov2023Pendentes',
-    # 'http://automator-prod01.ebc:8080/automator2023/getMarketingPendentes',
+    'http://automator-prod01.ebc:8080/automator/getMarketingPendentes',
+    'http://automator-prod01.ebc:8080/automator/getTVBrProgramacaoAgenciaPendentes',
+    'http://automator-prod01.ebc:8080/automator/getTVBrProgramacao2022Pendentes',
+    'http://automator-prod01.ebc:8080/automator/getRedesTiktokPendentes',
+    'http://automator-prod01.ebc:8080/automator/getEsportes2023Pendentes',
+    'http://automator-prod01.ebc:8080/automator/getEducacaoPendentes',
+    'http://automator-prod01.ebc:8080/automator/getTVBrRadiosChamadaPendentes',
+    'http://automator-prod01.ebc:8080/automator/getGovInformaPendentes',
+    'http://automator-prod01.ebc:8080/automator/getTVBrTempo2023Pendentes',
+    'http://automator-prod01.ebc:8080/automator/getTVBrRB2023Pendentes',
+    'http://automator-prod01.ebc:8080/automator/getTVBrProgramacao2023Pendentes',
+
+    'http://automator-prod01.ebc:8080/automator2023/getTVBrReporterBrasilPendentes',
+    'http://automator-prod01.ebc:8080/automator2023/getTVBrStadiumPendentes',
+    'http://automator-prod01.ebc:8080/automator2023/getTVBrMDBPendentes',
+    'http://automator-prod01.ebc:8080/automator2023/getTVBrProgramacao2023Pendentes',
+    'http://automator-prod01.ebc:8080/automator2023/getCanalGov2023Pendentes',
+    'http://automator-prod01.ebc:8080/automator2023/getCanalGovBrasilEmDiaPendentes',
+    'http://automator-prod01.ebc:8080/automator2023/getMarketingPendentes',
 
 
     # 'http://vmebc:8080/automator2023/getTVBrReporterBrasilPendentes',
     # 'http://vmebc:8080/automator2023/getTVBrStadiumPendentes',
-    'http://vmebc:8080/automator2023/getCanalGovBrasilEmDiaPendentes',
+    # 'http://vmebc:8080/automator2023/getCanalGovBrasilEmDiaPendentes',
 ]
 
 itens = []
