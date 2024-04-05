@@ -97,7 +97,7 @@ logger.info("%r - Itens pendentes: ", len(itens))
 
 for item in itens:
     endereco = item['endereco']
-    # arq = automator.alteraStatus(endereco, 'gerar')
+    arq = automator.alteraStatus(endereco, 'gerar')
 
 for item in itens:
     endereco = item['endereco']
@@ -617,4 +617,4 @@ for item in itens:
 
 
     # FINALIZA
-    # arq = requests.get(endereco+'/setWorkflowState?acao=finalizar')
+    arq = requests.get(endereco+'/setWorkflowState?acao=finalizar')
