@@ -86,7 +86,7 @@ def getGovTwitter(dados):
             "OM": "MAM",
             "arquivo": arquivo_saida + ".mov",
             # "converter": "MP4-AUDIO"
-            "converter": "MP4"
+            "converter": "MXF"
         }
     ]
 
@@ -118,7 +118,7 @@ def getGovInstagram(dados):
             "OM": "MAM",
             "arquivo": arquivo_saida + ".mov",
             # "converter": "MP4-AUDIO"
-            "converter": "MP4"
+            "converter": "MXF"
         }
     ]
 
@@ -148,7 +148,7 @@ def getGovDestaqueABr(dados):
             "fim": "300",
             "OM": "MAM",
             "arquivo": arquivo_saida + ".mov",
-            "converter": "MP4"
+            "converter": "MXF"
         }
     ]
 
