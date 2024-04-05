@@ -72,7 +72,7 @@ listas = [
     'http://automator-prod01.ebc:8080/automator2023/getCanalGov2023Pendentes',
     'http://automator-prod01.ebc:8080/automator2023/getCanalGovBrasilEmDiaPendentes',
     'http://automator-prod01.ebc:8080/automator2023/getMarketingPendentes',
-
+    #
 
     # 'http://vmebc:8080/automator2023/getTVBrReporterBrasilPendentes',
     # 'http://vmebc:8080/automator2023/getTVBrStadiumPendentes',
@@ -534,6 +534,12 @@ for item in itens:
         DESTINO = local + '/GovBrasilEmDia/'
         SAIDA = lib_gov.getGovDestaqueABr(dados)
 
+    elif tipo == "Gov Destaque AgGov":
+        ID = 'gov_destaque_aggov'
+        JSX = ROOT + 'scripts/gov_destaque_aggov.jsx'
+        EXPORT = ROOT + 'export/gov_destaque_aggov/'
+        DESTINO = local + '/GovBrasilEmDia/'
+        SAIDA = lib_gov.getGovDestaqueAgGov(dados)
 
 
     elif tipo == "MidiaIndoor Agencia Brasil":

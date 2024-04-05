@@ -6,7 +6,7 @@ import os
 import json
 from PIL import Image
 
-import libs.lib_abr as abr
+import libs.lib_agov as agov
 from slugify import slugify
 
 ROOT = automator.getBase()
@@ -127,6 +127,37 @@ def getGovInstagram(dados):
 
 
 
+
+def getGovDestaqueAgGov(dados):
+    novo_projeto = dados['novo_projeto']
+    identificador = dados['identificador']
+    arquivo_saida = slugify(novo_projeto + '-' + identificador)
+    variaveis = dados['variaveis']
+
+    link = variaveis['link']
+    dados_noticia = agov.getDestaqueAgenciaGov(link, identificador)
+    variaveis['editoria'] = dados_noticia['editoria']
+    variaveis['titulo'] = dados_noticia['titulo']
+    variaveis['imagem'] = dados_noticia['imagem']
+    variaveis['credito'] = dados_noticia['credito']
+    variaveis['descricao'] = dados_noticia['descricao']
+
+    renders = [
+        {
+            "comp": "01_render_agov",
+            "inicio": "1",
+            "fim": "300",
+            "OM": "MAM",
+            "arquivo": arquivo_saida + ".mov",
+            "converter": "MP4"
+        }
+    ]
+
+    saida = {"dados": variaveis, "renders": renders}
+    return saida
+
+
+
 def getGovDestaqueABr(dados):
     novo_projeto = dados['novo_projeto']
     identificador = dados['identificador']
@@ -143,12 +174,12 @@ def getGovDestaqueABr(dados):
 
     renders = [
         {
-            "comp": "02_render_agencia",
+            "comp": "02_render_abr",
             "inicio": "1",
             "fim": "300",
             "OM": "MAM",
             "arquivo": arquivo_saida + ".mov",
-            "converter": "MXF"
+            "converter": "MP4"
         }
     ]
 
