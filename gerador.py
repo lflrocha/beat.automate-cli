@@ -43,38 +43,39 @@ ARQUIVOS = ROOT + 'arquivos/'
 TEMP = ROOT + 'temp/'
 LOGS = ROOT + 'logs/'
 CUT = '/Volumes/Automator/'
-# CUT = './Automator/'
+CUT = './Automator/'
 
-if not os.path.isdir(CUT):
-    script = ROOT + 'scripts/mountCut.scpt'
-    parametros = ['osascript', script ]
-    retorno = subprocess.call(parametros)
+# if not os.path.isdir(CUT):
+#     script = ROOT + 'scripts/mountCut.scpt'
+#     parametros = ['osascript', script ]
+#     retorno = subprocess.call(parametros)
 
 receivers = ['luis.rocha@ebc.com.br']
 
 listas = [
-    'http://automator-prod01.ebc:8080/automator/getMarketingPendentes',
-    'http://automator-prod01.ebc:8080/automator/getTVBrProgramacaoAgenciaPendentes',
-    'http://automator-prod01.ebc:8080/automator/getTVBrProgramacao2022Pendentes',
-    'http://automator-prod01.ebc:8080/automator/getRedesTiktokPendentes',
-    'http://automator-prod01.ebc:8080/automator/getEsportes2023Pendentes',
-    'http://automator-prod01.ebc:8080/automator/getEducacaoPendentes',
-    'http://automator-prod01.ebc:8080/automator/getTVBrRadiosChamadaPendentes',
-    'http://automator-prod01.ebc:8080/automator/getGovInformaPendentes',
-    'http://automator-prod01.ebc:8080/automator/getTVBrTempo2023Pendentes',
-    'http://automator-prod01.ebc:8080/automator/getTVBrRB2023Pendentes',
-    'http://automator-prod01.ebc:8080/automator/getTVBrProgramacao2023Pendentes',
-
-    'http://automator-prod01.ebc:8080/automator2023/getTVBrReporterBrasilPendentes',
-    'http://automator-prod01.ebc:8080/automator2023/getTVBrStadiumPendentes',
-    'http://automator-prod01.ebc:8080/automator2023/getTVBrMDBPendentes',
-    'http://automator-prod01.ebc:8080/automator2023/getTVBrProgramacao2023Pendentes',
-    'http://automator-prod01.ebc:8080/automator2023/getCanalGov2023Pendentes',
-    'http://automator-prod01.ebc:8080/automator2023/getMarketingPendentes',
+    # 'http://automator-prod01.ebc:8080/automator/getMarketingPendentes',
+    # 'http://automator-prod01.ebc:8080/automator/getTVBrProgramacaoAgenciaPendentes',
+    # 'http://automator-prod01.ebc:8080/automator/getTVBrProgramacao2022Pendentes',
+    # 'http://automator-prod01.ebc:8080/automator/getRedesTiktokPendentes',
+    # 'http://automator-prod01.ebc:8080/automator/getEsportes2023Pendentes',
+    # 'http://automator-prod01.ebc:8080/automator/getEducacaoPendentes',
+    # 'http://automator-prod01.ebc:8080/automator/getTVBrRadiosChamadaPendentes',
+    # 'http://automator-prod01.ebc:8080/automator/getGovInformaPendentes',
+    # 'http://automator-prod01.ebc:8080/automator/getTVBrTempo2023Pendentes',
+    # 'http://automator-prod01.ebc:8080/automator/getTVBrRB2023Pendentes',
+    # 'http://automator-prod01.ebc:8080/automator/getTVBrProgramacao2023Pendentes',
+    #
+    # 'http://automator-prod01.ebc:8080/automator2023/getTVBrReporterBrasilPendentes',
+    # 'http://automator-prod01.ebc:8080/automator2023/getTVBrStadiumPendentes',
+    # 'http://automator-prod01.ebc:8080/automator2023/getTVBrMDBPendentes',
+    # 'http://automator-prod01.ebc:8080/automator2023/getTVBrProgramacao2023Pendentes',
+    # 'http://automator-prod01.ebc:8080/automator2023/getCanalGov2023Pendentes',
+    # 'http://automator-prod01.ebc:8080/automator2023/getMarketingPendentes',
 
 
     # 'http://vmebc:8080/automator2023/getTVBrReporterBrasilPendentes',
     # 'http://vmebc:8080/automator2023/getTVBrStadiumPendentes',
+    'http://vmebc:8080/automator2023/getCanalGovBrasilEmDiaPendentes',
 ]
 
 itens = []
@@ -95,7 +96,7 @@ logger.info("%r - Itens pendentes: ", len(itens))
 
 for item in itens:
     endereco = item['endereco']
-    arq = automator.alteraStatus(endereco, 'gerar')
+    # arq = automator.alteraStatus(endereco, 'gerar')
 
 for item in itens:
     endereco = item['endereco']
@@ -511,6 +512,29 @@ for item in itens:
         DESTINO = local + '/GovInforma/'
         SAIDA = lib_gov.getGovInforma(dados)
 
+    elif tipo == "Gov Twitter":
+        ID = 'gov_twitter'
+        JSX = ROOT + 'scripts/gov_twitter.jsx'
+        EXPORT = ROOT + 'export/gov_twitter/'
+        DESTINO = local + '/GovBrasilEmDia/'
+        SAIDA = lib_gov.getGovTwitter(dados)
+
+    elif tipo == "Gov Instagram":
+        ID = 'gov_instagram'
+        JSX = ROOT + 'scripts/gov_instagram.jsx'
+        EXPORT = ROOT + 'export/gov_instagram/'
+        DESTINO = local + '/GovBrasilEmDia/'
+        SAIDA = lib_gov.getGovInstagram(dados)
+
+    elif tipo == "Gov Destaque ABr":
+        ID = 'gov_destaque_abr'
+        JSX = ROOT + 'scripts/gov_destaque_abr.jsx'
+        EXPORT = ROOT + 'export/gov_destaque_abr/'
+        DESTINO = local + '/GovBrasilEmDia/'
+        SAIDA = lib_gov.getGovDestaqueABr(dados)
+
+
+
     elif tipo == "MidiaIndoor Agencia Brasil":
         ID = 'mkt_midia_indoor_agencia_2022'
         JSX = ROOT + 'scripts/mkt_midia_indoor_agencia_2023.jsx'
@@ -592,4 +616,4 @@ for item in itens:
 
 
     # FINALIZA
-    arq = requests.get(endereco+'/setWorkflowState?acao=finalizar')
+    # arq = requests.get(endereco+'/setWorkflowState?acao=finalizar')
