@@ -38,8 +38,9 @@ if not os.path.isdir(CUT):
 receivers = ['luis.rocha@ebc.com.br']
 
 listas = [
-    'http://automator-prod01.ebc:8080/automator/getAgenciaPendentes',
-    'http://automator-prod01.ebc:8080/automator2023/getRedesPendentes',
+    # 'http://automator-prod01.ebc:8080/automator/getAgenciaPendentes',
+    # 'http://automator-prod01.ebc:8080/automator2023/getRedesPendentes',
+    'http://vmebc:8080/automator2023/getRedesPendentes',
 ]
 
 itens = []
@@ -140,13 +141,19 @@ for item in itens:
     elif tipo == "Cards Modelo5":
         # ARQ_GERADO1 = lib_agencia_cards.gera_modelo_link05(dados, export)
         ARQ_GERADO2 = lib_agencia_cards.gera_modelo_square05(dados, export)
-        ARQ_GERADO3 = lib_agencia_cards.gera_modelo_stories05(dados, export)
+        # ARQ_GERADO3 = lib_agencia_cards.gera_modelo_stories05(dados, export)
+
+    elif tipo == "Cards Modelo6":
+        # ARQ_GERADO1 = lib_agencia_cards.gera_modelo_link05(dados, export)
+        ARQ_GERADO2 = lib_agencia_cards.gera_modelo06(dados, export)
 
 
 
-    # retorno = os.system("cp  %s  %s" % (ARQ_GERADO1,  dest))
-    retorno = os.system("cp  %s  %s" % (ARQ_GERADO2,  dest))
-    retorno = os.system("cp  %s  %s" % (ARQ_GERADO3,  dest))
+    if tipo == "Cards Modelo5" or "Cards Modelo6":
+        retorno = os.system("cp  %s  %s" % (ARQ_GERADO2,  dest))
+    else:
+        retorno = os.system("cp  %s  %s" % (ARQ_GERADO2,  dest))
+        retorno = os.system("cp  %s  %s" % (ARQ_GERADO3,  dest))
     logger.info(str(retorno) + " Arte copiada para destino: " +  titulo)
 
     # FINALIZA

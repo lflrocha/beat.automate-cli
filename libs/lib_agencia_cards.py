@@ -1384,3 +1384,91 @@ def gera_modelo_stories05(dados, export):
 
     base.save(export + nome_arquivo)
     return export + nome_arquivo
+
+
+
+
+
+
+
+
+def gera_modelo06(dados, export):
+
+    # BUSCA DADOS
+    nome_arquivo = slugify(dados['novo_projeto'] + '_' + dados['identificador']) + '_06.png'
+    variaveis = dados['variaveis']
+    credito = variaveis['credito']
+    foto = variaveis['arquivo']
+    endereco = variaveis['endereco']
+    texto = [variaveis['linha1'], variaveis['linha2'], variaveis['linha3'], variaveis['linha4']]
+    nome_foto = slugify(dados['novo_projeto'] + foto) + '.' + foto.rsplit('.', 1)[1]
+    foto = nome_foto
+    r = requests.get(endereco)
+    open(TEMP + foto, 'wb').write(r.content)
+
+    w = 1080
+    h = 1350
+    base = Image.new('RGBA', (w, h), (255,255,255,0))
+
+    base_img = ImageDraw.Draw(base)
+    foto = Image.open(TEMP + foto).convert('RGBA')
+
+    f_w = foto.size[0]
+    f_h = foto.size[1]
+    if  (f_w / f_h) > (1080/1350):
+        novo_w = 1080 * (f_h / 1350.0)
+        x1 = (f_w - novo_w) / 2
+        y1 = 0
+        x2 = x1 + novo_w
+        y2 = f_h
+        foto = foto.crop((x1, y1, x2, y2))
+    else:
+        novo_h = 1350 * (f_w / 1080.0)
+        y1 = (f_h - novo_h) / 2
+        x1 = 0
+        y2 = y1 + novo_h
+        x2 = f_w
+        foto = foto.crop((x1, y1, x2, y2))
+    foto = foto.resize((1080,1350), Image.Resampling.LANCZOS)
+    base.paste(foto, (0, 0), mask=foto)
+
+    # background_img = numpy.array(base)  # Inputs to blend_modes need to be numpy arrays.
+    # background_img_float = background_img.astype(float)  # Inputs to blend_modes need to be floats.
+    # middle_img_raw = Image.open(ARQUIVOS + "bg/AgenciaBrasil_modelo06.png")  # RGBA image
+    # middle_img = numpy.array(middle_img_raw)  # Inputs to blend_modes need to be numpy arrays.
+    # middle_img_float = middle_img.astype(float)  # Inputs to blend_modes need to be floats.
+    # opacity = .6  # The opacity of the foreground that is blended onto the background is 70 %.
+    # blended1_img_float = multiply(background_img_float, middle_img_float, opacity)
+    # blended_img = numpy.uint8(blended1_img_float)  # Image needs to be converted back to uint8 type for PIL handling.
+    # shape = Image.fromarray(blended_img)  # Note that alpha channels are displayed in black by PIL by default.
+    # base.paste(shape, (0, 0), mask=shape)
+
+    bg = Image.open(ARQUIVOS + "bg/AgenciaBrasil_modelo06.png").convert('RGBA')
+    base.paste(bg, (0, 0), mask=bg)
+
+    textoX = 40
+    textoY = 950
+
+    linha1X = textoX
+    linha1Y = textoY
+    base_img.text((linha1X, linha1Y), texto[0].strip(), font=fonte_stories_texto, fill=fonte_branca)
+
+    linha2X = textoX
+    linha2Y = linha1Y + 80
+    base_img.text((linha2X, linha2Y), texto[1].strip(), font=fonte_stories_texto, fill=fonte_branca)
+
+    linha3X = textoX
+    linha3Y = linha2Y + 80
+    base_img.text((linha3X, linha3Y), texto[2].strip(), font=fonte_stories_texto, fill=fonte_branca)
+
+    linha4X = textoX
+    linha4Y = linha3Y + 80
+    base_img.text((linha4X, linha4Y), texto[3].strip(), font=fonte_stories_texto, fill=fonte_branca)
+
+    tamanho = base_img.textlength("Foto: " + credito.strip(), font=fonte_stories_credito)
+    creditoX = 1024 - tamanho
+    creditoY = 1300
+    base_img.text((creditoX, creditoY), "Foto: " + credito.strip(), font=fonte_stories_credito, fill=fonte_branca)
+
+    base.save(export + nome_arquivo)
+    return export + nome_arquivo
