@@ -1344,18 +1344,18 @@ def gera_modelo_stories05(dados, export):
     foto = foto.resize((1080,1920), Image.Resampling.LANCZOS)
     base.paste(foto, (0, 0), mask=foto)
 
-    background_img = numpy.array(base)  # Inputs to blend_modes need to be numpy arrays.
-    background_img_float = background_img.astype(float)  # Inputs to blend_modes need to be floats.
-    middle_img_raw = Image.open(ARQUIVOS + "bg/Stories-AgenciaBrasil_shadow.png")  # RGBA image
-    middle_img = numpy.array(middle_img_raw)  # Inputs to blend_modes need to be numpy arrays.
-    middle_img_float = middle_img.astype(float)  # Inputs to blend_modes need to be floats.
-    opacity = .6  # The opacity of the foreground that is blended onto the background is 70 %.
-    blended1_img_float = multiply(background_img_float, middle_img_float, opacity)
-    blended_img = numpy.uint8(blended1_img_float)  # Image needs to be converted back to uint8 type for PIL handling.
-    shape = Image.fromarray(blended_img)  # Note that alpha channels are displayed in black by PIL by default.
-    base.paste(shape, (0, 0), mask=shape)
+    # background_img = numpy.array(base)  # Inputs to blend_modes need to be numpy arrays.
+    # background_img_float = background_img.astype(float)  # Inputs to blend_modes need to be floats.
+    # middle_img_raw = Image.open(ARQUIVOS + "bg/Stories-AgenciaBrasil_shadow.png")  # RGBA image
+    # middle_img = numpy.array(middle_img_raw)  # Inputs to blend_modes need to be numpy arrays.
+    # middle_img_float = middle_img.astype(float)  # Inputs to blend_modes need to be floats.
+    # opacity = .6  # The opacity of the foreground that is blended onto the background is 70 %.
+    # blended1_img_float = multiply(background_img_float, middle_img_float, opacity)
+    # blended_img = numpy.uint8(blended1_img_float)  # Image needs to be converted back to uint8 type for PIL handling.
+    # shape = Image.fromarray(blended_img)  # Note that alpha channels are displayed in black by PIL by default.
+    # base.paste(shape, (0, 0), mask=shape)
 
-    bg = Image.open(ARQUIVOS + "bg/Stories-AgenciaBrasil_5.png").convert('RGBA')
+    bg = Image.open(ARQUIVOS + "bg/AgenciaBrasil_modelo05.png").convert('RGBA')
     base.paste(bg, (0, 0), mask=bg)
 
     textoX = 60
