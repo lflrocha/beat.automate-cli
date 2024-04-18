@@ -38,9 +38,9 @@ if not os.path.isdir(CUT):
 receivers = ['luis.rocha@ebc.com.br']
 
 listas = [
-    # 'http://automator-prod01.ebc:8080/automator/getAgenciaPendentes',
-    # 'http://automator-prod01.ebc:8080/automator2023/getRedesPendentes',
-    'http://vmebc:8080/automator2023/getRedesPendentes',
+    'http://automator-prod01.ebc:8080/automator/getAgenciaPendentes',
+    'http://automator-prod01.ebc:8080/automator2023/getRedesPendentes',
+    # 'http://vmebc:8080/automator2023/getRedesPendentes',
 ]
 
 itens = []
@@ -62,7 +62,7 @@ logger.info("%r - Itens pendentes: ", len(itens))
 
 for item in itens:
     endereco = item['endereco']
-    # arq = automator.alteraStatus(endereco, 'gerar')
+    arq = automator.alteraStatus(endereco, 'gerar')
 
 for item in itens:
     endereco = item['endereco']
