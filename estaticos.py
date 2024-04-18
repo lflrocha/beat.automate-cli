@@ -140,8 +140,8 @@ for item in itens:
 
     elif tipo == "Cards Modelo5":
         # ARQ_GERADO1 = lib_agencia_cards.gera_modelo_link05(dados, export)
-        ARQ_GERADO2 = lib_agencia_cards.gera_modelo_square05(dados, export)
-        # ARQ_GERADO3 = lib_agencia_cards.gera_modelo_stories05(dados, export)
+        # ARQ_GERADO2 = lib_agencia_cards.gera_modelo_square05(dados, export)
+        ARQ_GERADO2 = lib_agencia_cards.gera_modelo_stories05(dados, export)
 
     elif tipo == "Cards Modelo6":
         # ARQ_GERADO1 = lib_agencia_cards.gera_modelo_link05(dados, export)
