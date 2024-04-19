@@ -304,3 +304,24 @@ def getEsportes2023ConfrontosManualVolei(dados):
     ]
     saida = {"dados": variaveis, "renders": renders}
     return saida
+
+
+
+def getRB2023ResultadosManualFutebol(dados):
+    novo_projeto = dados['novo_projeto']
+    identificador = dados['identificador']
+    arquivo_saida = slugify(novo_projeto + '-' + identificador)
+    variaveis = dados['variaveis']
+
+    renders = [
+        {
+            "comp": "!render_0",
+            "inicio": "1",
+            "fim": "300",
+            "OM": "MOV",
+            "arquivo": arquivo_saida + ".mov",
+            # "converter": "MP4"
+        }
+    ]
+    saida = {"dados": variaveis, "renders": renders}
+    return saida

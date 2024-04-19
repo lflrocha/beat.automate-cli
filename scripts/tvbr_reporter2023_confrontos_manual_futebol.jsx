@@ -11,7 +11,8 @@ function TrocarTexto(nome_comp, nome_layer, novo_texto) {
 var arqScript = new File($.fileName);
 var nomeProjeto = arqScript.name.split(".")[0];
 var baseFolder = arqScript.parent.path + "/";
-var _io = new ImportOptions(File(baseFolder + "projetos/esportes2023_confrontos_futebol.aep"));
+// var _io = new ImportOptions(File(baseFolder + "projetos/esportes2023_confrontos_futebol.aep"));
+var _io = new ImportOptions(File(baseFolder + "projetos/tvbr_reporter2023_futebol_confrontos.aep"));
 if(_io.canImportAs(ImportAsType.PROJECT)){
     _io.importAs = ImportAsType.PROJECT;
 }
@@ -55,7 +56,7 @@ switch (jogos.length) {
     break;
 }
 
-comp_tela.layer(programa).property("opacity").setValue(100);
+// comp_tela.layer(programa).property("opacity").setValue(100);
 comp_tela.name = "!render_0";
 TrocarTexto(comp_tela, "titulo", campeonato);
 TrocarTexto(comp_tela, "subtitulo", txt_subtitulo);
@@ -107,18 +108,6 @@ for (var j = 1; j <= jogos.length; j++) {
   var importedImageB = app.project.importFile(importOptionsB);
   escudoLayerB.replaceSource(importedImageB, false);
 
-  if (programa == "Stadium") {
-     obj = comp_tela.layer("tarja" + j.toString())
-     obj.effect("COR").property("Color").setValue([2/255,67/255,129/255])
-  }
-  if (programa == "Mundo da Bola") {
-     obj = comp_tela.layer("tarja" + j.toString())
-     obj.effect("COR").property("Color").setValue([0/255 , 62/255, 59/255])
-  }
-  if (programa == "Repórter Brasil") {
-    obj = comp_tela.layer("tarja" + j.toString())
-    obj.effect("COR").property("Color").setValue([2/255,67/255,129/255])
-  }
 
 }
 

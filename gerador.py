@@ -77,6 +77,8 @@ listas = [
     # 'http://vmebc:8080/automator2023/getTVBrReporterBrasilPendentes',
     # 'http://vmebc:8080/automator2023/getTVBrStadiumPendentes',
     # 'http://vmebc:8080/automator2023/getCanalGovBrasilEmDiaPendentes',
+    'http://vmebc:8080/automator2023/getTVBrReporterBrasilPendentes',
+
 ]
 
 itens = []
@@ -392,6 +394,24 @@ for item in itens:
         EXPORT = ROOT + 'export/tvbr_tempo2023_mapa/'
         DESTINO = local + '/TVBr_Tempo2023/'
         SAIDA = lib_tempo_mapa.getTempoMapa(dados)
+
+    elif tipo == "RB2023 Futebol Confrontos Feminino":
+        ID = 'tvbr_reporter2023_futebol_confrontos_feminino'
+        JSX = ROOT + 'scripts/tvbr_reporter2023_confrontos_manual_futebol.jsx'
+        EXPORT = ROOT + 'export/tvbr_reporter2023_futebol_confrontos/'
+        DESTINO = local + '/TVBr_Reporter2023/'
+        SAIDA = lib_esportes.getRB2023ResultadosManualFutebol(dados)
+
+    elif tipo == "RB2023 Futebol Confrontos Masculino":
+        ID = 'tvbr_reporter2023_futebol_confrontos_masculino'
+        JSX = ROOT + 'scripts/tvbr_reporter2023_confrontos_manual_futebol.jsx'
+        EXPORT = ROOT + 'export/tvbr_reporter2023_futebol_confrontos/'
+        DESTINO = local + '/TVBr_Reporter2023/'
+        SAIDA = lib_esportes.getRB2023ResultadosManualFutebol(dados)
+
+
+
+
 
     elif tipo == "Stadium Tabelas":
         ID = 'esportes2023_tabela_futebol'
