@@ -491,6 +491,13 @@ for item in itens:
         DESTINO = local + '/TVBr_Stadium/'
         SAIDA = lib_esportes.getEsportes2023ResultadosManualFutebol(dados)
 
+    elif tipo == "Stadium Resultados Manual Futebol Feminino":
+        ID = 'esportes2023_resultados_manual_futebol_feminino'
+        JSX = ROOT + 'scripts/esportes2023_resultados_manual_futebol.jsx'
+        EXPORT = ROOT + 'export/esportes2023_resultados_manual_futebol_feminino/'
+        DESTINO = local + '/TVBr_Stadium/'
+        SAIDA = lib_esportes.getEsportes2023ResultadosManualFutebol(dados)
+
     elif tipo == "Stadium Resultados Manual Futebol America":
         ID = 'esportes2023_resultados_manual_futebol_america'
         JSX = ROOT + 'scripts/esportes2023_resultados_manual_futebol.jsx'
