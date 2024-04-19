@@ -77,7 +77,7 @@ listas = [
     # 'http://vmebc:8080/automator2023/getTVBrReporterBrasilPendentes',
     # 'http://vmebc:8080/automator2023/getTVBrStadiumPendentes',
     # 'http://vmebc:8080/automator2023/getCanalGovBrasilEmDiaPendentes',
-    'http://vmebc:8080/automator2023/getTVBrReporterBrasilPendentes',
+    # 'http://vmebc:8080/automator2023/getTVBrReporterBrasilPendentes',
 
 ]
 
