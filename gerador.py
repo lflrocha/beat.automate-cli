@@ -75,7 +75,7 @@ listas = [
     #
 
     # 'http://vmebc:8080/automator2023/getTVBrReporterBrasilPendentes',
-    # 'http://vmebc:8080/automator2023/getTVBrStadiumPendentes',
+    'http://vmebc:8080/automator2023/getTVBrStadiumPendentes',
     # 'http://vmebc:8080/automator2023/getCanalGovBrasilEmDiaPendentes',
     # 'http://vmebc:8080/automator2023/getTVBrReporterBrasilPendentes',
 
@@ -436,6 +436,13 @@ for item in itens:
 
     elif tipo == "Stadium Confrontos Manual Futebol Brasil":
         ID = 'esportes2023_confrontos_manual_futebol_brasil'
+        JSX = ROOT + 'scripts/esportes2023_confrontos_manual_futebol.jsx'
+        EXPORT = ROOT + 'export/esportes2023_confrontos_futebol/'
+        DESTINO = local + '/TVBr_Stadium/'
+        SAIDA = lib_esportes.getEsportes2023ConfrontosManualFutebol(dados)
+
+    elif tipo == "Stadium Confrontos Manual Futebol Feminino":
+        ID = 'esportes2023_confrontos_manual_futebol_feminino'
         JSX = ROOT + 'scripts/esportes2023_confrontos_manual_futebol.jsx'
         EXPORT = ROOT + 'export/esportes2023_confrontos_futebol/'
         DESTINO = local + '/TVBr_Stadium/'
