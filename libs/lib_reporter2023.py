@@ -111,7 +111,7 @@ def getAlbum(dados):
             "fim": "",
             "OM": "MAM",
             "arquivo": arquivo_saida + ".mov",
-            "converter": "MP4"
+            "converter": "MXF"
         }
     ]
 
