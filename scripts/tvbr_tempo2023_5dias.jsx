@@ -80,7 +80,7 @@ TrocarTexto(comp_tela, "chuva5", dia5['chuva']);
 var importOptions = new ImportOptions();
 importOptions.file = new File(File(baseFolder + "arquivos/previsao-tempo/icones/azul/" + dia1['icone'] + ".mov"));
 var iconeImportado = app.project.importFile(importOptions);
-comp_tela.layer('icone1').replaceSource(iconeImportado, false);
+comp_tela.layer('a_video').replaceSource(iconeImportado, false);
 
 var importOptions = new ImportOptions();
 importOptions.file = new File(File(baseFolder + "arquivos/previsao-tempo/icones/azul/" + dia2['icone'] + ".mov"));

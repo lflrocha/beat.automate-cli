@@ -53,31 +53,34 @@ if not os.path.isdir(CUT):
 receivers = ['luis.rocha@ebc.com.br']
 
 listas = [
-    'http://automator-prod01.ebc:8080/automator/getMarketingPendentes',
-    'http://automator-prod01.ebc:8080/automator/getTVBrProgramacaoAgenciaPendentes',
-    'http://automator-prod01.ebc:8080/automator/getTVBrProgramacao2022Pendentes',
-    'http://automator-prod01.ebc:8080/automator/getRedesTiktokPendentes',
-    'http://automator-prod01.ebc:8080/automator/getEsportes2023Pendentes',
-    'http://automator-prod01.ebc:8080/automator/getEducacaoPendentes',
-    'http://automator-prod01.ebc:8080/automator/getTVBrRadiosChamadaPendentes',
-    'http://automator-prod01.ebc:8080/automator/getGovInformaPendentes',
-    'http://automator-prod01.ebc:8080/automator/getTVBrTempo2023Pendentes',
-    'http://automator-prod01.ebc:8080/automator/getTVBrRB2023Pendentes',
-    'http://automator-prod01.ebc:8080/automator/getTVBrProgramacao2023Pendentes',
-
-    'http://automator-prod01.ebc:8080/automator2023/getTVBrReporterBrasilPendentes',
-    'http://automator-prod01.ebc:8080/automator2023/getTVBrStadiumPendentes',
-    'http://automator-prod01.ebc:8080/automator2023/getTVBrMDBPendentes',
-    'http://automator-prod01.ebc:8080/automator2023/getTVBrProgramacao2023Pendentes',
-    'http://automator-prod01.ebc:8080/automator2023/getCanalGov2023Pendentes',
-    'http://automator-prod01.ebc:8080/automator2023/getCanalGovBrasilEmDiaPendentes',
-    'http://automator-prod01.ebc:8080/automator2023/getMarketingPendentes',
+    # 'http://automator-prod01.ebc:8080/automator/getMarketingPendentes',
+    # 'http://automator-prod01.ebc:8080/automator/getTVBrProgramacaoAgenciaPendentes',
+    # 'http://automator-prod01.ebc:8080/automator/getTVBrProgramacao2022Pendentes',
+    # 'http://automator-prod01.ebc:8080/automator/getRedesTiktokPendentes',
+    # 'http://automator-prod01.ebc:8080/automator/getEsportes2023Pendentes',
+    # 'http://automator-prod01.ebc:8080/automator/getEducacaoPendentes',
+    # 'http://automator-prod01.ebc:8080/automator/getTVBrRadiosChamadaPendentes',
+    # 'http://automator-prod01.ebc:8080/automator/getGovInformaPendentes',
+    # 'http://automator-prod01.ebc:8080/automator/getTVBrTempo2023Pendentes',
+    # 'http://automator-prod01.ebc:8080/automator/getTVBrRB2023Pendentes',
+    # 'http://automator-prod01.ebc:8080/automator/getTVBrProgramacao2023Pendentes',
+    #
+    # 'http://automator-prod01.ebc:8080/automator2023/getTVBrReporterBrasilPendentes',
+    # 'http://automator-prod01.ebc:8080/automator2023/getTVBrStadiumPendentes',
+    # 'http://automator-prod01.ebc:8080/automator2023/getTVBrMDBPendentes',
+    # 'http://automator-prod01.ebc:8080/automator2023/getTVBrProgramacao2023Pendentes',
+    # 'http://automator-prod01.ebc:8080/automator2023/getCanalGov2023Pendentes',
+    # 'http://automator-prod01.ebc:8080/automator2023/getCanalGovBrasilEmDiaPendentes',
+    # 'http://automator-prod01.ebc:8080/automator2023/getMarketingPendentes',
     #
 
-    # 'http://vmebc:8080/automator2023/getTVBrReporterBrasilPendentes',
+    'http://vmebc:8080/automator2023/getTVBrReporterBrasilPendentes',
     # 'http://vmebc:8080/automator2023/getTVBrStadiumPendentes',
     # 'http://vmebc:8080/automator2023/getCanalGovBrasilEmDiaPendentes',
     # 'http://vmebc:8080/automator2023/getTVBrReporterBrasilPendentes',
+
+
+    # 'http://vmebc:8080/automator2023/getCanalGovOnAirPendentes',
 
 ]
 
@@ -309,6 +312,14 @@ for item in itens:
     # NOVOS
     ###############################################################################
 
+
+
+    elif tipo == "MidiaIndoor Agencia Brasil":
+        ID = 'mkt_midia_indoor_agencia_2022'
+        JSX = ROOT + 'scripts/mkt_midia_indoor_agencia_2023.jsx'
+        EXPORT = ROOT + 'export/mkt_midia_indoor_agencia_2023/'
+        DESTINO = local + '/Marketing/'
+        SAIDA = lib_marketing.getMktMidiaIndoorAgencia2023(dados)
 
     elif tipo == "RB2023 Album":
         print("entrou")
@@ -576,15 +587,55 @@ for item in itens:
         SAIDA = lib_gov.getGovDestaqueAgGov(dados)
 
 
-    elif tipo == "MidiaIndoor Agencia Brasil":
-        ID = 'mkt_midia_indoor_agencia_2022'
-        JSX = ROOT + 'scripts/mkt_midia_indoor_agencia_2023.jsx'
-        EXPORT = ROOT + 'export/mkt_midia_indoor_agencia_2023/'
-        DESTINO = local + '/Marketing/'
-        SAIDA = lib_marketing.getMktMidiaIndoorAgencia2023(dados)
+    elif tipo == "Gov OnAir DaquiAPouco":
+        ID = 'gov2024_onair_daquiapouco'
+        JSX = ROOT + 'scripts/gov2024_onair_daquiapouco.jsx'
+        EXPORT = ROOT + 'export/gov2024_onair_daquiapouco/'
+        DESTINO = local + '/GovOnAir/'
+        SAIDA = lib_gov.getGovOnAirDaquiAPouco(dados)
+
+    elif tipo == "Gov OnAir ASeguir":
+        ID = 'gov2024_onair_aseguir'
+        JSX = ROOT + 'scripts/gov2024_onair_aseguir.jsx'
+        EXPORT = ROOT + 'export/gov2024_onair_aseguir/'
+        DESTINO = local + '/GovOnAir/'
+        SAIDA = lib_gov.getGovOnAirASeguir(dados)
+
+    elif tipo == "Gov OnAir Bussola1":
+        ID = 'gov2024_onair_bussola1'
+        JSX = ROOT + 'scripts/gov2024_onair_bussola1.jsx'
+        EXPORT = ROOT + 'export/gov2024_onair_bussola1/'
+        DESTINO = local + '/GovOnAir/'
+        SAIDA = lib_gov.getGovOnAirBussola1(dados)
+
+    elif tipo == "Gov OnAir Bussola2":
+        ID = 'gov2024_onair_bussola2'
+        JSX = ROOT + 'scripts/gov2024_onair_bussola2.jsx'
+        EXPORT = ROOT + 'export/gov2024_onair_bussola2/'
+        DESTINO = local + '/GovOnAir/'
+        SAIDA = lib_gov.getGovOnAirBussola2(dados)
 
 
+    elif tipo == "Gov OnAir Bussola3":
+        ID = 'gov2024_onair_bussola3'
+        JSX = ROOT + 'scripts/gov2024_onair_bussola3.jsx'
+        EXPORT = ROOT + 'export/gov2024_onair_bussola3/'
+        DESTINO = local + '/GovOnAir/'
+        SAIDA = lib_gov.getGovOnAirBussola3(dados)
 
+    elif tipo == "Gov OnAir HorarioAlternativo":
+        ID = 'gov2024_onair_horarioalternativo'
+        JSX = ROOT + 'scripts/gov2024_onair_horarioalternativo.jsx'
+        EXPORT = ROOT + 'export/gov2024_onair_horarioalternativo/'
+        DESTINO = local + '/GovOnAir/'
+        SAIDA = lib_gov.getGovOnAirHorarioAlternativo(dados)
+
+    elif tipo == "Gov OnAir Citacao":
+        ID = 'gov2024_onair_citacao'
+        JSX = ROOT + 'scripts/gov2024_onair_citacao.jsx'
+        EXPORT = ROOT + 'export/gov2024_onair_citacao/'
+        DESTINO = local + '/GovOnAir/'
+        SAIDA = lib_gov.getGovOnAirCitacao(dados)
 
 
 

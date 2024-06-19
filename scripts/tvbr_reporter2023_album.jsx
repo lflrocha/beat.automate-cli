@@ -21,12 +21,8 @@ scriptFile.close();
 var dados = (new Function( "return " + content ))() ;
 
 
-modelo = dados['modelo']
-if (modelo == "Tarde") {
-    var nome_arquivo = "projetos/tvbr_reporter2023_album.aep"
-} else {
-    var nome_arquivo = "projetos/tvbr_reporter2023_album.aep"
-}
+
+var nome_arquivo = "projetos/tvbr_reporter2023_album.aep"
 
 var _io = new ImportOptions(File(baseFolder + nome_arquivo));
 if(_io.canImportAs(ImportAsType.PROJECT)){
@@ -34,13 +30,34 @@ if(_io.canImportAs(ImportAsType.PROJECT)){
 }
 var projetoImportado = app.project.importFile(_io);
 
-
 var fotos = dados['fotos'];
 var comp_tela = app.project.item(2);
 
+var modelo = dados['modelo'];
+
+layer_bg_tarde = comp_tela.layer("background_rbt");
+if (dados['modelo'] == "Tarde") {
+  layer_bg_tarde.enabled = true;
+}
+
+for (i = 0; i < fotos.length; i++) {
+    foto = fotos[i][0];
+    legenda = fotos[i][1];
+    indice = i + 1;
+    // alert(foto);
+    var importOptions = new ImportOptions();
+    importOptions.file = new File(File(baseFolder + "temp/" + foto));
+    var fotoImportada = app.project.importFile(importOptions);
+    aux = 'layerFoto'+indice
+    comp_tela.layer(aux).replaceSource(fotoImportada, false);
+    aux2 = 'layerLegenda' + indice
+    alert(aux2)
+    TrocarTexto (comp_tela, aux2, legenda)
+
+}
 
 
-
+comp_tela.duration = fotos.length * 6
 
 
 app.endSuppressDialogs(false);

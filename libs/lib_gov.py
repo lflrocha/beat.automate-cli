@@ -185,3 +185,183 @@ def getGovDestaqueABr(dados):
 
     saida = {"dados": variaveis, "renders": renders}
     return saida
+
+
+
+
+
+def getGovOnAirDaquiAPouco(dados):
+    novo_projeto = dados['novo_projeto']
+    identificador = dados['identificador']
+    variaveis = dados['variaveis']
+
+    codigo = variaveis['codigo']
+    arquivo_saida = slugify(novo_projeto + '-' + codigo)
+
+    renders = [
+        {
+            "comp": "01_render",
+            "inicio": "1",
+            "fim": "150",
+            "OM": "MAM",
+            "arquivo": arquivo_saida + ".mov",
+            "converter": "MP4"
+        }
+    ]
+
+    saida = {"dados": variaveis, "renders": renders}
+    return saida
+
+
+def getGovOnAirASeguir(dados):
+    novo_projeto = dados['novo_projeto']
+    identificador = dados['identificador']
+    variaveis = dados['variaveis']
+
+    codigo = variaveis['codigo']
+    arquivo_saida = slugify(novo_projeto + '-' + codigo)
+
+    renders = [
+        {
+            "comp": "01_render",
+            "inicio": "1",
+            "fim": "150",
+            "OM": "MAM",
+            "arquivo": arquivo_saida + ".mov",
+            "converter": "MP4"
+        }
+    ]
+
+    saida = {"dados": variaveis, "renders": renders}
+    return saida
+
+
+def getGovOnAirBussola1(dados):
+    novo_projeto = dados['novo_projeto']
+    identificador = dados['identificador']
+    variaveis = dados['variaveis']
+
+    codigo = variaveis['codigo']
+    arquivo_saida = slugify(novo_projeto + '-' + codigo)
+
+    renders = [
+        {
+            "comp": "01_render",
+            "inicio": "1",
+            "fim": "150",
+            "OM": "MAM",
+            "arquivo": arquivo_saida + ".mov",
+            "converter": "MP4"
+        }
+    ]
+
+    saida = {"dados": variaveis, "renders": renders}
+    return saida
+
+
+
+def getGovOnAirBussola2(dados):
+    novo_projeto = dados['novo_projeto']
+    identificador = dados['identificador']
+    variaveis = dados['variaveis']
+
+    codigo = variaveis['codigo']
+    arquivo_saida = slugify(novo_projeto + '-' + codigo)
+
+    renders = [
+        {
+            "comp": "01_render",
+            "inicio": "1",
+            "fim": "300",
+            "OM": "MAM",
+            "arquivo": arquivo_saida + ".mov",
+            "converter": "MP4"
+        }
+    ]
+
+    saida = {"dados": variaveis, "renders": renders}
+    return saida
+
+
+
+def getGovOnAirBussola3(dados):
+    novo_projeto = dados['novo_projeto']
+    identificador = dados['identificador']
+    variaveis = dados['variaveis']
+
+    codigo = variaveis['codigo']
+    arquivo_saida = slugify(novo_projeto + '-' + codigo)
+
+    renders = [
+        {
+            "comp": "01_render",
+            "inicio": "1",
+            "fim": "450",
+            "OM": "MAM",
+            "arquivo": arquivo_saida + ".mov",
+            "converter": "MP4"
+        }
+    ]
+
+    saida = {"dados": variaveis, "renders": renders}
+    return saida
+
+
+
+def getGovOnAirHorarioAlternativo(dados):
+    novo_projeto = dados['novo_projeto']
+    identificador = dados['identificador']
+    variaveis = dados['variaveis']
+
+    codigo = variaveis['codigo']
+    arquivo_saida = slugify(novo_projeto + '-' + codigo)
+
+    renders = [
+        {
+            "comp": "01_render",
+            "inicio": "1",
+            "fim": "450",
+            "OM": "MAM",
+            "arquivo": arquivo_saida + ".mov",
+            "converter": "MP4"
+        }
+    ]
+
+    saida = {"dados": variaveis, "renders": renders}
+    return saida
+
+
+
+def getGovOnAirCitacao(dados):
+    novo_projeto = dados['novo_projeto']
+    identificador = dados['identificador']
+    arquivo_saida = slugify(novo_projeto + '-' + identificador)
+
+    variaveis = dados['variaveis']
+
+    codigo = variaveis['codigo']
+    arquivo_saida = slugify(novo_projeto + '-' + codigo)
+
+    arq_imagem1 = variaveis['arquivo']
+    end_imagem1 = variaveis['endereco']
+
+    download = [
+        (end_imagem1, arq_imagem1)
+    ]
+
+    automator.baixaArquivos(download)
+
+    renders = [
+        {
+            "comp": "01_render",
+            "inicio": "1",
+            "fim": "450",
+            "OM": "MAM",
+            "arquivo": arquivo_saida + ".mov",
+            # "converter": "MP4-AUDIO"
+            "converter": "MP4"
+        }
+    ]
+
+    saida = {"dados": variaveis, "renders": renders}
+    return saida

@@ -8,3 +8,7 @@
 ._*
 *.pyc
 /__pycache__
+/lib
+/bin
+/share
+pyvenv.cfg
