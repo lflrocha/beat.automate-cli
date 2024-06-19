@@ -51,7 +51,6 @@ for (i = 0; i < fotos.length; i++) {
     aux = 'layerFoto'+indice
     comp_tela.layer(aux).replaceSource(fotoImportada, false);
     aux2 = 'layerLegenda' + indice
-    alert(aux2)
     TrocarTexto (comp_tela, aux2, legenda)
 
 }
