@@ -1358,7 +1358,7 @@ def gera_modelo_stories05(dados, export):
     bg = Image.open(ARQUIVOS + "bg/AgenciaBrasil_modelo05-grafismo.png").convert('RGBA')
     base.paste(bg, (0, 0), mask=bg)
 
-    textoX = 60
+    textoX = 55
     textoY = 1440
 
     linha1X = textoX
@@ -1446,7 +1446,7 @@ def gera_modelo06(dados, export):
     bg = Image.open(ARQUIVOS + "bg/AgenciaBrasil_modelo06-grafismo.png").convert('RGBA')
     base.paste(bg, (0, 0), mask=bg)
 
-    textoX = 40
+    textoX = 55
     textoY = 950
 
     linha1X = textoX
