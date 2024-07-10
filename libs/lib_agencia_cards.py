@@ -1447,7 +1447,7 @@ def gera_modelo06(dados, export):
     base.paste(bg, (0, 0), mask=bg)
 
     textoX = 55
-    textoY = 925
+    textoY = 935
 
     linha1X = textoX
     linha1Y = textoY
