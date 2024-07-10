@@ -1359,7 +1359,7 @@ def gera_modelo_stories05(dados, export):
     base.paste(bg, (0, 0), mask=bg)
 
     textoX = 55
-    textoY = 1440
+    textoY = 1460
 
     linha1X = textoX
     linha1Y = textoY
