@@ -1,22 +1,18 @@
 # -*- coding: UTF-8 -*-
 
-import ast
 import os
 import smtplib
 import sys
-import logging
 import requests
 import json
 import platform
 import subprocess
 import shutil
-from bs4 import BeautifulSoup
 from os.path import dirname, abspath
 from datetime import datetime, timedelta
 
-import qrcode
-from PIL import Image
-
+from dotenv import load_dotenv
+import os
 
 ROOT = dirname(dirname(abspath(__file__))) + '/'
 
@@ -24,8 +20,8 @@ TEMP = ROOT + 'temp/'
 LOGS = ROOT + 'logs/'
 BIN = ROOT + 'bin/'
 
-AERENDER = 'C:/Program Files/Adobe/Adobe After Effects 2025/Support Files/aerender.exe'
-AERENDER = '/Applications/Adobe After Effects 2026/aerender'
+AERENDER_WIN = 'C:/Program Files/Adobe/Adobe After Effects 2025/Support Files/aerender.exe'
+AERENDER_MAC = '/Applications/Adobe After Effects 2025/aerender'
 
 AEFX = 'C:/Program Files/Adobe/Adobe After Effects 2025/Support Files/AfterFX.exe'
 SCPT = ROOT + 'scripts/atualizaProjeto.scpt'
@@ -108,16 +104,37 @@ def atualizaProjeto(projeto):
 
 
 def geraArte(projeto, comp, inicio, fim, output_module, output):
-    "Gera arte"
+    """Gera arte"""
+
+    AERENDER = AERENDER_WIN if plataforma == "Windows" else AERENDER_MAC
+
+    if not os.path.exists(AERENDER):
+        raise FileNotFoundError(f"aerender não encontrado: {AERENDER}")
+
+    if not os.path.exists(projeto):
+        raise FileNotFoundError(f"Projeto After não encontrado: {projeto}")
 
     if not inicio:
         inicio = "1"
 
-    # inicio = "1"
-    parametros = [AERENDER, '-project', projeto, '-comp', comp, '-s', inicio, '-e', fim,  '-OMtemplate', output_module, '-output', output]
+    parametros = [
+        str(AERENDER),
+        "-project", str(projeto),
+        "-comp", str(comp),
+        "-s", str(inicio),
+    ]
 
-    if not fim or fim == "0":
-        parametros = [AERENDER, '-project', projeto, '-comp', comp, '-s', inicio,  '-OMtemplate', output_module, '-output', output]
+    if fim and str(fim) != "0":
+        parametros += ["-e", str(fim)]
+
+    parametros += [
+        "-OMtemplate", str(output_module),
+        "-output", str(output),
+    ]
+
+    print("PARAMETROS:")
+    for p in parametros:
+        print(repr(p))
 
     retorno = subprocess.call(parametros)
     return retorno
@@ -125,6 +142,10 @@ def geraArte(projeto, comp, inicio, fim, output_module, output):
 
 def enviaEmail(assunto, mensagem, destinatarios, arquivos):
     msg = MIMEMultipart()
+
+    load_dotenv()
+    senha = os.getenv("SMTP_PASSWORD")
+
 
     msg['From'] = "lflrocha@gmail.com"
     msg['To'] = ", ".join(destinatarios)
@@ -142,7 +163,7 @@ def enviaEmail(assunto, mensagem, destinatarios, arquivos):
     server = smtplib.SMTP('smtp.google.com', 587)
     server.ehlo()
     server.starttls()
-    server.login('lflrocha@gmail.com', 'swmx ynzn buax yrfq')
+    server.login('lflrocha@gmail.com', senha)
     server.sendmail(msg['From'], msg['To'], msg.as_string())
     server.quit()
 
