@@ -10,6 +10,8 @@ import subprocess
 import shutil
 import ast
 
+import time
+
 from os.path import dirname, abspath
 from datetime import datetime, timedelta
 
@@ -117,7 +119,7 @@ def geraArte(projeto, comp, inicio, fim, output_module, output):
 
     projeto_path = Path(projeto).resolve()
 
-    sleep(2)
+    time.sleep(2)
 
     if not inicio:
         inicio = "1"
