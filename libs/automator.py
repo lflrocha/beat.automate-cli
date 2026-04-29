@@ -26,9 +26,8 @@ TEMP = ROOT + 'temp/'
 LOGS = ROOT + 'logs/'
 BIN = ROOT + 'bin/'
 
-AERENDER = '/Applications/Adobe\ After\ Effects\ CS6/aerender'
 AERENDER = 'C:/Program Files/Adobe/Adobe After Effects CS6/Support Files/aerender.exe'
-AERENDER = '/Applications/Adobe After Effects 2023/aerender'
+AERENDER = '/Applications/Adobe After Effects 2026/aerender'
 
 AEFX = 'C:/Program Files/Adobe/Adobe After Effects CS6/Support Files/AfterFX.exe'
 SCPT = ROOT + 'scripts/atualizaProjeto.scpt'
