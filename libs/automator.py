@@ -15,6 +15,7 @@ from datetime import datetime, timedelta
 
 import os
 import subprocess
+from pathlib import Path
 
 from dotenv import load_dotenv
 import os
@@ -114,18 +115,19 @@ def geraArte(projeto, comp, inicio, fim, output_module, output):
     plataforma = platform.system()
     AERENDER = AERENDER_WIN if plataforma == "Windows" else AERENDER_MAC
 
+    projeto_path = Path(projeto).resolve()
+    if not projeto_path.exists():
+        raise FileNotFoundError(f"Projeto After não encontrado: {projeto_path}")
+
     if not os.path.exists(AERENDER):
         raise FileNotFoundError(f"aerender não encontrado: {AERENDER}")
-
-    if not os.path.exists(projeto):
-        raise FileNotFoundError(f"Projeto After não encontrado: {projeto}")
 
     if not inicio:
         inicio = "1"
 
     parametros = [
         str(AERENDER),
-        "-project", str(projeto),
+        "-project", str(projeto_path),
         "-comp", str(comp),
         "-s", str(inicio),
     ]
