@@ -111,6 +111,7 @@ def atualizaProjeto(projeto):
 def geraArte(projeto, comp, inicio, fim, output_module, output):
     """Gera arte"""
 
+    plataforma = platform.system()
     AERENDER = AERENDER_WIN if plataforma == "Windows" else AERENDER_MAC
 
     if not os.path.exists(AERENDER):
