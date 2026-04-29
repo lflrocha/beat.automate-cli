@@ -116,11 +116,8 @@ def geraArte(projeto, comp, inicio, fim, output_module, output):
     AERENDER = AERENDER_WIN if plataforma == "Windows" else AERENDER_MAC
 
     projeto_path = Path(projeto).resolve()
-    if not projeto_path.exists():
-        raise FileNotFoundError(f"Projeto After não encontrado: {projeto_path}")
 
-    if not os.path.exists(AERENDER):
-        raise FileNotFoundError(f"aerender não encontrado: {AERENDER}")
+    sleep(2)
 
     if not inicio:
         inicio = "1"
