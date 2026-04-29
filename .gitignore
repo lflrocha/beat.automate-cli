@@ -4,6 +4,7 @@
 /temp
 /arquivos
 /_arquivo
+/Automate
 .DS_Store
 ._*
 *.pyc
